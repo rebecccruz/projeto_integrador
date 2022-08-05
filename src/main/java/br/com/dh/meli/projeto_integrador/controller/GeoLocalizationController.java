@@ -1,6 +1,7 @@
 package br.com.dh.meli.projeto_integrador.controller;
-import br.com.dh.meli.projeto_integrador.dto.AddCountryDTO;
+import br.com.dh.meli.projeto_integrador.dto.geolocalization.AddCountryDTO;
 import br.com.dh.meli.projeto_integrador.dto.JSONOutuputMessageDTO;
+import br.com.dh.meli.projeto_integrador.dto.geolocalization.AddStateDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class GeoLocalizationController {
     /**
      * Add a new country
      *
-     * @param AddCountryDTO newCountry
+     * @param AddCountryDTO newCountry payload
      * @return ResponseEntity<JSONOutuputMessageDTO>
      * @author Alexandre Borges Souza
      */
@@ -31,6 +32,24 @@ public class GeoLocalizationController {
                 .builder()
                 .title("Sucesso")
                 .message("País cadastrado com sucesso")
+                .status(HttpStatus.CREATED)
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(outuputMessageDTO);
+    }
+
+    /**
+     * Add a new state
+     *
+     * @param AddStateDTO payload
+     * @return ResponseEntity<JSONOutuputMessageDTO>
+     * @author Alexandre Borges Souza
+     */
+    @PostMapping("/state")
+    public ResponseEntity<JSONOutuputMessageDTO> addState(@RequestBody @Valid AddStateDTO newState) {
+        JSONOutuputMessageDTO outuputMessageDTO = JSONOutuputMessageDTO
+                .builder()
+                .title("Sucesso")
+                .message("Estado cadastrado com sucesso")
                 .status(HttpStatus.CREATED)
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(outuputMessageDTO);

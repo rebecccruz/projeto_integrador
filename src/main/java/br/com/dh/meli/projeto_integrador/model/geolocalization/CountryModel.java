@@ -1,9 +1,9 @@
-package br.com.dh.meli.projeto_integrador.model;
+package br.com.dh.meli.projeto_integrador.model.geolocalization;
 import lombok.Builder;
 import lombok.Data;
 
 /**
- * Country Entitie
+ * Geolocalization/Country Entitie
  *
  * @author Alexandre Borges Souza
  */
