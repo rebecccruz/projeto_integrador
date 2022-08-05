@@ -10,7 +10,7 @@ public class InboundOrderDTO {
     public List<BatchStockDTO> batchStock;
 
     public InboundOrderDTO(InboundOrder inboundOrder) {
-        List<BatchStockDTO> list =  inboundOrder.getBatchStock()
+        List<BatchStockDTO> list = inboundOrder.getBatchStock()
                 .stream().map(BatchStockDTO::new).collect(Collectors.toList());
         this.setBatchStock(list);
     }

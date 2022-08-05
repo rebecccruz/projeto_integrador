@@ -21,7 +21,6 @@ public class BatchStockDTO {
     public LocalDate dueDate;
 
     public BatchStockDTO(BatchStock batchStock) {
-        this.sectionCode = batchStock.getSectionCode();
         this.batchNumber = batchStock.getBatchNumber();
         this.productId = batchStock.getProductId();
     }

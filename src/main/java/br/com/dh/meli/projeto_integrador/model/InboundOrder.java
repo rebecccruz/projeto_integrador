@@ -11,5 +11,6 @@ public class InboundOrder {
     public String orderNumber;
     public String orderDate;
     public String warehouseCode;
+    public String sectionCode;
     public List<BatchStock> batchStock;
 }
