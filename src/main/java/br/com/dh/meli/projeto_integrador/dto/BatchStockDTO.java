@@ -2,10 +2,7 @@ package br.com.dh.meli.projeto_integrador.dto;
 
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import lombok.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 
 @Data
 @Builder
