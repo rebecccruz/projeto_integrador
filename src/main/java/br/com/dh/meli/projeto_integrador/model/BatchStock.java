@@ -12,37 +12,30 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BatchStock {
 
-    public String sectionCode;
-
     @NotEmpty
+    @Size(min = 2)
+    public String sectionCode;
+    @NotNull
     public int batchNumber;
-
     @NotEmpty
     @Size(min = 5, max = 40)
     public String productId;
-
     @NotNull
     @DecimalMin(value = "-40.0", message = "O valor da temperatura precisa ser no min -40.")
     @DecimalMax(value = "30", message = "O valor da temperatura precisa ser até 30.")
     public Float currentTemperature;
-
     @NotNull
     @DecimalMin(value = "-40.0", message = "O valor da temperatura precisa ser no min -40.")
     @DecimalMax(value = "30", message = "O valor da temperatura precisa ser até 30.")
     public Float minimumTemperature;
-
-    @NotEmpty
+    @NotNull
     public int initialQuantity;
-
-    @NotEmpty
+    @NotNull
     public int currentQuantity;
-
-    @NotEmpty
+    @NotNull
     public LocalDate manufacturingDate;
-
-    @NotEmpty
+    @NotNull
     public LocalDateTime manufacturingTime;
-
-    @NotEmpty
+    @NotNull
     public LocalDate dueDate;
 }
