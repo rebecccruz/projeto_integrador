@@ -84,8 +84,8 @@ public class InboundOrderUtil {
 
         return InboundOrder.builder()
                 .sectionCode("String")
-                .orderNumber("int")
-                .orderDate("LocalDate")
+                .orderNumber(1)
+                .orderDate(LocalDate.of(2022, 10, 10))
                 .warehouseCode("String")
                 .batchStock(batchStockList).build();
     }

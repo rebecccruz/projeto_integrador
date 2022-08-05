@@ -1,15 +1,13 @@
 package br.com.dh.meli.projeto_integrador.controller;
 
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
-import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 import br.com.dh.meli.projeto_integrador.service.IInboundOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import javax.validation.Valid;
 
 /**
  * Controller responsible for ml-insert-batch-in-fulfillment-warehouse
@@ -29,7 +27,7 @@ public class InboundOrderController {
      * @return List<BatchStockDTO>
      */
     @PostMapping("/inboundorder")
-    public ResponseEntity<InboundOrderDTO> createBatchStock(@RequestBody InboundOrder inboundOrder) {
+    public ResponseEntity<InboundOrderDTO> createBatchStock(@RequestBody @Valid InboundOrder inboundOrder) {
         InboundOrderDTO dto = new InboundOrderDTO(inboundOrder);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
@@ -42,7 +40,7 @@ public class InboundOrderController {
      * @return List<BatchStockDTO>
      */
     @PutMapping("/inboundorder")
-    public ResponseEntity<InboundOrderDTO> updateBatchStock(@RequestBody InboundOrder inboundOrder) {
+    public ResponseEntity<InboundOrderDTO> updateBatchStock(@RequestBody @Valid InboundOrder inboundOrder) {
         InboundOrderDTO dto = new InboundOrderDTO(inboundOrder);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }

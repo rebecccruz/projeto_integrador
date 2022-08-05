@@ -9,7 +9,6 @@ import java.time.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BatchStockDTO {
-    public String sectionCode;
     public int batchNumber;
     public String productId;
     public Float currentTemperature;
@@ -23,5 +22,12 @@ public class BatchStockDTO {
     public BatchStockDTO(BatchStock batchStock) {
         this.batchNumber = batchStock.getBatchNumber();
         this.productId = batchStock.getProductId();
+        this.currentTemperature = batchStock.getCurrentTemperature();
+        this.minimumTemperature = batchStock.getMinimumTemperature();
+        this.initialQuantity = batchStock.getInitialQuantity();
+        this.currentQuantity = batchStock.getCurrentQuantity();
+        this.manufacturingDate = batchStock.getManufacturingDate();
+        this.manufacturingTime = batchStock.getManufacturingTime();
+        this.dueDate = batchStock.getDueDate();
     }
 }
