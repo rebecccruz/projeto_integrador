@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/fresh-products")
@@ -18,18 +21,7 @@ public class FreshProductsController {
     private IFreshProductsService service;
 
     /**
-     * Veja uma lista completa de produtos.
-     * Se a lista não existir, ela deve retornar
-     * um "404 Not Found".
-     * @author Larissa Navarro
-     * @return List<ProductDTO>
-     */
-    @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts(){
-        return ResponseEntity.ok(service.getAllProducts());
-    }
-    /**
-     *Veja uma lista de produtos por
+     * Veja uma lista de produtos por
      * categoria.
      * Se a lista não existir, ela deve retornar
      * um "404 Not Found".
@@ -37,9 +29,10 @@ public class FreshProductsController {
      * @return List<ProductDTO>
      */
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProductsByCategory(@RequestParam(value="category") List<Category> category){
+    public ResponseEntity<List<ProductDTO>> getAllProductsByCategory(@RequestParam(required = false) Optional<Category> category){
         return ResponseEntity.ok(service.getAllProductsByCategory(category));
     }
+
     /**
      * Mostrar produtos no pedido.
      * @author Larissa Navarro
@@ -49,6 +42,7 @@ public class FreshProductsController {
     public ResponseEntity<List<ProductDTO>> getAllProductsByOrder(@PathVariable String idOrder){
         return ResponseEntity.ok((service.getAllProductsByOrder(idOrder)));
     }
+
     /**
      * Registre um pedido com a lista de
      * produtos que compõem o PurchaseOrder.
@@ -60,6 +54,7 @@ public class FreshProductsController {
         ProductDTO dto = new ProductDTO(product);
         return new ResponseEntity<ProductDTO>(service.createProduct(product), HttpStatus.CREATED);
     }
+
     /**
      * Modifique o pedido existente para
      * torná-lo do tipo de carrinho

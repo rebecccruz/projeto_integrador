@@ -6,6 +6,7 @@ import br.com.dh.meli.projeto_integrador.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FreshProductsService implements IFreshProductsService{
@@ -16,7 +17,7 @@ public class FreshProductsService implements IFreshProductsService{
     }
 
     @Override
-    public List<ProductDTO> getAllProductsByCategory(List<Category> category) {
+    public List<ProductDTO> getAllProductsByCategory(Optional<Category> category) {
         return null;
     }
 
