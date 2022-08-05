@@ -4,6 +4,8 @@ import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,6 @@ public class InboundOrderUtil {
      * Method that helps to create a customized batchStock object to be used on Inbound Order payload
      * @author Lucas Pinheiro
      * @author Evelyn Cristini
-     * @param sectionCode section code of warehouse
      * @param batchNumber batch number given by seller
      * @param productId productId given by seller
      * @param currentTemperature current temperature of the product
@@ -25,14 +26,15 @@ public class InboundOrderUtil {
      * @return returns a customized batch stock
      */
     private BatchStock batchStockGenerator(
-            String batchNumber,
+            int batchNumber,
             String productId,
-            String currentTemperature,
-            String minimumTemperature,
-            String initialQuantity,
-            String currentQuantity,
-            String manufacturingDate,
-            String manufacturingTime
+            Float currentTemperature,
+            Float minimumTemperature,
+            int initialQuantity,
+            int currentQuantity,
+            LocalDate manufacturingDate,
+            LocalDateTime manufacturingTime,
+            LocalDate dueDate
     ) {
         return BatchStock.builder()
                 .batchNumber(batchNumber)
@@ -43,6 +45,7 @@ public class InboundOrderUtil {
                 .currentQuantity(currentQuantity)
                 .manufacturingDate(manufacturingDate)
                 .manufacturingTime(manufacturingTime)
+                .dueDate(dueDate)
                 .build();
     }
 
@@ -54,15 +57,15 @@ public class InboundOrderUtil {
      */
     private static BatchStock sameBatchStockGenerator() {
         return BatchStock.builder()
-                .batchNumber("int")
+                .batchNumber(1)
                 .productId("String")
-                .currentTemperature("Float")
-                .minimumTemperature("Float")
-                .initialQuantity("int")
-                .currentQuantity("int")
-                .manufacturingDate("LocalDate")
-                .manufacturingTime("LocalDateTime")
-                .dueDate("LocalDate")
+                .currentTemperature(10.0f)
+                .minimumTemperature(10.0f)
+                .initialQuantity(3)
+                .currentQuantity(3)
+                .manufacturingDate(LocalDate.of(2021, 10, 10))
+                .manufacturingTime(LocalDateTime.of(2021, 10, 10, 8, 36))
+                .dueDate(LocalDate.of(2021, 10, 10))
                 .build();
     }
 
