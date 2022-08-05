@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BatchStock {
-    public String sectionCode;
     public String batchNumber;
     public String productId;
     public String currentTemperature;

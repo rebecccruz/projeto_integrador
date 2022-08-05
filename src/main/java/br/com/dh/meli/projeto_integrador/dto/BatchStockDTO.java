@@ -8,7 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BatchStockDTO {
-    public String sectionCode;
     public String batchNumber;
     public String productId;
     public String currentTemperature;
@@ -20,7 +19,6 @@ public class BatchStockDTO {
     public String dueDate;
 
     public BatchStockDTO(BatchStock batchStock) {
-        this.sectionCode = batchStock.getSectionCode();
         this.batchNumber = batchStock.getBatchNumber();
         this.productId = batchStock.getProductId();
     }
