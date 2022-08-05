@@ -29,5 +29,4 @@ public class ApiExceptionHandler {
         ex.setStatus(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(ex.getDTO(), ex.getStatus());
     }
-
 }

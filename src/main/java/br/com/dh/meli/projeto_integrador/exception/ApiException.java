@@ -13,7 +13,6 @@ public class ApiException extends RuntimeException {
     private String messageData;
     private LocalDateTime timestamp;
 
-
     public ApiException(String message) {
         super(message);
         this.setStatus(HttpStatus.MULTI_STATUS);
@@ -34,6 +33,4 @@ public class ApiException extends RuntimeException {
                 .timestamp(this.getTimestamp())
                 .build();
     }
-
-
 }
