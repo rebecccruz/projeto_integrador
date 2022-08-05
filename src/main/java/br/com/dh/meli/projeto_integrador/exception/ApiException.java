@@ -3,7 +3,6 @@ package br.com.dh.meli.projeto_integrador.exception;
 import br.com.dh.meli.projeto_integrador.dto.ApiExceptionDTO;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-
 import java.time.LocalDateTime;
 
 @Data
