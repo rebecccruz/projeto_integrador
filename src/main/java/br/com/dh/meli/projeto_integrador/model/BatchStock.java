@@ -3,17 +3,13 @@ package br.com.dh.meli.projeto_integrador.model;
 import lombok.*;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BatchStock {
-    @NotEmpty
-    @Size(min = 2)
-    public String sectionCode;
     @NotNull
     public int batchNumber;
     @NotEmpty
