@@ -21,26 +21,32 @@ public class FreshProductsController {
     private IFreshProductsService service;
 
     /**
-     * Veja uma lista de produtos por
-     * categoria.
+     * Veja uma lista completa de produtos.
      * Se a lista não existir, ela deve retornar
      * um "404 Not Found".
      * @author Larissa Navarro
      * @return List<ProductDTO>
      */
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProductsByCategory(@RequestParam(required = false) Optional<Category> category){
-        return ResponseEntity.ok(service.getAllProductsByCategory(category));
+    public ResponseEntity<List<ProductDTO>> getAllProducts(){
+        return ResponseEntity.ok(service.getAllProducts());
     }
 
     /**
-     * Mostrar produtos no pedido.
+     *Veja uma lista de produtos por
+     * categoria.
+     * Se a lista não existir, ela deve retornar
+     * um "404 Not Found".
      * @author Larissa Navarro
      * @return List<ProductDTO>
      */
-    @GetMapping("/{idOrder}")
-    public ResponseEntity<List<ProductDTO>> getAllProductsByOrder(@PathVariable String idOrder){
-        return ResponseEntity.ok((service.getAllProductsByOrder(idOrder)));
+    @GetMapping("/list")
+    public ResponseEntity<List<ProductDTO>> getAllProductsByCategory(@RequestParam(required = false) Optional<String> category){
+        Optional<Category> categoryBy = Optional.empty();
+        if(category.isPresent()){
+            categoryBy = Optional.of(Category.valueOf(category.get()));
+        }
+        return ResponseEntity.ok(service.getAllProductsByCategory(categoryBy));
     }
 
     /**
@@ -55,6 +61,16 @@ public class FreshProductsController {
         return new ResponseEntity<ProductDTO>(service.createProduct(product), HttpStatus.CREATED);
     }
 
+    /**
+     * Mostrar produtos no pedido.
+     * @author Larissa Navarro
+     * @return List<ProductDTO>
+     */
+    @GetMapping("/orders/")
+    public ResponseEntity<List<ProductDTO>> getAllProductsByOrder(@RequestParam String idOrder){
+        return ResponseEntity.ok((service.getAllProductsByOrder(idOrder)));
+    }
+    
     /**
      * Modifique o pedido existente para
      * torná-lo do tipo de carrinho
