@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.dh.meli</groupId>
-    <artifactId>projetointegrador</artifactId>
+    <artifactId>projeto_integrador</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>projetointegrador</name>
+    <name>projeto_integrador</name>
     <description>Projeto Integrador - Bootcamp IT - Meli</description>
     <properties>
         <java.version>11</java.version>
