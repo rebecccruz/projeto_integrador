@@ -2,8 +2,8 @@ package br.com.dh.meli.projeto_integrador.dto;
 
 import lombok.Builder;
 import lombok.Data;
-
 import java.time.LocalDateTime;
+
 @Data
 @Builder
 public class ApiExceptionDTO {
