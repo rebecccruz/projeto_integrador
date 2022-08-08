@@ -12,8 +12,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Representant {
-    public Long id;
-    public String name;
-    public AddressModel address;
+public class Representant extends Person{
+
 }

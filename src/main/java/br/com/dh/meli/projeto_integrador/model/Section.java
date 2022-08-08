@@ -28,7 +28,7 @@ public class Section {
     private List<BatchStock> batchStocks;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "warehouse_id")
+    @JoinColumn(name = "warehouse_id", nullable = false)
     @JsonIgnoreProperties("sections")
     private Warehouse warehouse;
 }
