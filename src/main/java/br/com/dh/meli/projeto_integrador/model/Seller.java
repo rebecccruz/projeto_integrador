@@ -16,8 +16,6 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 @Builder
-public class Seller {
-    public Long id;
-    public String name;
-    public AddressModel address;
+public class Seller extends Person{
+
 }
