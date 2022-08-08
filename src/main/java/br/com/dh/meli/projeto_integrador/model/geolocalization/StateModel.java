@@ -23,7 +23,7 @@ public class StateModel {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column
@@ -34,7 +34,7 @@ public class StateModel {
     @JsonIgnoreProperties("states")
     private CountryModel country;
 
-    @Column
+    @Column(nullable = false)
     private String initials;
 
     @Column(insertable = true, updatable = false, nullable = false)
