@@ -3,7 +3,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Geolocalization/Country Entitie
+ * Geolocalization/Country Entity
  *
  * @author Alexandre Borges Souza
  */

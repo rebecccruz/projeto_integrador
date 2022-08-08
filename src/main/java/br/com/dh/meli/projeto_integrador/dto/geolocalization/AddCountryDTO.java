@@ -14,14 +14,11 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 public class AddCountryDTO {
-
     @NotNull(message = "Título é obrigatório")
     @JsonProperty("country_name")
     private String name;
-
     @NotNull(message = "Sigla é obrigatório")
     @Size(min = 2, max = 2)
     @JsonProperty("country_initials")
     private String initials;
-
 }
