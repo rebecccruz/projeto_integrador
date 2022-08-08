@@ -29,7 +29,7 @@ public class CountryModel {
     private String initials;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-    @JsonIgnoreProperties("county")
+    @JsonIgnoreProperties("country")
     private List<StateModel> states;
 
     @Column(insertable = true, updatable = false, nullable = false)
