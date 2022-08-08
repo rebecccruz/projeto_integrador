@@ -28,7 +28,7 @@ public class CountryModel {
     private String initials;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "country_id")
-    private List<StateModel> state;
+    private List<StateModel> states;
 
     @Column(insertable = true, updatable = false, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
