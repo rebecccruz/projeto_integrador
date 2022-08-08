@@ -1,20 +1,45 @@
 package br.com.dh.meli.projeto_integrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.*;
 
 @Data
-@Builder
+@Entity
 public class BatchStock {
-    public int batchNumber;
-    public String productId;
-    public Float currentTemperature;
-    public Float minimumTemperature;
-    public int initialQuantity;
-    public int currentQuantity;
-    public LocalDate manufacturingDate;
-    public LocalDateTime manufacturingTime;
-    public LocalDate dueDate;
+    @Id
+    @Column(name = "id")
+    private Integer batchNumber;
+
+    @Column(name = "product_sku", nullable = false)
+    private String productId;
+
+    @Column(name = "current_temperature", nullable = false)
+    private Float currentTemperature;
+
+    @Column(name = "minimum_temperature", nullable = false)
+    private Float minimumTemperature;
+
+    @Column(name = "initial_quantity", nullable = false)
+    private Integer initialQuantity;
+
+    @Column(name = "current_quantity", nullable = false)
+    private Integer currentQuantity;
+
+    @Column(name = "manufacturing_date", nullable = false)
+    private LocalDate manufacturingDate;
+
+    @Column(name = "manufacturing_time", nullable = false)
+    private LocalDateTime manufacturingTime;
+
+    @Column(name = "due_date", nullable = false)
+    private LocalDate dueDate;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    @JsonIgnoreProperties("batchStocks")
+    private Section section;
 }

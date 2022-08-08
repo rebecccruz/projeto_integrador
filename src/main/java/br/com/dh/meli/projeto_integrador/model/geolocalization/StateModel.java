@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.model.geolocalization;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,17 +23,18 @@ public class StateModel {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Column
     private String timezone;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", nullable = false)
+    @JsonIgnoreProperties("states")
     private CountryModel country;
 
-    @Column
+    @Column(nullable = false)
     private String initials;
 
     @Column(insertable = true, updatable = false, nullable = false)

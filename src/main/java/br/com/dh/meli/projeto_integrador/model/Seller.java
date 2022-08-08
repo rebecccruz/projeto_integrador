@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -15,9 +17,7 @@ import javax.validation.constraints.NotEmpty;
  */
 
 @Data
-@Builder
-public class Seller {
-    public Long id;
-    public String name;
-    public AddressModel address;
+@Entity
+public class Seller extends Person{
+
 }
