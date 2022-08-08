@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,33 +9,37 @@ import java.time.*;
 
 @Data
 @Entity
-@Builder
 public class BatchStock {
     @Id
     @Column(name = "id")
-    public Integer batchNumber;
+    private Integer batchNumber;
 
     @Column(name = "product_sku", nullable = false)
-    public String productId;
+    private String productId;
 
     @Column(name = "current_temperature", nullable = false)
-    public Float currentTemperature;
+    private Float currentTemperature;
 
     @Column(name = "minimum_temperature", nullable = false)
-    public Float minimumTemperature;
+    private Float minimumTemperature;
 
     @Column(name = "initial_quantity", nullable = false)
-    public Integer initialQuantity;
+    private Integer initialQuantity;
 
     @Column(name = "current_quantity", nullable = false)
-    public Integer currentQuantity;
+    private Integer currentQuantity;
 
     @Column(name = "manufacturing_date", nullable = false)
-    public LocalDate manufacturingDate;
+    private LocalDate manufacturingDate;
 
     @Column(name = "manufacturing_time", nullable = false)
-    public LocalDateTime manufacturingTime;
+    private LocalDateTime manufacturingTime;
 
     @Column(name = "due_date", nullable = false)
-    public LocalDate dueDate;
+    private LocalDate dueDate;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    @JsonIgnoreProperties("batchStocks")
+    private Section section;
 }

@@ -1,8 +1,7 @@
 package br.com.dh.meli.projeto_integrador.util;
 
+import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
-import br.com.dh.meli.projeto_integrador.model.BatchStock;
-import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,7 +24,7 @@ public class InboundOrderUtil {
      * @param manufacturingTime product manufacturing date time
      * @return returns a customized batch stock
      */
-    private BatchStock batchStockGenerator(
+    private BatchStockDTO batchStockGenerator(
             int batchNumber,
             String productId,
             Float currentTemperature,
@@ -36,7 +35,7 @@ public class InboundOrderUtil {
             LocalDateTime manufacturingTime,
             LocalDate dueDate
     ) {
-        return BatchStock.builder()
+        return BatchStockDTO.builder()
                 .batchNumber(batchNumber)
                 .productId(productId)
                 .currentTemperature(currentTemperature)
@@ -55,8 +54,8 @@ public class InboundOrderUtil {
      * @author Evelyn Cristini
      * @return returns a static batch stock
      */
-    private static BatchStock sameBatchStockGenerator() {
-        return BatchStock.builder()
+    private static BatchStockDTO sameBatchStockGenerator() {
+        return BatchStockDTO.builder()
                 .batchNumber(1)
                 .productId("String")
                 .currentTemperature(10.0f)
@@ -75,14 +74,14 @@ public class InboundOrderUtil {
      * @author Evelyn Cristini
      * @return returns an Inbound Order payload
      */
-    public static InboundOrder inboundOrderGenerator() {
-        BatchStock batchStock1 = sameBatchStockGenerator();
-        BatchStock batchStock2 = sameBatchStockGenerator();
-        List<BatchStock> batchStockList = new ArrayList<>();
+    public static InboundOrderDTO inboundOrderGenerator() {
+        BatchStockDTO batchStock1 = sameBatchStockGenerator();
+        BatchStockDTO batchStock2 = sameBatchStockGenerator();
+        List<BatchStockDTO> batchStockList = new ArrayList<>();
         batchStockList.add(batchStock1);
         batchStockList.add(batchStock2);
 
-        return InboundOrder.builder()
+        return InboundOrderDTO.builder()
                 .sectionCode("String")
                 .orderNumber(1)
                 .orderDate(LocalDate.of(2022, 10, 10))
