@@ -19,7 +19,7 @@ public class Warehouse {
     private Long id;
     private String warehouseCode;
     private AddressModel address;
-    public List<@Valid Representant> representant;
-    private List<@Valid Seller> seller;
-    private List<@Valid Section> section;
+    public List<Representant> representant;
+    private List<Seller> seller;
+    private List<Section> section;
 }

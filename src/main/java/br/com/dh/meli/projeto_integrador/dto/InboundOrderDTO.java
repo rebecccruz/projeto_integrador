@@ -1,9 +1,7 @@
 package br.com.dh.meli.projeto_integrador.dto;
 
-import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 import lombok.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

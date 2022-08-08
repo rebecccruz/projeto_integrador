@@ -12,5 +12,5 @@ public class InboundOrder {
     public LocalDate orderDate;
     public String warehouseCode;
     public String sectionCode;
-    public List<@Valid BatchStock> batchStock;
+    public List<BatchStock> batchStock;
 }

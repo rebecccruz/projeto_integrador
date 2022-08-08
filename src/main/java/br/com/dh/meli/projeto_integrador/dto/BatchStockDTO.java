@@ -2,7 +2,6 @@ package br.com.dh.meli.projeto_integrador.dto;
 
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import lombok.*;
-
 import javax.validation.constraints.*;
 import java.time.*;
 
