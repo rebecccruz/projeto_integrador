@@ -22,7 +22,7 @@ public class GeoLocalizationController {
     /**
      * Add a new country
      *
-     * @param AddCountryDTO newCountry payload
+     * @param newCountry payload for add new country
      * @return ResponseEntity<JSONOutuputMessageDTO>
      * @author Alexandre Borges Souza
      */
@@ -40,7 +40,7 @@ public class GeoLocalizationController {
     /**
      * Add a new state
      *
-     * @param AddStateDTO payload
+     * @param newState payload for add new state
      * @return ResponseEntity<JSONOutuputMessageDTO>
      * @author Alexandre Borges Souza
      */
