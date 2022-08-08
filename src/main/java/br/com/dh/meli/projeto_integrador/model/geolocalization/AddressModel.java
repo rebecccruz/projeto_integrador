@@ -6,7 +6,7 @@ package br.com.dh.meli.projeto_integrador.model.geolocalization;
  * @author Evelyn Cristini Oliveira
  */
 
-public class Address {
+public class AddressModel {
     private Long id;
     private String street;
     private Integer number;

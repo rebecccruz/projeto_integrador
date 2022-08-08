@@ -17,13 +17,10 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @Builder
 public class JSONOutuputMessageDTO {
-
     @JsonProperty
     private String title;
-
     @JsonProperty
     private String message;
-
     @JsonProperty
     private HttpStatus status;
 }

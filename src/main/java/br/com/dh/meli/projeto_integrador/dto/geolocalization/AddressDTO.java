@@ -16,11 +16,9 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 public class AddressDTO {
-
     @NotNull(message = "Logradouro é obrigatório")
     @JsonProperty("address_street")
     private String street;
-
     @NotNull(message = "Número do endereço é obrigatório")
     @Size(min = 1, max = 6)
     @JsonProperty("address_street")

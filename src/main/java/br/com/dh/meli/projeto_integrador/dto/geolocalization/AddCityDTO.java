@@ -15,8 +15,10 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 public class AddCityDTO {
-
     @NotNull(message = "Nome da cidade é obrigatório")
     @JsonProperty("city_name")
     private String name;
+    @NotNull(message = "Id do estado é obrigatório")
+    @JsonProperty("state_id")
+    private Long state_id;
 }

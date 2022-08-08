@@ -1,4 +1,4 @@
-package br.com.dh.meli.projeto_integrador.model;
+package br.com.dh.meli.projeto_integrador.dto;
 
 import br.com.dh.meli.projeto_integrador.model.geolocalization.AddressModel;
 import lombok.AllArgsConstructor;
@@ -9,15 +9,18 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * Seller Entity
+ * DTO for payload for add new Representant
  *
  * @author Evelyn Cristini Oliveira
  */
 
 @Data
 @Builder
-public class Seller {
-    public Long id;
+@AllArgsConstructor
+@NoArgsConstructor
+public class RepresentantDTO {
+    @NotEmpty(message = "O campo representantName não pode estar vazio.")
     public String name;
+    @NotEmpty(message = "O campo Address não pode estar vazio.")
     public AddressModel address;
 }

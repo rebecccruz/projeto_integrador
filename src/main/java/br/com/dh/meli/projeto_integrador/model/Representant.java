@@ -1,19 +1,19 @@
 package br.com.dh.meli.projeto_integrador.model;
 
-import br.com.dh.meli.projeto_integrador.model.geolocalization.Address;
-
-import javax.validation.constraints.NotEmpty;
+import br.com.dh.meli.projeto_integrador.model.geolocalization.AddressModel;
+import lombok.Builder;
+import lombok.Data;
 
 /**
  * Representant Entity
  *
  * @author Evelyn Cristini Oliveira
  */
-public class Representant {
 
+@Data
+@Builder
+public class Representant {
     public Long id;
-    @NotEmpty(message = "O campo representantName não pode estar vazio.")
     public String name;
-    @NotEmpty(message = "A classe Address não pode estar vazio.")
-    public Address address;
+    public AddressModel address;
 }
