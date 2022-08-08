@@ -3,6 +3,7 @@ package br.com.dh.meli.projeto_integrador.controller;
 import br.com.dh.meli.projeto_integrador.dto.ProductDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.model.Product;
+import br.com.dh.meli.projeto_integrador.service.FreshProductsService;
 import br.com.dh.meli.projeto_integrador.service.IFreshProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class FreshProductsController {
 
     @Autowired
-    private IFreshProductsService service;
+    private FreshProductsService service;
 
     /**
      * Veja uma lista completa de produtos.
