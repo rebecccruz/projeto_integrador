@@ -4,16 +4,15 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Geolocalization/State Entity
+ * Geolocalization/City Entity
  *
- * @author Alexandre Borges Souza
+ * @author Evelyn Cristini Oliveira
  */
+
 @Data
 @Builder
-public class StateModel {
+public class CityModel {
     private Long id;
     private String name;
-    private String timezone;
-    private Long country_id;
-    private String initials;
+    private Long state_id;
 }
