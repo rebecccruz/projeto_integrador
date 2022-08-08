@@ -20,8 +20,8 @@ public class ProductDTO {
     private Float minimumTemperature;
     private Integer initialQuantity;
     private Integer currentQuantity;
-    private LocalDate manufaturingDate;
-    private LocalDateTime manufaturingTime;
+    private LocalDate manufacturingDate;
+    private LocalDateTime manufacturingTime;
     private LocalDate dueDate;
     private Category category;
 
@@ -31,8 +31,8 @@ public class ProductDTO {
         this.minimumTemperature = product.getMinimumTemperature();
         this.initialQuantity = product.getInitialQuantity();
         this.currentQuantity = product.getCurrentQuantity();
-        this.manufaturingDate = product.getManufaturingDate();
-        this.manufaturingTime = product.getManufaturingTime();
+        this.manufacturingDate = product.getManufacturingDate();
+        this.manufacturingTime = product.getManufacturingTime();
         this.dueDate = product.getDueDate();
         this.category = product.getCategory();
     }

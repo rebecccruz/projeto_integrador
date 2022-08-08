@@ -27,9 +27,8 @@ public class InboundOrderController {
      * @return List<BatchStockDTO>
      */
     @PostMapping("/inboundorder")
-    public ResponseEntity<InboundOrderDTO> createBatchStock(@RequestBody @Valid InboundOrder inboundOrder) {
-        InboundOrderDTO dto = new InboundOrderDTO(inboundOrder);
-        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    public ResponseEntity<InboundOrderDTO> createBatchStock(@RequestBody @Valid InboundOrderDTO inboundOrder) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(inboundOrder);
     }
 
     /**
@@ -40,8 +39,7 @@ public class InboundOrderController {
      * @return List<BatchStockDTO>
      */
     @PutMapping("/inboundorder")
-    public ResponseEntity<InboundOrderDTO> updateBatchStock(@RequestBody @Valid InboundOrder inboundOrder) {
-        InboundOrderDTO dto = new InboundOrderDTO(inboundOrder);
-        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    public ResponseEntity<InboundOrderDTO> updateBatchStock(@RequestBody @Valid InboundOrderDTO inboundOrder) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(inboundOrder);
     }
 }

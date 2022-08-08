@@ -26,4 +26,9 @@ public class Section {
     @OneToMany(mappedBy = "section")
     @JsonIgnoreProperties("section")
     private List<BatchStock> batchStocks;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warehouse_id")
+    @JsonIgnoreProperties("sections")
+    private Warehouse warehouse;
 }

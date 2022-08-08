@@ -28,9 +28,9 @@ public class InboundOrderDTO {
     @NotEmpty(message = "A lista de BatchStock deve ter pelo menos 1 válido.")
     public List<@Valid BatchStockDTO> batchStock;
 
-    public InboundOrderDTO(InboundOrder inboundOrder) {
-        List<BatchStockDTO> list = inboundOrder.getBatchStock()
-                .stream().map(BatchStockDTO::new).collect(Collectors.toList());
-        this.setBatchStock(list);
-    }
+//    public InboundOrderDTO(InboundOrder inboundOrder) {
+//        List<BatchStockDTO> list = inboundOrder.getBatchStock()
+//                .stream().map(BatchStockDTO::new).collect(Collectors.toList());
+//        this.setBatchStock(list);
+//    }
 }

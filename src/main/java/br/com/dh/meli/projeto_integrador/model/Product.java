@@ -16,8 +16,8 @@ public class Product {
     private Float minimumTemperature;
     private Integer initialQuantity;
     private Integer currentQuantity;
-    private LocalDate manufaturingDate;
-    private LocalDateTime manufaturingTime;
+    private LocalDate manufacturingDate;
+    private LocalDateTime manufacturingTime;
     private LocalDate dueDate;
     private Category category;
 }
