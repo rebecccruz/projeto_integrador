@@ -21,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Warehouse {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "warehouse_code", nullable = false)
