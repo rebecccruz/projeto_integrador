@@ -30,7 +30,7 @@ public class StateModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
-    private CountryModel country_id;
+    private CountryModel country;
 
     @Column
     private String initials;
