@@ -27,13 +27,9 @@ public class Warehouse {
     private String warehouseCode;
 //    private AddressModel address;
 
-//    @OneToMany(mappedBy = "warehouse")
+//    @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
 //    @JsonIgnoreProperties("warehouse")
 //    private List<Representant> representant;
-//
-//    @OneToMany(mappedBy = "warehouse")
-//    @JsonIgnoreProperties("warehouse")
-//    private List<Seller> seller;
 
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
