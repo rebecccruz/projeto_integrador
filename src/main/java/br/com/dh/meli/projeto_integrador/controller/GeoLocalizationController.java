@@ -2,6 +2,11 @@ package br.com.dh.meli.projeto_integrador.controller;
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.AddCountryDTO;
 import br.com.dh.meli.projeto_integrador.dto.JSONOutuputMessageDTO;
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.AddStateDTO;
+import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.repository.ICountryRepo;
+import br.com.dh.meli.projeto_integrador.service.CountryService;
+import br.com.dh.meli.projeto_integrador.service.ICountryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +24,9 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/geo")
 public class GeoLocalizationController {
 
+    @Autowired
+    private ICountryService countryService;
+
     /**
      * Add a new country
      *
@@ -28,13 +36,17 @@ public class GeoLocalizationController {
      */
     @PostMapping("/country")
     public ResponseEntity<JSONOutuputMessageDTO> addCountry(@RequestBody @Valid AddCountryDTO newCountry) {
-        JSONOutuputMessageDTO outuputMessageDTO = JSONOutuputMessageDTO
-                .builder()
-                .title("Sucesso")
-                .message("País cadastrado com sucesso")
-                .status(HttpStatus.CREATED)
-                .build();
-        return ResponseEntity.status(HttpStatus.CREATED).body(outuputMessageDTO);
+        Boolean result = countryService.add(newCountry);
+        if (result) {
+            JSONOutuputMessageDTO outuputMessageDTO = JSONOutuputMessageDTO
+                    .builder()
+                    .title("Sucesso")
+                    .message("País cadastrado com sucesso.")
+                    .status(HttpStatus.CREATED)
+                    .build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(outuputMessageDTO);
+        }
+        throw new PreconditionFailedException("Houve problema interno. Por favor tente novamente mais tarde.");
     }
 
     /**
