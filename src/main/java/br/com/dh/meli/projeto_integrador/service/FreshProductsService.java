@@ -20,9 +20,8 @@ public class FreshProductsService implements IFreshProductsService{
     @Autowired
     private IFreshProductsRepository repo;
 
-
     @Override
-    public List<BatchStockDTO> getAllBatchStock() {
+    public List<ProductDTO> getAllProducts() {
         if(repo.findAll().size() > 0){
             return repo.findAll();
         }
@@ -30,7 +29,7 @@ public class FreshProductsService implements IFreshProductsService{
     }
 
     @Override
-    public List<BatchStockDTO> getAllBatchStockByCategory(Optional<Category> category) {
+    public List<ProductDTO> getAllProductsByCategory(Optional<Category> category) {
         if (repo.getByCategory(category).size() > 0){
             return repo.getByCategory(category);
         }
@@ -38,12 +37,10 @@ public class FreshProductsService implements IFreshProductsService{
     }
 
     @Override
-    public BatchStockDTO createBatchStock(BatchStockDTO batchStock) {
-        if(batchStock.getBatchNumber() > 0){
+    public ProductDTO createProduct(ProductDTO product) {
+        if(product.getBatchNumber() > 0){
             throw new PreconditionFailedException("BatchStock already exists");
         }
-        return repo.save(batchStock);
+        return repo.save(product);
     }
-
-
 }

@@ -5,5 +5,5 @@ import br.com.dh.meli.projeto_integrador.model.ShoppingCart;
 
 public interface IShoppingCartService {
     ShoppingCart createShoppingCart(ShoppingCartDTO shoppingCart);
-    ShoppingCartDTO updateShoppingCart(ShoppingCart shoppingCart);
+    ShoppingCart updateShoppingCart(ShoppingCart shoppingCart);
 }

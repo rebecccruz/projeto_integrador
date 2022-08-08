@@ -57,8 +57,8 @@ public class FreshProductsController {
      * @return ProductDTO
      */
     @PostMapping("/orders/")
-    public ResponseEntity<ProductDTO> createPurchaseOrder(@RequestBody Product product){
-        ProductDTO dto = new ProductDTO(product);
+    public ResponseEntity<ProductDTO> createPurchaseOrder(@RequestBody ProductDTO product){
+
         return new ResponseEntity<ProductDTO>(service.createProduct(product), HttpStatus.CREATED);
     }
 
@@ -67,10 +67,10 @@ public class FreshProductsController {
      * @author Larissa Navarro
      * @return List<ProductDTO>
      */
-    @GetMapping("/orders/")
-    public ResponseEntity<List<ProductDTO>> getAllProductsByOrder(@RequestParam String idOrder){
-        return ResponseEntity.ok((service.getAllProductsByOrder(idOrder)));
-    }
+//    @GetMapping("/orders/")
+//    public ResponseEntity<List<ProductDTO>> getAllProductsByOrder(@RequestParam String idOrder){
+//        return ResponseEntity.ok((service.getAllProductsByOrder(idOrder)));
+//    }
     
     /**
      * Modifique o pedido existente para
@@ -79,9 +79,9 @@ public class FreshProductsController {
      * @author Larissa Navarro
      * @return ProductDTO
      */
-    @PutMapping
-    public ResponseEntity<ProductDTO> updatePurchaseOrder(@RequestBody Product product){
-        ProductDTO dto = new ProductDTO(product);
-        return new ResponseEntity<ProductDTO>(service.updateProduct(product),HttpStatus.ACCEPTED);
-    }
+//    @PutMapping
+//    public ResponseEntity<ProductDTO> updatePurchaseOrder(@RequestBody Product product){
+//        ProductDTO dto = new ProductDTO(product);
+//        return new ResponseEntity<ProductDTO>(service.updateProduct(product),HttpStatus.ACCEPTED);
+//    }
 }

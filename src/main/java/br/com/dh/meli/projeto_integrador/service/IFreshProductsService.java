@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IFreshProductsService {
-    List<BatchStockDTO> getAllBatchStock();
-    List<BatchStockDTO> getAllBatchStockByCategory(Optional<Category> category);
+    List<ProductDTO> getAllProducts();
+    List<ProductDTO> getAllProductsByCategory(Optional<Category> category);
 
-    BatchStockDTO createBatchStock(BatchStockDTO batchStock);
+    ProductDTO createProduct(ProductDTO product);
 
 }
