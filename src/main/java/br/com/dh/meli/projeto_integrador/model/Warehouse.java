@@ -30,9 +30,13 @@ public class Warehouse {
 
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
-    private List<Representant> representant;
+    private List<Representant> representants;
 
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
     private List<Section> sections;
+
+    @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("warehouse")
+    private List<InboundOrder> inboundOrders;
 }

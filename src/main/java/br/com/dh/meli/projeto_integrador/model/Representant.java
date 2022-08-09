@@ -21,6 +21,6 @@ import javax.persistence.ManyToOne;
 public class Representant extends Person{
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
-    @JsonIgnoreProperties("representant")
+    @JsonIgnoreProperties("representants")
     private Warehouse warehouse;
 }
