@@ -51,7 +51,7 @@ public class GeoLocalizationController {
     }
 
     /**
-     * Upadate Country
+     * Update Country
      *
      * @param country payload of country content
      * @param countryID country ID
