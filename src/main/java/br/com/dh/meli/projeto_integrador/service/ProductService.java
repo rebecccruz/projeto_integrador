@@ -1,27 +1,27 @@
 package br.com.dh.meli.projeto_integrador.service;
 
-import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.ProductDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
-import br.com.dh.meli.projeto_integrador.model.BatchStock;
+import br.com.dh.meli.projeto_integrador.mapper.IProductMapper;
+import br.com.dh.meli.projeto_integrador.mapper.IShoppingCartMapper;
 import br.com.dh.meli.projeto_integrador.model.Product;
-import br.com.dh.meli.projeto_integrador.repository.IFreshProductsRepository;
-import org.hibernate.engine.query.ParameterRecognitionException;
+import br.com.dh.meli.projeto_integrador.model.ShoppingCart;
+import br.com.dh.meli.projeto_integrador.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FreshProductsService implements IFreshProductsService{
+public class ProductService implements IProductService {
 
     @Autowired
-    private IFreshProductsRepository repo;
+    private IProductRepository repo;
 
     @Override
-    public List<ProductDTO> getAllProducts() {
+    public List<Product> getAllProducts() {
         if(repo.findAll().size() > 0){
             return repo.findAll();
         }
@@ -29,7 +29,7 @@ public class FreshProductsService implements IFreshProductsService{
     }
 
     @Override
-    public List<ProductDTO> getAllProductsByCategory(Optional<Category> category) {
+    public List<Product> getAllProductsByCategory(Optional<Category> category) {
         if (repo.getByCategory(category).size() > 0){
             return repo.getByCategory(category);
         }
@@ -37,10 +37,16 @@ public class FreshProductsService implements IFreshProductsService{
     }
 
     @Override
-    public ProductDTO createProduct(ProductDTO product) {
-        if(product.getBatchNumber() > 0){
-            throw new PreconditionFailedException("BatchStock already exists");
+    public Product createProduct(ProductDTO product) {
+        try{
+            Product productModel = IProductMapper.MAPPER.productDTOtoModel(product);
+            if(product.getBatchNumber() > 0){
+                throw new PreconditionFailedException("BatchStock already exists");
+            }
+            return repo.save(productModel);
         }
-        return repo.save(product);
+        catch(Exception e){
+            throw new BadRequestException(e.getMessage());
+        }
     }
 }

@@ -47,4 +47,7 @@ public class BatchStock {
     @JoinColumn(name = "section_id", nullable = false)
     @JsonIgnoreProperties("batchStocks")
     private Section section;
+    @OneToOne(mappedBy="batchStock")
+    @JsonIgnoreProperties("batchStock")
+    private Item item;
 }
