@@ -8,7 +8,11 @@ import br.com.dh.meli.projeto_integrador.model.ShoppingCart;
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
 import br.com.dh.meli.projeto_integrador.repository.IShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Service
 public class ShoppingCartService implements IShoppingCartService {
 
     @Autowired
@@ -26,10 +30,17 @@ public class ShoppingCartService implements IShoppingCartService {
     }
 
     @Override
-    public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) {
-        if(shoppingCart.getId() > 0){
-            return repo.save((shoppingCart));
+    public ShoppingCart updateShoppingCart(ShoppingCartDTO shoppingCartdto, long shoppingCartId) {
+        try{
+            Optional<ShoppingCart> getShoppingCart = repo.findById(shoppingCartId);
+            ShoppingCart shoppingCart = IShoppingCartMapper.MAPPER.shoppingCartDTOtoModel(shoppingCartdto);
+            if(getShoppingCart.isPresent()){
+                return repo.save(shoppingCart);
+            }
+            throw new BadRequestException("The shopping cart doesn't exist");
         }
-        throw new BadRequestException("The shopping cart doesn't exist");
+        catch(Exception e){
+            throw new BadRequestException(e.getMessage());
+        }
     }
 }

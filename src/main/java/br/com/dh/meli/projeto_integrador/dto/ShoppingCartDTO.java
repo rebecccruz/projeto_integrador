@@ -14,11 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoppingCartDTO {
-    private List<Item> itens;
+    private List<Item> items;
     private Status status;
 
     public ShoppingCartDTO(ShoppingCart shoppingCart) {
-        this.itens = shoppingCart.getItens();
+        this.items = shoppingCart.getItems();
         this.status = shoppingCart.getStatus();
     }
 }
