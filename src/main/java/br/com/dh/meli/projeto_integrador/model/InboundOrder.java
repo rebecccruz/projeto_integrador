@@ -18,10 +18,14 @@ public class InboundOrder {
     @Column(name = "order_date", nullable = false)
     public LocalDate orderDate;
 
+    @OneToOne
+    @JoinColumn(name = "representant_id", nullable = false)
+    private Representant representant;
+
     @ManyToOne
     @JoinColumn(name = "section_id", nullable = false)
     @JsonIgnoreProperties("inboundOrders")
-    public Section sectionCode;
+    public Section section;
 
     @OneToMany(mappedBy = "inboundOrder", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("inboundOrder")
