@@ -24,15 +24,5 @@ public class ProductDTO {
     private LocalDate dueDate;
     private Category category;
 
-    public ProductDTO(Product product) {
-        this.batchNumber = product.getBatchNumber();
-        this.currentTemperature = product.getCurrentTemperature();
-        this.minimumTemperature = product.getMinimumTemperature();
-        this.initialQuantity = product.getInitialQuantity();
-        this.currentQuantity = product.getCurrentQuantity();
-        this.manufacturingDate = product.getManufacturingDate();
-        this.manufacturingTime = product.getManufacturingTime();
-        this.dueDate = product.getDueDate();
-        this.category = product.getCategory();
-    }
+
 }

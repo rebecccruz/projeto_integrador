@@ -50,4 +50,7 @@ public class BatchStock {
     @OneToOne(mappedBy="batchStock")
     @JsonIgnoreProperties("batchStock")
     private Item item;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }
