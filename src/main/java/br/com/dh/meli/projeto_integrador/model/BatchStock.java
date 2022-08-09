@@ -39,7 +39,12 @@ public class BatchStock {
     private LocalDate dueDate;
 
     @ManyToOne
-    @JoinColumn(name = "section_id")
+    @JoinColumn(name = "inbound_order_id", nullable = false)
+    @JsonIgnoreProperties("inboundOrders")
+    private InboundOrder inboundOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id", nullable = false)
     @JsonIgnoreProperties("batchStocks")
     private Section section;
     @OneToOne(mappedBy="batchStock")
