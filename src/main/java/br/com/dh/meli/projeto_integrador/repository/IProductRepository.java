@@ -12,5 +12,5 @@ import java.util.Optional;
 
 public interface IProductRepository extends JpaRepository<Product, Integer> {
 
-    List<Product> getProductByCategory(Optional<Category> category);
+
 }
