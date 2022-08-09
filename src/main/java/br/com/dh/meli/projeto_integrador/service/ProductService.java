@@ -25,29 +25,22 @@ public class ProductService implements IProductService {
         if(repo.findAll().size() > 0){
             return repo.findAll();
         }
-        throw new BadRequestException("BackStock is empty");
+        throw new BadRequestException("product list is empty");
     }
 
     @Override
     public List<Product> getAllProductsByCategory(Optional<Category> category) {
-//        if (repo.getProductByCategory(category).size() > 0){
-//            return repo.getProductByCategory(category);
-//        }
-//        throw new BadRequestException("BatchStock is empty");
-        return null;
+        if (repo.getProductByCategory(category).size() > 0){
+            return repo.getProductByCategory(category);
+        }
+        throw new BadRequestException("product list is empty");
     }
 
     @Override
-    public Product createProduct(ProductDTO product) {
-        try{
-            Product productModel = IProductMapper.MAPPER.productDTOtoModel(product);
-            if(product.getBatchNumber() > 0){
-                throw new PreconditionFailedException("BatchStock already exists");
-            }
-            return repo.save(productModel);
+    public Product createProduct(Product product) {
+        if(product.getBatchStock().getBatchNumber() > 0){
+            throw new PreconditionFailedException("product already exists");
         }
-        catch(Exception e){
-            throw new BadRequestException(e.getMessage());
-        }
+        return repo.save(product);
     }
 }

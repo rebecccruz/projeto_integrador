@@ -11,6 +11,6 @@ public interface IProductService {
     List<Product> getAllProducts();
     List<Product> getAllProductsByCategory(Optional<Category> category);
 
-    Product createProduct(ProductDTO product);
+    Product createProduct(Product product);
 
 }
