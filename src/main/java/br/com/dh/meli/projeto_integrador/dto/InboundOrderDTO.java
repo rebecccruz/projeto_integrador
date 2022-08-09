@@ -1,6 +1,5 @@
 package br.com.dh.meli.projeto_integrador.dto;
 
-import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 import lombok.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -8,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -28,6 +26,9 @@ public class InboundOrderDTO {
     @NotEmpty(message = "O campo sectionCode não pode estar vazio.")
     @Size(min = 2, message = "O campo sectionCode deve ter no mínimo 2 digitos.")
     public String sectionCode;
+
+    @NotNull
+    private Long representantId;
 
     @NotEmpty(message = "A lista de BatchStock deve ter pelo menos 1 válido.")
     public List<@Valid BatchStockDTO> batchStock;

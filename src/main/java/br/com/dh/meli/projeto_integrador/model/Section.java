@@ -2,10 +2,7 @@ package br.com.dh.meli.projeto_integrador.model;
 
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +14,9 @@ public class Section {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String code;
+
     @Column(name = "category_id", nullable = false)
     private Category category;
 
@@ -27,8 +27,8 @@ public class Section {
     @JsonIgnoreProperties("section")
     private List<BatchStock> batchStocks;
 
-    @OneToMany(mappedBy = "sectionCode")
-    @JsonIgnoreProperties("sectionCode")
+    @OneToMany(mappedBy = "section")
+    @JsonIgnoreProperties("section")
     private List<InboundOrder> inboundOrders;
 
     @ManyToOne(fetch = FetchType.LAZY)

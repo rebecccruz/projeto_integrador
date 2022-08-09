@@ -24,8 +24,8 @@ public class Warehouse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "warehouse_code", nullable = false)
-    private String warehouseCode;
+    @Column(nullable = false)
+    private String code;
 //    private AddressModel address;
 
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
