@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -47,10 +48,8 @@ public class BatchStock {
     @JoinColumn(name = "section_id", nullable = false)
     @JsonIgnoreProperties("batchStocks")
     private Section section;
-    @OneToOne(mappedBy="batchStock")
+
+    @OneToMany(mappedBy = "batchStock")
     @JsonIgnoreProperties("batchStock")
-    private Item item;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
-    private Product product;
+    private List<Product> product;
 }

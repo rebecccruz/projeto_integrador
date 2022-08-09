@@ -3,6 +3,8 @@ package br.com.dh.meli.projeto_integrador.enums;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import lombok.Getter;
 
+import java.util.Arrays;
+
 public enum Category {
 
     FS("Fresh", 5.0F, 25.0F),
@@ -20,10 +22,18 @@ public enum Category {
         this.maximumTemperature = maximumTemperature;
     }
 
-    public static Category valueof(int categoryId) {
+    public static Category valueOf(int categoryId) {
         if (categoryId > 2 || categoryId < 0) {
             throw new BadRequestException("invalid category");
         }
         return Category.values()[categoryId];
+    }
+
+    public static Category getEnumName(String name) {
+        try {
+            return Category.valueOf(name.toUpperCase());
+        } catch (Exception e) {
+            throw new BadRequestException("Invalid category");
+        }
     }
 }

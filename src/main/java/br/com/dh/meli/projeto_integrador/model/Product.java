@@ -17,11 +17,12 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy="product")
+    @ManyToOne
+    @JoinColumn(name = "batchStock_id",nullable = false)
     @JsonIgnoreProperties("product")
     private BatchStock  batchStock;
     @ManyToOne
-    @JoinColumn(name = "seller_id")
+    @JoinColumn(name = "seller_id", nullable = false)
     @JsonIgnoreProperties("product")
     private Seller seller;
     private Integer quantity;

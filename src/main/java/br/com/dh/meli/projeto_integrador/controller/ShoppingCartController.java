@@ -28,4 +28,5 @@ public class ShoppingCartController {
     public ResponseEntity<ShoppingCart> updateShoppingCart(@RequestBody ShoppingCartDTO shoppingCartDto,@PathVariable @Valid Long shoppingCartId){
         return new ResponseEntity<ShoppingCart>(service.updateShoppingCart(shoppingCartDto,shoppingCartId), HttpStatus.ACCEPTED);
     }
+
 }

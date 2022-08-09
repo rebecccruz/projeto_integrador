@@ -20,31 +20,23 @@ public class ProductController {
     @Autowired
     private IProductService service;
 
-    /**
-     * Veja uma lista completa de produtos.
-     * Se a lista não existir, ela deve retornar
-     * um "404 Not Found".
-     * @author Larissa Navarro
-     * @return List<ProductDTO>
-     */
-    @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(){
-        return ResponseEntity.ok(service.getAllProducts());
-    }
 
     /**
-     *Veja uma lista de produtos por
+     * Veja uma lista de produtos por
      * categoria.
      * Se a lista não existir, ela deve retornar
      * um "404 Not Found".
      * @author Larissa Navarro
      * @return List<ProductDTO>
      */
-    @GetMapping("/list")
+    @GetMapping("/products/list")
     public ResponseEntity<List<Product>> getAllProductsByCategory(@RequestParam(required = false) Optional<String> category){
         Optional<Category> categoryBy = Optional.empty();
-        categoryBy = Optional.of(Category.valueOf(category.get()));
-        return ResponseEntity.ok(service.getAllProductsByCategory(categoryBy));
+        if(category.isPresent()){
+            categoryBy = Optional.of(Category.getEnumName(category.get()));
+            return ResponseEntity.ok(service.getAllProductsByCategory(categoryBy));
+        }
+        return ResponseEntity.ok(service.getAllProducts());
     }
 
     /**
@@ -54,7 +46,7 @@ public class ProductController {
      * @return ProductDTO
      */
     @PostMapping("/orders/")
-    public ResponseEntity<Product> createPurchaseOrder(@RequestBody ProductDTO product){
+    public ResponseEntity<Product> createPurchaseOrder(@RequestBody Product product){
         return new ResponseEntity<Product>(service.createProduct(product), HttpStatus.CREATED);
     }
 }
