@@ -45,13 +45,16 @@ public class StateModel {
     @LastModifiedDate
     public Date updated_at;
 
-    @Column(nullable = true)
-    private Double rating;
-
     @PrePersist
     private void onCreate() {
         Date now = new Date();
         created_at = now;
+        updated_at = now;
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        Date now = new Date();
         updated_at = now;
     }
 }
