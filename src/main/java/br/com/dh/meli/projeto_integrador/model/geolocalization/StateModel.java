@@ -31,7 +31,6 @@ public class StateModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", nullable = false)
-    @JsonIgnoreProperties("states")
     private CountryModel country;
 
     @Column(nullable = false)

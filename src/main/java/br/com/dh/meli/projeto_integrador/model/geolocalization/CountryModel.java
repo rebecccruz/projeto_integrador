@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.model.geolocalization;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,8 @@ public class CountryModel {
     @Column(nullable = false, unique = true)
     private String initials;
 
-    @JsonProperty("country")
+    @JsonIgnoreProperties("country")
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "country")
     private List<StateModel> states;
 

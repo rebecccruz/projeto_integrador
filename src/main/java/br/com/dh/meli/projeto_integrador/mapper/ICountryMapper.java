@@ -33,7 +33,7 @@ public interface ICountryMapper {
      * @return CountryModel
      * @author Alexandre Borges Souza
      */
-    CountryModel mappingCountryDTOToCountryModel(UpdateCountryDTO countryDTO);
+    CountryModel mappingUpdateCountryDTOToCountryModel(UpdateCountryDTO countryDTO);
 
     /**
      * Mapping CountryModel to CountryDTO
@@ -42,4 +42,12 @@ public interface ICountryMapper {
      * @author Alexandre Borges Souza
      */
     CountryDTO mappingCountryModelToCountryDTO(CountryModel country);
+
+    /**
+     * Mapping CountryDTO to CountryModel
+     *
+     * @param country
+     * @return CountryModel
+     */
+    CountryModel mappingCountryDTOToCountryModel(CountryDTO country);
 }
