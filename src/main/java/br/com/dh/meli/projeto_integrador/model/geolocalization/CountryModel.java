@@ -1,10 +1,8 @@
 package br.com.dh.meli.projeto_integrador.model.geolocalization;
-<<<<<<< HEAD
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-=======
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
->>>>>>> 89514d1 (feat: updated dto,service,controller,mapper country  layers)
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -37,7 +35,7 @@ public class CountryModel {
     @Column(nullable = false, unique = true)
     private String initials;
 
-    @JsonIgnoreProperties("country")
+    @JsonProperty("country")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "country")
     private List<StateModel> states;
 
