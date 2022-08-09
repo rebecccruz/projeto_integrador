@@ -51,24 +51,18 @@ public class CountryService implements ICountryService {
      */
     @Override
     public Boolean update(final Long countryID, final UpdateCountryDTO country) throws DataIntegrityViolationException {
-        try {
-            Optional<CountryModel> getCountry = repository.findById(countryID);
-            if (getCountry.isPresent()) {
-                if ((!getCountry.get().getName().equalsIgnoreCase(country.getName())) ||
+        Optional<CountryModel> getCountry = repository.findById(countryID);
+        if (getCountry.isPresent()) {
+            if ((!getCountry.get().getName().equalsIgnoreCase(country.getName())) ||
                     (!getCountry.get().getInitials().equalsIgnoreCase(country.getInitials()))) {
-                    CountryModel updateCountry = ICountryMapper.MAPPER.mappingCountryDTOToCountryModel(country);
-                    updateCountry.setId(countryID);
-                    repository.save(updateCountry);
-                    return true;
-                }
-                throw new PreconditionFailedException("Não houve necessidade de atualizar");
+                CountryModel updateCountry = ICountryMapper.MAPPER.mappingUpdateCountryDTOToCountryModel(country);
+                updateCountry.setId(countryID);
+                repository.save(updateCountry);
+                return true;
             }
-            throw new NotFoundException("País não encontrado.");
+            throw new PreconditionFailedException("Não houve necessidade de atualizar");
         }
-        catch (DataIntegrityViolationException e) {
-            String message = String.format("Erro: %s\nCausa: %s", e.getMessage(), e.getCause());
-            throw new BadRequestException(message);
-        }
+        throw new NotFoundException("País não encontrado.");
     }
 
     /**
@@ -80,18 +74,12 @@ public class CountryService implements ICountryService {
      */
     @Override
     public Boolean delete(final Long countryID) throws DataIntegrityViolationException {
-        try {
-            Optional<CountryModel> getCountry = repository.findById(countryID);
-            if (getCountry.isPresent()) {
-                 repository.delete(getCountry.get());
-                 return !repository.findById(countryID).isPresent() ? true : false;
-            }
-            throw new NotFoundException("País não encontrado.");
+        Optional<CountryModel> getCountry = repository.findById(countryID);
+        if (getCountry.isPresent()) {
+            repository.deleteById(countryID);
+            return true;
         }
-        catch (DataIntegrityViolationException e) {
-            String message = String.format("Erro: %s\nCausa: %s", e.getMessage(), e.getCause());
-            throw new BadRequestException(message);
-        }
+        throw new NotFoundException("País não encontrado.");
     }
 
     /**
