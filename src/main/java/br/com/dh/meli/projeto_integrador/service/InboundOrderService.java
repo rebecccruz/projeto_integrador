@@ -9,6 +9,7 @@ import br.com.dh.meli.projeto_integrador.repository.ISectionRepository;
 import br.com.dh.meli.projeto_integrador.repository.IWarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
 
 @Service
@@ -23,32 +24,16 @@ public class InboundOrderService implements IInboundOrderService {
 
     @Override
     public InboundOrderDTO createInboundOrder(InboundOrderDTO dto) {
-        Optional<Warehouse> warehouse = warehouseRepo.findWarehouseByCode(dto.getWarehouseCode());
-
-        // E que o armazém é válido
-        if (warehouse.isEmpty()) {
-            throw new BadRequestException("invalid wareHouseCode");
-        }
-
-        // E que o representante pertence ao armazém
-        Optional<Representant> representant = warehouse.get().getRepresentants()
-                .stream().filter(r -> r.getId().equals(dto.getRepresentantId())).findFirst();
-        if (representant.isEmpty()) {
-            throw new BadRequestException("invalid representId");
-        }
-
-        // E que o setor é válido
-        Optional<Section> section = warehouse.get().getSections()
-                .stream().filter(s -> s.getCode().equalsIgnoreCase(dto.getSectionCode())).findFirst();
-        if (section.isEmpty()) {
-            throw new BadRequestException("invalid sectionCode");
-        }
+        Warehouse warehouse = findWarehouseByCode(dto.getWarehouseCode());
+        Representant representant = findRepresentantFromWarehouse(warehouse, dto.getRepresentantId());
+        Section section = findSectionByCode(warehouse, dto.getSectionCode());
 
         // TODO: E que o setor corresponde ao tipo de produto
 
         // TODO: E que o setor tenha espaço disponível
-        int maxCapacity = section.get().getCapacity();
-        int currentCapacity = section.get().getBatchStocks().size();
+
+        int maxCapacity = section.getCapacity();
+        int currentCapacity = section.getBatchStocks().size();
         int availableCapacity = maxCapacity - currentCapacity;
         int neededCapacity = dto.getBatchStock().size();
         boolean haveCapacity = availableCapacity >= neededCapacity;
@@ -57,7 +42,6 @@ public class InboundOrderService implements IInboundOrderService {
             // TODO: Save in database
             //repo.save(inboundOrder);
         }
-
         return dto;
     }
 
@@ -69,5 +53,32 @@ public class InboundOrderService implements IInboundOrderService {
 
     private void saveBatchStock(BatchStock batchStock) {
 
+    }
+
+    private Warehouse findWarehouseByCode(String code) {
+        Optional<Warehouse> warehouse = warehouseRepo.findWarehouseByCode(code);
+        if (warehouse.isEmpty()) {
+            throw new BadRequestException("invalid warehouseCode");
+        }
+        return warehouse.get();
+    }
+
+    private Representant findRepresentantFromWarehouse(Warehouse warehouse, Long id) {
+        Optional<Representant> representant = warehouse.getRepresentants()
+                .stream().filter(r -> r.getId().equals(id)).findFirst();
+        if (representant.isEmpty()) {
+            throw new BadRequestException("invalid representId");
+        }
+        return representant.get();
+    }
+
+    private Section findSectionByCode(Warehouse warehouse, String code)
+    {
+        Optional<Section> section = warehouse.getSections()
+                .stream().filter(s -> s.getCode().equalsIgnoreCase(code)).findFirst();
+        if (section.isEmpty()) {
+            throw new BadRequestException("invalid sectionCode");
+        }
+        return section.get();
     }
 }
