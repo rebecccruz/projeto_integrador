@@ -30,8 +30,8 @@ public class ProductDTO {
         this.minimumTemperature = product.getMinimumTemperature();
         this.initialQuantity = product.getInitialQuantity();
         this.currentQuantity = product.getCurrentQuantity();
-        this.manufacturingDate = product.getManufaturingDate();
-        this.manufacturingTime = product.getManufaturingTime();
+        this.manufacturingDate = product.getManufacturingDate();
+        this.manufacturingTime = product.getManufacturingTime();
         this.dueDate = product.getDueDate();
         this.category = product.getCategory();
     }
