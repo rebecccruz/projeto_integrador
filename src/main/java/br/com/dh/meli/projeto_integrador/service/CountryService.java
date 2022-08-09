@@ -51,18 +51,15 @@ public class CountryService implements ICountryService {
      */
     @Override
     public Boolean update(final Long countryID, final UpdateCountryDTO country) throws DataIntegrityViolationException {
-        Optional<CountryModel> getCountry = repository.findById(countryID);
-        if (getCountry.isPresent()) {
-            if ((!getCountry.get().getName().equalsIgnoreCase(country.getName())) ||
-                    (!getCountry.get().getInitials().equalsIgnoreCase(country.getInitials()))) {
-                CountryModel updateCountry = ICountryMapper.MAPPER.mappingUpdateCountryDTOToCountryModel(country);
-                updateCountry.setId(countryID);
-                repository.save(updateCountry);
-                return true;
-            }
-            throw new PreconditionFailedException("Não houve necessidade de atualizar");
+        CountryModel getCountry = this.checkCountryExistByCountryID(countryID);
+        if ((!getCountry.getName().equalsIgnoreCase(country.getName())) ||
+                (!getCountry.getInitials().equalsIgnoreCase(country.getInitials()))) {
+            CountryModel updateCountry = ICountryMapper.MAPPER.mappingUpdateCountryDTOToCountryModel(country);
+            updateCountry.setId(countryID);
+            repository.save(updateCountry);
+            return true;
         }
-        throw new NotFoundException("País não encontrado.");
+        throw new PreconditionFailedException("Não houve necessidade de atualizar");
     }
 
     /**
@@ -74,12 +71,9 @@ public class CountryService implements ICountryService {
      */
     @Override
     public Boolean delete(final Long countryID) throws DataIntegrityViolationException {
-        Optional<CountryModel> getCountry = repository.findById(countryID);
-        if (getCountry.isPresent()) {
-            repository.deleteById(countryID);
-            return true;
-        }
-        throw new NotFoundException("País não encontrado.");
+        this.checkCountryExistByCountryID(countryID);
+        repository.deleteById(countryID);
+        return true;
     }
 
     /**
@@ -90,11 +84,24 @@ public class CountryService implements ICountryService {
      */
     @Override
     public CountryDTO get(Long countryID) {
+        CountryModel findCountry = this.checkCountryExistByCountryID(countryID);
+        CountryDTO countryDTO = ICountryMapper.MAPPER.mappingCountryModelToCountryDTO(findCountry);
+        return countryDTO;
+    }
+
+    /**
+     *
+     * Check country exist and return country content
+     *
+     * @param countryID country ID
+     * @return CountryModel
+     * @author Alexandre Borges Souza
+     */
+    private CountryModel checkCountryExistByCountryID(Long countryID) {
         Optional<CountryModel> findCountry = repository.findById(countryID);
-        if (findCountry.isPresent()) {
-            CountryDTO countryDTO = ICountryMapper.MAPPER.mappingCountryModelToCountryDTO(findCountry.get());
-            return countryDTO;
+        if (!findCountry.isPresent()) {
+            throw new NotFoundException("País não encontrado");
         }
-        throw new NotFoundException("País não encontrado");
+        return findCountry.get();
     }
 }
