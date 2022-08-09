@@ -30,10 +30,11 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> getAllProductsByCategory(Optional<Category> category) {
-        if (repo.getByCategory(category).size() > 0){
-            return repo.getByCategory(category);
-        }
-        throw new BadRequestException("BatchStock is empty");
+//        if (repo.getProductByCategory(category).size() > 0){
+//            return repo.getProductByCategory(category);
+//        }
+//        throw new BadRequestException("BatchStock is empty");
+        return null;
     }
 
     @Override
