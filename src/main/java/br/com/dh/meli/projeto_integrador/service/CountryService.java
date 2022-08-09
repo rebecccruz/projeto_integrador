@@ -1,11 +1,7 @@
 package br.com.dh.meli.projeto_integrador.service;
 
-import br.com.dh.meli.projeto_integrador.dto.geolocalization.AddCountryDTO;
-import br.com.dh.meli.projeto_integrador.dto.geolocalization.CountryDTO;
-import br.com.dh.meli.projeto_integrador.dto.geolocalization.UpdateCountryDTO;
-import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
-import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
-import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.dto.geolocalization.*;
+import br.com.dh.meli.projeto_integrador.exception.*;
 import br.com.dh.meli.projeto_integrador.mapper.ICountryMapper;
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
 import br.com.dh.meli.projeto_integrador.repository.ICountryRepo;
