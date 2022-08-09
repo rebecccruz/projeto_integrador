@@ -1,6 +1,8 @@
 package br.com.dh.meli.projeto_integrador.mapper;
 
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.AddCountryDTO;
+import br.com.dh.meli.projeto_integrador.dto.geolocalization.CountryDTO;
+import br.com.dh.meli.projeto_integrador.dto.geolocalization.UpdateCountryDTO;
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -21,6 +23,23 @@ public interface ICountryMapper {
      *
      * @param country mapping AddCountryDTO
      * @return CountryModel
+     * @author Alexandre Borges Souza
      */
-    CountryModel addCountryDTOToCountryModel(AddCountryDTO country);
+    CountryModel mappingCountryDTOToCountryModel(AddCountryDTO country);
+
+    /**
+     * Mapping UpdateCountryDTO to CountryModel
+     * @param countryDTO country DTO Class
+     * @return CountryModel
+     * @author Alexandre Borges Souza
+     */
+    CountryModel mappingCountryDTOToCountryModel(UpdateCountryDTO countryDTO);
+
+    /**
+     * Mapping CountryModel to CountryDTO
+     * @param country Country Model to mapper
+     * @return CountryDTO
+     * @author Alexandre Borges Souza
+     */
+    CountryDTO mappingCountryModelToCountryDTO(CountryModel country);
 }
