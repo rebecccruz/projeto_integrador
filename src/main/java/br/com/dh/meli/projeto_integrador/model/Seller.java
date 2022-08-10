@@ -22,6 +22,5 @@ import java.util.List;
 public class Seller extends Person{
     @OneToMany(mappedBy = "seller")
     @JsonIgnoreProperties("seller")
-    private List<Product> products;
-
+    private List<Advertisement> advertisements;
 }

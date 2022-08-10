@@ -51,5 +51,5 @@ public class BatchStock {
 
     @OneToMany(mappedBy = "batchStock")
     @JsonIgnoreProperties("batchStock")
-    private List<Product> product;
+    private List<Advertisement> advertisement;
 }
