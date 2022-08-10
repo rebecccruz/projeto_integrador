@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.service;
 
+import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
@@ -52,7 +53,8 @@ public class InboundOrderService implements IInboundOrderService {
     }
 
     private void saveBatchStock(BatchStock batchStock) {
-
+        // TODO: salvar batchStock chamando repository
+        // TODO: ver metodo saveAll do JPA Repository
     }
 
     private Warehouse findWarehouseByCode(String code) {
@@ -80,5 +82,13 @@ public class InboundOrderService implements IInboundOrderService {
             throw new BadRequestException("invalid sectionCode");
         }
         return section.get();
+    }
+
+    // TODO: E o representante é associado ao registro de estoque
+    // TODO: E que o setor corresponde ao tipo de produto
+    private List<BatchStock> batchStockSerializer(List<BatchStockDTO> batchStocks) {
+        // TODO: injetar o setor no lote (map BatchStockDTO)
+        // List<BatchStock>
+        return null;
     }
 }

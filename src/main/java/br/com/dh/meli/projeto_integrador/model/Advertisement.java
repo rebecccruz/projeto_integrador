@@ -1,6 +1,5 @@
 package br.com.dh.meli.projeto_integrador.model;
 
-import br.com.dh.meli.projeto_integrador.enums.Category;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,9 +22,8 @@ public class Product {
     private BatchStock  batchStock;
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
-    @JsonIgnoreProperties("product")
+    @JsonIgnoreProperties("advertisements")
     private Seller seller;
-    private Integer quantity;
     private double price;
     private String description;
 }
