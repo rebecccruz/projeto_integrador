@@ -7,9 +7,9 @@ import java.util.Arrays;
 
 public enum Category {
 
-    FS("Fresh", 5.0F, 25.0F),
-    RF("Refrigerated", 5.0F, -18.0F),
-    FF("Frozen", -18.0F, -40.0F);
+    FS("Fresh", 5.01F, 30.0F),
+    RF("Refrigerated", -18.0F, 5.0F),
+    FF("Frozen", -40.0F, -18.01F);
 
     @Getter
     private String name;
@@ -35,5 +35,12 @@ public enum Category {
         } catch (Exception e) {
             throw new BadRequestException("Invalid category");
         }
+    }
+    public static Float getMinimumTemperature(String name){
+        return Category.getEnumName(name).minimumTemperature;
+    }
+
+    public static Float getMaximumTemperature(String name){
+        return Category.getEnumName(name).maximumTemperature;
     }
 }

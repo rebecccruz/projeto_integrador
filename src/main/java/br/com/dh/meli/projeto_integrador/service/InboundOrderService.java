@@ -2,6 +2,7 @@ package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
+import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
 import br.com.dh.meli.projeto_integrador.model.*;
@@ -30,6 +31,11 @@ public class InboundOrderService implements IInboundOrderService {
         Section section = findSectionByCode(warehouse, dto.getSectionCode());
 
         // TODO: E que o setor corresponde ao tipo de produto
+        dto.getBatchStock().stream().forEach(batch -> {
+            System.out.println(batch.getCurrentTemperature());
+            System.out.println(dto.getSectionCode());
+            isThisBatchBelongToSection(batch, dto.getSectionCode());
+        });
 
         // TODO: E que o setor tenha espaço disponível
 
@@ -90,5 +96,16 @@ public class InboundOrderService implements IInboundOrderService {
         // TODO: injetar o setor no lote (map BatchStockDTO)
         // List<BatchStock>
         return null;
+    }
+
+    private void isThisBatchBelongToSection (BatchStockDTO batch, String sectionCode) {
+        Float maximumTemperature = Category.getMaximumTemperature(sectionCode);
+        Float minimumTemperature = Category.getMinimumTemperature(sectionCode);
+        Float batchCurrentTemperature = batch.getCurrentTemperature();
+
+        if (batchCurrentTemperature > maximumTemperature || batchCurrentTemperature < minimumTemperature) {
+            throw new BadRequestException("this batch doesn't belong to the section.");
+        }
+
     }
 }
