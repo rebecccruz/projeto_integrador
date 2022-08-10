@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/fresh-products")
+@RequestMapping("/api/v1/fresh-Advertisements")
 public class AdvertisementController {
 
     @Autowired
@@ -25,23 +25,23 @@ public class AdvertisementController {
      * Se a lista não existir, ela deve retornar
      * um "404 Not Found".
      * @author Larissa Navarro
-     * @return List<ProductDTO>
+     * @return List<AdvertisementDTO>
      */
-    @GetMapping("/advertisement/list")
-    public ResponseEntity<List<Advertisement>> getAllAdvertisementByCategory(@RequestParam(required = false) Optional<String> category){
+    @GetMapping("/Advertisements/list")
+    public ResponseEntity<List<Advertisement>> getAllAdvertisementsByCategory(@RequestParam(required = false) Optional<String> category){
         Optional<Category> categoryBy = Optional.empty();
         if(category.isPresent()){
             categoryBy = Optional.of(Category.getEnumName(category.get()));
-            return ResponseEntity.ok(service.getAllAdvertisementsByCategory(categoryBy));
+            return ResponseEntity.ok(service.getAllAdvertisementByCategory(categoryBy));
         }
-        return ResponseEntity.ok(service.getAllAdvertisements());
+        return ResponseEntity.ok(service.getAllAdvertisement());
     }
 
     /**
      * Registre um pedido com a lista de
      * produtos que compõem o PurchaseOrder.
      * @author Larissa Navarro
-     * @return ProductDTO
+     * @return AdvertisementDTO
      */
     @PostMapping("/orders/")
     public ResponseEntity<Advertisement> createPurchaseOrder(@RequestBody Advertisement advertisement){

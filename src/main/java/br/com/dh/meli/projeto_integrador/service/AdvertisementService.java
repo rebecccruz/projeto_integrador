@@ -2,6 +2,7 @@ package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
+import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.repository.IAdvertisementRepository;
@@ -17,19 +18,19 @@ public class AdvertisementService implements IAdvertisementService {
     private IAdvertisementRepository repo;
 
     @Override
-    public List<Advertisement> getAllAdvertisements() {
+    public List<Advertisement> getAllAdvertisement() {
         if(repo.findAll().size() > 0){
             return repo.findAll();
         }
-        throw new BadRequestException("product list is empty");
+        throw new NotFoundException("Advertisement list is empty");
     }
 
     @Override
-    public List<Advertisement> getAllAdvertisementsByCategory(Optional<Category> category) {
+    public List<Advertisement> getAllAdvertisementByCategory(Optional<Category> category) {
         if (repo.getAdvertisementByCategory(category).size() > 0){
             return repo.getAdvertisementByCategory(category);
         }
-        throw new BadRequestException("advertisement list is empty");
+        throw new NotFoundException("Advertisement list is empty");
     }
 
     @Override
