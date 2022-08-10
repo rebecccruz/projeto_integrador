@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IAdvertisementService {
-    List<Advertisement> getAllAdvertisements();
 
-    List<Advertisement> getAllAdvertisementsByCategory(Optional<Category> category);
-
+    List<Advertisement> getAllAdvertisement();
+    List<Advertisement> getAllAdvertisementByCategory(Optional<Category> category);
     Advertisement createAdvertisement(Advertisement advertisement);
+
 }
