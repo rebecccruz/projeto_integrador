@@ -9,4 +9,5 @@ import org.mapstruct.factory.Mappers;
 public interface IInboundOrderMapper {
     IInboundOrderMapper MAPPER = Mappers.getMapper(IInboundOrderMapper.class);
     InboundOrder mappingInboundOrderDTOToInboundOrder(InboundOrderDTO inboundOrderDTO);
+    InboundOrderDTO mappingInboundOrderToInboundOrderDTO(InboundOrder inboundOrder);
 }
