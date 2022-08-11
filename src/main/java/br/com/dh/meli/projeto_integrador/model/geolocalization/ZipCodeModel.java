@@ -34,7 +34,7 @@ public class ZipCodeModel {
     @Column
     private Double longitude;
 
-    @Column
+    @Column(nullable = false)
     private String zip_code;
 
     @ManyToOne(fetch = FetchType.LAZY)

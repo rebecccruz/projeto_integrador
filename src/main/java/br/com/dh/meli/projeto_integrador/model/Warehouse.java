@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Warehouse Entity
  *
- * @author Evelyn Cristini Oliveira
+ * @author Evelyn Cristini Oliveira / Alexandre Borges Souza
  */
 
 @Data
@@ -26,7 +26,6 @@ public class Warehouse {
 
     @Column(nullable = false)
     private String code;
-//    private AddressModel address;
 
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
