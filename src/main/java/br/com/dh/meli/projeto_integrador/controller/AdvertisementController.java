@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.controller;
 
+import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.service.IAdvertisementService;
@@ -44,7 +45,7 @@ public class AdvertisementController {
      * @return AdvertisementDTO
      */
     @PostMapping("/orders/")
-    public ResponseEntity<Advertisement> createPurchaseOrder(@RequestBody Advertisement advertisement){
+    public ResponseEntity<Advertisement> createPurchaseOrder(@RequestBody AdvertisementDTO advertisement){
         return new ResponseEntity<Advertisement>(service.createAdvertisement(advertisement), HttpStatus.CREATED);
     }
 }
