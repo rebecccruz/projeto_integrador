@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AdvertisementDTO {
     @NotNull
-    private Long batchStockId;
+    private String productId;
     @NotNull
     private Long sellerId;
     @NotNull

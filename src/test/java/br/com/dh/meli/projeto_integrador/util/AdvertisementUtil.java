@@ -32,12 +32,12 @@ public class AdvertisementUtil {
     }
     public static AdvertisementDTO advertisementDTO(){
         AdvertisementDTO dto = new AdvertisementDTO();
-        dto.setBatchNumber(1);
-        dto.setInitialQuantity(5);
-        dto.setManufacturingTime(LocalDateTime.MAX);
-        dto.setManufacturingDate(LocalDate.now());
-        dto.setCurrentQuantity(1);
-        dto.setCategory(Category.FF);
+        dto.setPrice(500.0);
+        dto.setBatchStockId(1L);
+        dto.setSellerId(1L);
+        dto.setDescription("acucar");
+
+
         return dto;
     }
 

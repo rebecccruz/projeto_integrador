@@ -81,12 +81,8 @@ class AdvertisementServiceTest {
         AdvertisementDTO dto = AdvertisementUtil.advertisementDTO();
         Advertisement createAd = service.createAdvertisement(dto);
 
-
-
-        //Advertisement createdAd = service.createAdvertisement(newAd);
-
-        //assertThat(createdAd.getId()).isEqualTo(newAd.getId());
-        //assertThat(createdAd).isNotNull();
+        assertThat(createAd.getId()).isPositive();
+        assertThat(createAd).isNotNull();
     }
 
     @Test

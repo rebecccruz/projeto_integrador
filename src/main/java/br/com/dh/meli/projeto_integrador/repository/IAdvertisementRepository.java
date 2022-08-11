@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public interface IAdvertisementRepository extends JpaRepository<Advertisement, Integer> {
 
-    @Query("SELECT a, b,s FROM Advertisement a, BatchStock b, Section s WHERE s.category=?1")
+    @Query("SELECT a, b,s FROM Advertisement a JOIN  BatchStock b ON a.productId = b.productId" +
+            "  JOIN Section s ON b.batchNumber= s.id WHERE s.category=?1")
     List<Advertisement> getAdvertisementByCategory(Optional<Category> category);
 }
