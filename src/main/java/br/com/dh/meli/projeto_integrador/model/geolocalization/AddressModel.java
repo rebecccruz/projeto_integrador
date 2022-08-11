@@ -33,8 +33,4 @@ public class AddressModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "zipcode_id", nullable = false)
     private ZipCodeModel zip;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
-    private Warehouse warehouse;
 }
