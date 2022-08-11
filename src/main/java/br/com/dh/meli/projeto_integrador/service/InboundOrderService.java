@@ -2,10 +2,12 @@ package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
-import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
+import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
 import br.com.dh.meli.projeto_integrador.model.*;
+import br.com.dh.meli.projeto_integrador.repository.IBatchStockRepository;
 import br.com.dh.meli.projeto_integrador.repository.IInboundOrderRepository;
 import br.com.dh.meli.projeto_integrador.repository.ISectionRepository;
 import br.com.dh.meli.projeto_integrador.repository.IWarehouseRepository;
@@ -24,31 +26,27 @@ public class InboundOrderService implements IInboundOrderService {
     @Autowired
     private ISectionRepository sectionRepo;
 
+    @Autowired
+    private IBatchStockRepository batchStockRepo;
+
     @Override
     public InboundOrderDTO createInboundOrder(InboundOrderDTO dto) {
         Warehouse warehouse = findWarehouseByCode(dto.getWarehouseCode());
         Representant representant = findRepresentantFromWarehouse(warehouse, dto.getRepresentantId());
         Section section = findSectionByCode(warehouse, dto.getSectionCode());
 
-        // TODO: E que o setor corresponde ao tipo de produto
         dto.getBatchStock().stream().forEach(batch -> {
-            System.out.println(batch.getCurrentTemperature());
-            System.out.println(dto.getSectionCode());
-            isThisBatchBelongToSection(batch, dto.getSectionCode());
+            isThisBatchBelongToSection(batch, section);
         });
 
-        // TODO: E que o setor tenha espaço disponível
+        isTheSectionHasEnoughtSpace(section, dto);
 
-        int maxCapacity = section.getCapacity();
-        int currentCapacity = section.getBatchStocks().size();
-        int availableCapacity = maxCapacity - currentCapacity;
-        int neededCapacity = dto.getBatchStock().size();
-        boolean haveCapacity = availableCapacity >= neededCapacity;
-        if (haveCapacity) {
-            InboundOrder inboundOrder = IInboundOrderMapper.MAPPER.mappingInboundOrderDTOToInboundOrder(dto);
-            // TODO: Save in database
-            //repo.save(inboundOrder);
-        }
+        InboundOrder inboundOrder = IInboundOrderMapper.MAPPER.mappingInboundOrderDTOToInboundOrder(dto);
+        inboundOrder.setWarehouse(warehouse);
+        inboundOrder.setRepresentant(representant);
+        inboundOrder.setSection(section);
+        repo.save(inboundOrder);
+        dto.getBatchStock().forEach(b -> saveBatchStock(b, inboundOrder));
         return dto;
     }
 
@@ -58,9 +56,11 @@ public class InboundOrderService implements IInboundOrderService {
         return dto;
     }
 
-    private void saveBatchStock(BatchStock batchStock) {
-        // TODO: salvar batchStock chamando repository
-        // TODO: ver metodo saveAll do JPA Repository
+    private void saveBatchStock(BatchStockDTO dto, InboundOrder inboundOrder) {
+        BatchStock batchStock = IBatchStockMapper.MAPPER.mappingBatchStockDTOToBatchStock(dto);
+        batchStock.setInboundOrder(inboundOrder);
+        batchStock.setSection(inboundOrder.getSection());
+        batchStockRepo.save(batchStock);
     }
 
     private Warehouse findWarehouseByCode(String code) {
@@ -80,8 +80,7 @@ public class InboundOrderService implements IInboundOrderService {
         return representant.get();
     }
 
-    private Section findSectionByCode(Warehouse warehouse, String code)
-    {
+    private Section findSectionByCode(Warehouse warehouse, String code) {
         Optional<Section> section = warehouse.getSections()
                 .stream().filter(s -> s.getCode().equalsIgnoreCase(code)).findFirst();
         if (section.isEmpty()) {
@@ -98,14 +97,24 @@ public class InboundOrderService implements IInboundOrderService {
         return null;
     }
 
-    private void isThisBatchBelongToSection (BatchStockDTO batch, String sectionCode) {
-        Float maximumTemperature = Category.getMaximumTemperature(sectionCode);
-        Float minimumTemperature = Category.getMinimumTemperature(sectionCode);
+    private void isThisBatchBelongToSection(BatchStockDTO batch, Section section) {
+        Float maximumTemperature = section.getCategory().getMaximumTemperature();
+        Float minimumTemperature = section.getCategory().getMinimumTemperature();
         Float batchCurrentTemperature = batch.getCurrentTemperature();
 
         if (batchCurrentTemperature > maximumTemperature || batchCurrentTemperature < minimumTemperature) {
             throw new BadRequestException("this batch doesn't belong to the section.");
         }
+    }
 
+    private void isTheSectionHasEnoughtSpace(Section section, InboundOrderDTO inbound) {
+        int maxCapacity = section.getCapacity();
+        int currentCapacity = section.getBatchStocks().size();
+        int availableCapacity = maxCapacity - currentCapacity;
+        int neededCapacity = inbound.getBatchStock().size();
+        boolean dontHaveCapacity = availableCapacity < neededCapacity;
+        if (dontHaveCapacity) {
+            throw new PreconditionFailedException("this section don't have enought space.");
+        }
     }
 }

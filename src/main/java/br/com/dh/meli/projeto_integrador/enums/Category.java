@@ -13,8 +13,12 @@ public enum Category {
 
     @Getter
     private String name;
-    public Float minimumTemperature;
-    public Float maximumTemperature;
+
+    @Getter
+    private Float minimumTemperature;
+
+    @Getter
+    private Float maximumTemperature;
 
     Category(String name, Float minimumTemperature, Float maximumTemperature) {
         this.name = name;
@@ -35,12 +39,5 @@ public enum Category {
         } catch (Exception e) {
             throw new BadRequestException("Invalid category");
         }
-    }
-    public static Float getMinimumTemperature(String name){
-        return Category.getEnumName(name).minimumTemperature;
-    }
-
-    public static Float getMaximumTemperature(String name){
-        return Category.getEnumName(name).maximumTemperature;
     }
 }
