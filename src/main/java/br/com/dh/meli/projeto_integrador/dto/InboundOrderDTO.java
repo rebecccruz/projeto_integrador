@@ -33,7 +33,7 @@ public class InboundOrderDTO {
     @NotEmpty(message = "A lista de BatchStock deve ter pelo menos 1 válido.")
     public List<@Valid BatchStockDTO> batchStock;
 
-    @NotEmpty(message = "A lista de Advertisement deve ter pelo menos 1 válido.")
-    public List<@Valid AdvertisementDTO> advertisement;
+    //@NotEmpty(message = "A lista de Advertisement deve ter pelo menos 1 válido.")
+    //public List<@Valid AdvertisementDTO> advertisement;
 
 }
