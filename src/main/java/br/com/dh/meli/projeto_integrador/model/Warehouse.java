@@ -39,4 +39,9 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
     private List<InboundOrder> inboundOrders;
+
+    @OneToOne(mappedBy = "warehouse", fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @PrimaryKeyJoinColumn
+    private AddressModel address;
 }
