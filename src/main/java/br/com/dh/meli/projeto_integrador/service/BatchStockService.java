@@ -2,6 +2,7 @@ package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
+import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
 import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
@@ -39,5 +40,22 @@ public class BatchStockService implements IBatchStockService {
             throw new NotFoundException("productId not found");
         }
         return batchStock.get();
+    }
+
+    @Override
+    public BatchStock findByBatchNumber(Integer batchNumber) {
+        Optional<BatchStock> batchFound = repo.findBatchStockByBatchNumber(batchNumber);
+        if (batchFound.isEmpty()) {
+            throw new PreconditionFailedException("batch doesn't exists");
+        }
+        return batchFound.get();
+    }
+
+    @Override
+    public void batchNumberExistenceValidation(Integer batchNumber) {
+        Optional<BatchStock> batchFound = repo.findBatchStockByBatchNumber(batchNumber);
+        if (batchFound.isPresent()) {
+            throw new PreconditionFailedException("batch already exists");
+        }
     }
 }

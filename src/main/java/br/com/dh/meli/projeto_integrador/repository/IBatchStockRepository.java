@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface IBatchStockRepository extends JpaRepository<BatchStock, Long> {
     Optional<BatchStock> findBatchStockByProductId(String productId);
+    Optional<BatchStock> findBatchStockByBatchNumber(Integer productId);
 }
