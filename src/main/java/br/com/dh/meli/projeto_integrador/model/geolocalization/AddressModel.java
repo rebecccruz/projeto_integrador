@@ -36,5 +36,5 @@ public class AddressModel {
 
     @OneToOne(fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
-    private AddressModel address;
+    private Warehouse warehouse;
 }
