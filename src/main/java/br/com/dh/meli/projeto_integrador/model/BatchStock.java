@@ -49,7 +49,4 @@ public class BatchStock {
     @JsonIgnoreProperties("batchStocks")
     private Section section;
 
-    @OneToMany(mappedBy = "batchStock")
-    @JsonIgnoreProperties("batchStock")
-    private List<Advertisement> advertisement;
 }

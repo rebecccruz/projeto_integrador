@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -14,13 +18,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdvertisementDTO {
-    private Integer batchNumber;
-    private Float currentTemperature;
-    private Float minimumTemperature;
-    private Integer initialQuantity;
-    private Integer currentQuantity;
-    private LocalDate manufacturingDate;
-    private LocalDateTime manufacturingTime;
-    private LocalDate dueDate;
-    private Category category;
+    @NotNull
+    private String productId;
+    @NotNull
+    private Long sellerId;
+    @NotNull
+    private double price;
+    @NotNull
+    private String description;
+
+
 }

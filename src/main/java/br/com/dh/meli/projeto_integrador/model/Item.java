@@ -20,10 +20,12 @@ public class Item {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "batchstock_id")
+    private BatchStock batchStock;
     private int quantity;
     @ManyToOne
     @JoinColumn(name="shopping_cart_id")
     @JsonIgnoreProperties("items")
     private ShoppingCart shoppingCart;
-
 }

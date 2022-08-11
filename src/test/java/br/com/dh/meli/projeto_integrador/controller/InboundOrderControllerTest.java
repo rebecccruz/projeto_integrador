@@ -26,7 +26,7 @@ class InboundOrderControllerTest {
     void createBatchStock() {
         InboundOrderDTO payload = InboundOrderUtil.inboundOrderGenerator();
 
-        ResponseEntity<InboundOrderDTO> response = controller.createBatchStock(payload);
+        ResponseEntity<InboundOrderDTO> response = controller.createInboundOrder(payload);
 
         assertThat(response.getStatusCode())
                 .isEqualTo(HttpStatus.CREATED);
@@ -39,7 +39,7 @@ class InboundOrderControllerTest {
     void updateBatchStock() {
         InboundOrderDTO payload = InboundOrderUtil.inboundOrderGenerator();
 
-        ResponseEntity<InboundOrderDTO> response = controller.updateBatchStock(payload);
+        ResponseEntity<InboundOrderDTO> response = controller.updateInboundOrder(payload);
 
         assertThat(response.getStatusCode())
                 .isEqualTo(HttpStatus.CREATED);

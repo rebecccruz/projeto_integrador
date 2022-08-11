@@ -16,10 +16,7 @@ public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "batchStock_id",nullable = false)
-    @JsonIgnoreProperties("product")
-    private BatchStock  batchStock;
+    private String productId;
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
     @JsonIgnoreProperties("advertisements")
