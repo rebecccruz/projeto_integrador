@@ -63,8 +63,7 @@ public class AdvertisementService implements IAdvertisementService {
         BatchStock batchStock = batchStockRepository.findByProdutId(dto.getProductId());
         Seller seller = sellerRepository.findById(dto.getSellerId()).get();
         long differenceData =  DAYS.between(batchStockRepository.getProductDueDate(dto.getProductId()),LocalDate.now());
-
-        if(batchStock == null && seller == null && differenceData < 21){
+        if(batchStock == null || seller == null || differenceData < 21){
             throw new BadRequestException("Not possible create advertisement");
         }
     }
