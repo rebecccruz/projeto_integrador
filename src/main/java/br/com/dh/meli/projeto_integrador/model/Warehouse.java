@@ -40,5 +40,6 @@ public class Warehouse {
     private List<InboundOrder> inboundOrders;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", nullable = false, unique = true)
     private AddressModel address;
 }
