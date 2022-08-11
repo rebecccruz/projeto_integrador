@@ -36,13 +36,12 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public Advertisement createAdvertisement(AdvertisementDTO advertisement) {
-        try{
-            Advertisement advertisementModel = IAdvertisementMapper.MAPPER.advertisementDTOToModel(advertisement);
-            return repo.save(advertisementModel);
-        }
-        catch(Exception e){
-            throw new BadRequestException("Not possible to create");
-        }
+    public Advertisement createAdvertisement(AdvertisementDTO dto) {
+        Advertisement advertisement = IAdvertisementMapper.MAPPER.advertisementDTOToModel(dto);
+        advertisement.setBatchStock(null);
+        advertisement.setSeller(null);
+        return repo.save(advertisement);
+
+
     }
 }

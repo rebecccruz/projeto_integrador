@@ -1,5 +1,7 @@
 package br.com.dh.meli.projeto_integrador.service;
 
+import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
+import br.com.dh.meli.projeto_integrador.mapper.IAdvertisementMapper;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.repository.IAdvertisementRepository;
 import br.com.dh.meli.projeto_integrador.util.AdvertisementUtil;
@@ -76,7 +78,11 @@ class AdvertisementServiceTest {
     @Test
     @DisplayName("Create Advertisement")
     void createAdvertisement() {
-        Advertisement newAd = AdvertisementUtil.advertisementGenerator();
+        AdvertisementDTO dto = AdvertisementUtil.advertisementDTO();
+        Advertisement createAd = service.createAdvertisement(dto);
+
+
+
         //Advertisement createdAd = service.createAdvertisement(newAd);
 
         //assertThat(createdAd.getId()).isEqualTo(newAd.getId());
