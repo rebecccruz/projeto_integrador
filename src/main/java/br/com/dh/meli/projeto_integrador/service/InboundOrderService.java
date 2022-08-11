@@ -3,6 +3,7 @@ package br.com.dh.meli.projeto_integrador.service;
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
+import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
 import br.com.dh.meli.projeto_integrador.model.*;
@@ -49,6 +50,10 @@ public class InboundOrderService implements IInboundOrderService {
 
     @Override
     public InboundOrder updateInboundOrder(InboundOrderDTO dto) {
+        Optional<InboundOrder> inboundOrder = repo.findById(dto.getOrderNumber());
+        if(inboundOrder.isEmpty()) {
+            throw new NotFoundException("orderNumber not found");
+        }
         // TODO: Update inboundOrder from dto
         return null;
     }
