@@ -19,22 +19,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AdvertisementDTO {
     @NotNull
-    private Integer batchNumber;
+    private Long batchStockId;
     @NotNull
-    private Float currentTemperature;
+    private Long sellerId;
     @NotNull
-    private Float minimumTemperature;
+    private double price;
     @NotNull
-    private Integer initialQuantity;
-    @NotNull
-    private Integer currentQuantity;
-    @NotNull
-    private LocalDate manufacturingDate;
-    @NotNull
-    private LocalDateTime manufacturingTime;
-    @NotNull
-    private LocalDate dueDate;
-    @NotEmpty(message = "O campo category não pode estar vazio.")
-    @Size(max = 2, message = "O campo category deve ter no máximo 2 digitos.")
-    private Category category;
+    private String description;
+
+
 }

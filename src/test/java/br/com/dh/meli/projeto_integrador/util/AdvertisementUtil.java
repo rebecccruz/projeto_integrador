@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.util;
 
+import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
@@ -22,11 +23,22 @@ public class AdvertisementUtil {
 
     public static Advertisement advertisementGenerator() {
         Advertisement prod = new Advertisement();
+        prod.setId(1L);
         prod.setBatchStock(batchStockGenerator());
         prod.setPrice(12.0);
         prod.setSeller(sellerGenerator());
         prod.setDescription("Teste");
         return prod;
+    }
+    public static AdvertisementDTO advertisementDTO(){
+        AdvertisementDTO dto = new AdvertisementDTO();
+        dto.setBatchNumber(1);
+        dto.setInitialQuantity(5);
+        dto.setManufacturingTime(LocalDateTime.MAX);
+        dto.setManufacturingDate(LocalDate.now());
+        dto.setCurrentQuantity(1);
+        dto.setCategory(Category.FF);
+        return dto;
     }
 
 
