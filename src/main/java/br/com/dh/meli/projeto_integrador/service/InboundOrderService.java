@@ -3,6 +3,7 @@ package br.com.dh.meli.projeto_integrador.service;
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
+import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
 import br.com.dh.meli.projeto_integrador.model.*;
@@ -24,7 +25,7 @@ public class InboundOrderService implements IInboundOrderService {
     private IBatchStockService batchStockService;
 
     @Override
-    public InboundOrderDTO createInboundOrder(InboundOrderDTO dto) {
+    public InboundOrder createInboundOrder(InboundOrderDTO dto) {
         Warehouse warehouse = warehouseService.findWarehouseByCode(dto.getWarehouseCode());
         Representant representant = warehouseService.findRepresentantFromWarehouse(warehouse, dto.getRepresentantId());
         Section section = findSectionByCode(warehouse, dto.getSectionCode());
@@ -39,14 +40,22 @@ public class InboundOrderService implements IInboundOrderService {
         List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStock(), inboundOrder);
         inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
 
-        dto = IInboundOrderMapper.MAPPER.mappingInboundOrderToInboundOrderDTO(inboundOrder);
-        return dto;
+        return inboundOrder;
+    }
+
+    public InboundOrderDTO convertToDto(InboundOrder inboundOrder)
+    {
+        return IInboundOrderMapper.MAPPER.mappingInboundOrderToInboundOrderDTO(inboundOrder);
     }
 
     @Override
-    public InboundOrderDTO updateInboundOrder(InboundOrderDTO dto) {
+    public InboundOrder updateInboundOrder(InboundOrderDTO dto) {
+        Optional<InboundOrder> inboundOrder = repo.findById(dto.getOrderNumber());
+        if(inboundOrder.isEmpty()) {
+            throw new NotFoundException("orderNumber not found");
+        }
         // TODO: Update inboundOrder from dto
-        return dto;
+        return null;
     }
 
     private Section findSectionByCode(Warehouse warehouse, String code) {
