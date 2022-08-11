@@ -42,4 +42,12 @@ public interface ICountryMapper {
      * @author Alexandre Borges Souza
      */
     CountryDTO mappingCountryModelToCountryDTO(CountryModel country);
+
+    /**
+     * Mapping CountryDTO to CountryModel
+     *
+     * @param country
+     * @return CountryModel
+     */
+    CountryModel mappingCountryDTOToCountryModel(CountryDTO country);
 }

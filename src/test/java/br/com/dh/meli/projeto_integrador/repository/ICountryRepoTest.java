@@ -1,6 +1,7 @@
 package br.com.dh.meli.projeto_integrador.repository;
 
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
+import br.com.dh.meli.projeto_integrador.repository.geolocalization.ICountryRepository;
 import br.com.dh.meli.projeto_integrador.util.geolocalization.CountryUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ICountryRepoTest {
 
     @Autowired
-    private ICountryRepo repo;
+    private ICountryRepository repo;
 
     /**
      * Testing add a new country

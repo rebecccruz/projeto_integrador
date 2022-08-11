@@ -1,29 +1,36 @@
 package br.com.dh.meli.projeto_integrador.dto.geolocalization;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
- * DTO for payload for add new Geolocalization/State
- *
+ * Class for update State payload
  * @author Alexandre Borges Souza
+ * @since 10/08/2022
  */
 @Data
 @Builder
-public class AddStateDTO {
-    @NotNull(message = "Título é obrigatório")
+@NoArgsConstructor
+@AllArgsConstructor
+public class UpdateStateDTO {
+
+    @NotNull(message = "Título do estado é obrigatório")
     @JsonProperty("state_name")
-    private String name;
+    private String stateName;
+
     @NotNull(message = "Sigla é obrigatório")
-    @Size(min = 2, max = 2)
     @JsonProperty("state_initials")
-    private String initials;
+    private String stateInitials;
+
     @NotNull(message = "Timezone é obrigatório")
     @JsonProperty("state_timezone")
-    private String timezone;
-    @NotNull(message = "ID do país obrigatório")
+    private String stateTimezone;
+
+    @NotNull(message = "ID do país é obrigatório")
     @JsonProperty("country_id")
     private Long countryID;
 }

@@ -4,7 +4,7 @@ import br.com.dh.meli.projeto_integrador.dto.JSONOutuputMessageDTO;
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.*;
 import br.com.dh.meli.projeto_integrador.exception.ApiException;
 import br.com.dh.meli.projeto_integrador.mapper.ICountryMapper;
-import br.com.dh.meli.projeto_integrador.service.ICountryService;
+import br.com.dh.meli.projeto_integrador.service.geolocalization.ICountryService;
 import br.com.dh.meli.projeto_integrador.util.geolocalization.CountryUtil;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;

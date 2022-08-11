@@ -1,11 +1,12 @@
-package br.com.dh.meli.projeto_integrador.service;
+package br.com.dh.meli.projeto_integrador.service.geolocalization;
 
 import java.util.Optional;
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.*;
 import br.com.dh.meli.projeto_integrador.exception.ApiException;
 import br.com.dh.meli.projeto_integrador.mapper.ICountryMapper;
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
-import br.com.dh.meli.projeto_integrador.repository.ICountryRepo;
+import br.com.dh.meli.projeto_integrador.repository.geolocalization.ICountryRepository;
+import br.com.dh.meli.projeto_integrador.service.geolocalization.CountryService;
 import br.com.dh.meli.projeto_integrador.util.geolocalization.CountryUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +37,7 @@ class CountryServiceTest {
     private CountryService service;
 
     @Mock
-    private ICountryRepo repo;
+    private ICountryRepository repo;
 
     /**
      * Test with successfully add new country

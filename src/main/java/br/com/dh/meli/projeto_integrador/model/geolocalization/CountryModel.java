@@ -36,6 +36,7 @@ public class CountryModel {
     private String initials;
 
     @JsonIgnoreProperties("country")
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "country")
     private List<StateModel> states;
 

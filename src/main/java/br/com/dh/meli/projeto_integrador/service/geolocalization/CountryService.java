@@ -1,10 +1,10 @@
-package br.com.dh.meli.projeto_integrador.service;
+package br.com.dh.meli.projeto_integrador.service.geolocalization;
 
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.*;
 import br.com.dh.meli.projeto_integrador.exception.*;
 import br.com.dh.meli.projeto_integrador.mapper.ICountryMapper;
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
-import br.com.dh.meli.projeto_integrador.repository.ICountryRepo;
+import br.com.dh.meli.projeto_integrador.repository.geolocalization.ICountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class CountryService implements ICountryService {
 
     @Autowired
-    private ICountryRepo repository;
+    private ICountryRepository repository;
 
     /**
      * Add new country
