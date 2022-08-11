@@ -30,7 +30,7 @@ public class AdvertisementService implements IAdvertisementService {
     private IAdvertisementRepository repo;
 
     @Autowired
-    private IBatchStockRepository batchStockRepository;
+    private IBatchStockService batchStockService;
     @Autowired
     private ISellerRepository sellerRepository;
 
@@ -60,9 +60,9 @@ public class AdvertisementService implements IAdvertisementService {
         return dto;
     }
     private void validAdvertisement(AdvertisementDTO dto){
-        BatchStock batchStock = batchStockRepository.findByProdutId(dto.getProductId());
+        BatchStock batchStock = batchStockService.findByProductId(dto.getProductId());
         Seller seller = sellerRepository.findById(dto.getSellerId()).get();
-        long differenceData =  DAYS.between(batchStockRepository.getProductDueDate(dto.getProductId()),LocalDate.now());
+        long differenceData =  DAYS.between(batchStockService.findByProductId(dto.getProductId()).getDueDate(),LocalDate.now());
         if(batchStock == null || seller == null || differenceData < 21){
             throw new BadRequestException("Not possible create advertisement");
         }
