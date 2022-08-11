@@ -1,6 +1,7 @@
 package br.com.dh.meli.projeto_integrador.controller;
 
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
+import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 import br.com.dh.meli.projeto_integrador.service.IInboundOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,8 @@ public class InboundOrderController {
      */
     @PostMapping("/inboundorder")
     public ResponseEntity<InboundOrderDTO> createInboundOrder(@RequestBody @Valid InboundOrderDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createInboundOrder(dto));
+        InboundOrder inboundOrder = service.createInboundOrder(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.convertToDto(inboundOrder));
     }
 
     /**
@@ -39,6 +41,7 @@ public class InboundOrderController {
      */
     @PutMapping("/inboundorder")
     public ResponseEntity<InboundOrderDTO> updateInboundOrder(@RequestBody @Valid InboundOrderDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.updateInboundOrder(dto));
+        InboundOrder inboundOrder = service.updateInboundOrder(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.convertToDto(inboundOrder));
     }
 }
