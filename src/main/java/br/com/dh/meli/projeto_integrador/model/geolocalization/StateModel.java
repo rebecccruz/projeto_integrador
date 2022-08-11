@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Geolocalization/State Entity
@@ -35,6 +36,9 @@ public class StateModel {
 
     @Column(nullable = false)
     private String initials;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "state")
+    private List<CityModel> cities;
 
     @Column(insertable = true, updatable = false, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

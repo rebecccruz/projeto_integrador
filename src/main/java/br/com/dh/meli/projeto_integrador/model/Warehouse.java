@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Warehouse Entity
  *
- * @author Evelyn Cristini Oliveira
+ * @author Evelyn Cristini Oliveira / Alexandre Borges Souza
  */
 
 @Data
@@ -26,7 +26,6 @@ public class Warehouse {
 
     @Column(nullable = false)
     private String code;
-//    private AddressModel address;
 
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
@@ -39,4 +38,9 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("warehouse")
     private List<InboundOrder> inboundOrders;
+
+    @OneToOne(mappedBy = "warehouse", fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @PrimaryKeyJoinColumn
+    private AddressModel address;
 }
