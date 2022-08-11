@@ -1,9 +1,11 @@
 package br.com.dh.meli.projeto_integrador.service;
 
+import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.mapper.IAdvertisementMapper;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.repository.IAdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +36,13 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public Advertisement createAdvertisement(Advertisement advertisement) {
-        if(advertisement.getBatchStock().getBatchNumber() > 0){
-            throw new PreconditionFailedException("advertisement already exists");
+    public Advertisement createAdvertisement(AdvertisementDTO advertisement) {
+        try{
+            Advertisement advertisementModel = IAdvertisementMapper.MAPPER.advertisementDTOToModel(advertisement);
+            return repo.save(advertisementModel);
         }
-        return repo.save(advertisement);
+        catch(Exception e){
+            throw new BadRequestException("Not possible to create");
+        }
     }
 }

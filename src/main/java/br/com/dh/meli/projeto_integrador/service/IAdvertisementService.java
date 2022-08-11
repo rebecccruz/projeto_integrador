@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.service;
 
+import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 
@@ -10,6 +11,6 @@ public interface IAdvertisementService {
 
     List<Advertisement> getAllAdvertisement();
     List<Advertisement> getAllAdvertisementByCategory(Optional<Category> category);
-    Advertisement createAdvertisement(Advertisement advertisement);
+    Advertisement createAdvertisement(AdvertisementDTO advertisement);
 
 }
