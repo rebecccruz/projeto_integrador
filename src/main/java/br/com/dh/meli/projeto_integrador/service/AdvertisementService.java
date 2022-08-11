@@ -52,10 +52,12 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public Advertisement createAdvertisement(AdvertisementDTO dto) {
+    public AdvertisementDTO createAdvertisement(AdvertisementDTO dto) {
         validAdvertisement(dto);
         Advertisement advertisement = IAdvertisementMapper.MAPPER.advertisementDTOToModel(dto);
-        return  repo.save(advertisement);
+        dto = IAdvertisementMapper.MAPPER.advertisementToDTO(advertisement);
+        repo.save(advertisement);
+        return dto;
     }
     private void validAdvertisement(AdvertisementDTO dto){
         BatchStock batchStock = batchStockRepository.findByProdutId(dto.getProductId());

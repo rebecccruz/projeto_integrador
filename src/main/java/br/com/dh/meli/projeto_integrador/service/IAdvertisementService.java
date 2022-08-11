@@ -11,6 +11,6 @@ public interface IAdvertisementService {
 
     List<Advertisement> getAllAdvertisement();
     List<Advertisement> getAllAdvertisementByCategory(Optional<Category> category);
-    Advertisement createAdvertisement(AdvertisementDTO advertisement);
+    AdvertisementDTO createAdvertisement(AdvertisementDTO advertisement);
 
 }

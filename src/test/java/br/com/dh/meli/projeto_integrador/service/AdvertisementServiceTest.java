@@ -79,9 +79,7 @@ class AdvertisementServiceTest {
     @DisplayName("Create Advertisement")
     void createAdvertisement() {
         AdvertisementDTO dto = AdvertisementUtil.advertisementDTO();
-        Advertisement createAd = service.createAdvertisement(dto);
-
-        assertThat(createAd.getId()).isPositive();
+        AdvertisementDTO createAd = service.createAdvertisement(dto);
         assertThat(createAd).isNotNull();
     }
 
