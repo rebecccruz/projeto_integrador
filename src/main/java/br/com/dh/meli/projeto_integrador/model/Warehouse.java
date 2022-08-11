@@ -39,8 +39,6 @@ public class Warehouse {
     @JsonIgnoreProperties("warehouse")
     private List<InboundOrder> inboundOrders;
 
-    @OneToOne(mappedBy = "warehouse", fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AddressModel address;
 }

@@ -35,5 +35,6 @@ public class AddressModel {
     private ZipCodeModel zip;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
     private Warehouse warehouse;
 }
