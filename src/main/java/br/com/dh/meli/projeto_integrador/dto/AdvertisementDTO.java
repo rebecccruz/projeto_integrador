@@ -27,7 +27,7 @@ public class AdvertisementDTO {
     @NotNull
     private String description;
     @NotNull
-    private Long costumerId;
+    private Long customerId;
 
 
 }

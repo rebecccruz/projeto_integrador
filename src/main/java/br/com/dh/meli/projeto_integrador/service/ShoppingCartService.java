@@ -55,13 +55,6 @@ public class ShoppingCartService implements IShoppingCartService {
         });
         ShoppingCart shoppingCart = shoppingCartMapper(shoppingCartdto, items);
         return shoppingCart;
-//
-//       try{
-//
-//       }
-//       catch(Exception e){
-//           throw new BadRequestException(e.getMessage());
-//       }
     }
 
 
@@ -101,8 +94,10 @@ public class ShoppingCartService implements IShoppingCartService {
         shoppingCart.setStatus(dto.getStatus());
         repo.save(shoppingCart);
         customer.setShoppingCart(shoppingCart);
-
-
         return shoppingCart;
     }
+
+
+
+
 }
