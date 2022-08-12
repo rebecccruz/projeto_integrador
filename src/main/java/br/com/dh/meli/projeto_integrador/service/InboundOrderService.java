@@ -28,10 +28,11 @@ public class InboundOrderService implements IInboundOrderService {
     public InboundOrder createInboundOrder(InboundOrderDTO dto) {
         orderNumberExistenceValidation(dto.getOrderNumber());
         InboundOrder inboundOrder = inboundOrderPipelineValidation(dto);
-        repo.save(inboundOrder);
 
         List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStock(), inboundOrder);
         checkIfBatchesExists(batches);
+
+        repo.save(inboundOrder);
 
         inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
 
