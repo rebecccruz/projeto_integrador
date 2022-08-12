@@ -4,8 +4,7 @@ import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.CountStocks;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
-
-import java.time.LocalDate;
+import br.com.dh.meli.projeto_integrador.model.Section;
 import java.util.*;
 
 public interface IBatchStockService {
@@ -16,4 +15,8 @@ public interface IBatchStockService {
     void batchNumberExistenceValidation(Integer batchNumber);
     List<CountStocks> countStocksByProductId(String productId);
     List<BatchStock> findAllByProductId(String productId);
+    List<BatchStock> findAllByProductIdAndSection(String productId, Section section);
+    List<BatchStock> findAllByProductIdOrderByBatchNumber(String productId, Section section);
+    List<BatchStock> findAllByProductIdOrderByCurrentQuantity(String productId, Section section);
+    List<BatchStock> findAllByProductIdOrderByDueDate(String productId, Section section);
 }
