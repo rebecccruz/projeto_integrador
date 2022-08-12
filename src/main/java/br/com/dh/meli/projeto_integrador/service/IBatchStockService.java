@@ -11,4 +11,6 @@ public interface IBatchStockService {
     List<BatchStock> batchStockMapper(List<BatchStockDTO> batches, InboundOrder inboundOrder);
     List<BatchStock> saveAll(List<BatchStock> batches);
     BatchStock findByProductId(String productId);
+    BatchStock findByBatchNumber(Integer batchNumber);
+    void batchNumberExistenceValidation(Integer batchNumber);
 }

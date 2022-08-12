@@ -14,26 +14,26 @@ import java.util.*;
 @AllArgsConstructor
 public class InboundOrderDTO {
     @NotNull
-    public Integer orderNumber;
+    private Integer orderNumber;
 
     @NotNull
-    public LocalDate orderDate;
+    private LocalDate orderDate;
 
     @NotEmpty(message = "O campo warehouseCode não pode estar vazio.")
     @Size(min = 2, message = "O campo warehouseCode deve ter no mínimo 2 digitos.")
-    public String warehouseCode;
+    private String warehouseCode;
 
     @NotEmpty(message = "O campo sectionCode não pode estar vazio.")
     @Size(min = 2, message = "O campo sectionCode deve ter no mínimo 2 digitos.")
-    public String sectionCode;
+    private String sectionCode;
 
     @NotNull
     private Long representantId;
 
     @NotEmpty(message = "A lista de BatchStock deve ter pelo menos 1 válido.")
-    public List<@Valid BatchStockDTO> batchStock;
+    private List<@Valid BatchStockDTO> batchStocks;
 
     //@NotEmpty(message = "A lista de Advertisement deve ter pelo menos 1 válido.")
-    //public List<@Valid AdvertisementDTO> advertisement;
+    //private List<@Valid AdvertisementDTO> advertisement;
 
 }

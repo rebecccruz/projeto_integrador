@@ -13,10 +13,10 @@ import java.util.*;
 public class InboundOrder {
     @Id
     @Column(name = "id", nullable = false)
-    public Integer orderNumber;
+    private Integer orderNumber;
 
     @Column(name = "order_date", nullable = false)
-    public LocalDate orderDate;
+    private LocalDate orderDate;
 
     @OneToOne
     @JoinColumn(name = "representant_id", nullable = false)
@@ -25,7 +25,7 @@ public class InboundOrder {
     @ManyToOne
     @JoinColumn(name = "section_id", nullable = false)
     @JsonIgnoreProperties("inboundOrders")
-    public Section section;
+    private Section section;
 
     @OneToMany(mappedBy = "inboundOrder", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("inboundOrder")

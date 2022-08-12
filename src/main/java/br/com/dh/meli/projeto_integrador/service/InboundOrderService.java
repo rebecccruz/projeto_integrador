@@ -5,6 +5,7 @@ import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
 import br.com.dh.meli.projeto_integrador.model.*;
 import br.com.dh.meli.projeto_integrador.repository.IInboundOrderRepository;
@@ -26,18 +27,14 @@ public class InboundOrderService implements IInboundOrderService {
 
     @Override
     public InboundOrder createInboundOrder(InboundOrderDTO dto) {
-        Warehouse warehouse = warehouseService.findWarehouseByCode(dto.getWarehouseCode());
-        Representant representant = warehouseService.findRepresentantFromWarehouse(warehouse, dto.getRepresentantId());
-        Section section = findSectionByCode(warehouse, dto.getSectionCode());
+        orderNumberExistenceValidation(dto.getOrderNumber());
+        InboundOrder inboundOrder = inboundOrderPipelineValidation(dto);
 
-        isThisBatchBelongToSection(dto.getBatchStock(), section);
+        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStocks(), inboundOrder);
+        checkIfBatchesExists(batches);
 
-        isTheSectionHasEnoughtSpace(section, dto);
-
-        InboundOrder inboundOrder = inboundOrderMapper(dto, warehouse, representant, section);
         repo.save(inboundOrder);
 
-        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStock(), inboundOrder);
         inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
 
         return inboundOrder;
@@ -45,17 +42,61 @@ public class InboundOrderService implements IInboundOrderService {
 
     public InboundOrderDTO convertToDto(InboundOrder inboundOrder)
     {
-        return IInboundOrderMapper.MAPPER.mappingInboundOrderToInboundOrderDTO(inboundOrder);
+        InboundOrderDTO dto = IInboundOrderMapper.MAPPER.mappingInboundOrderToInboundOrderDTO(inboundOrder);
+        dto.setWarehouseCode(inboundOrder.getWarehouse().getCode());
+        dto.setSectionCode(inboundOrder.getSection().getCode());
+        dto.setRepresentantId(inboundOrder.getRepresentant().getId());
+        dto.setBatchStocks(IBatchStockMapper.MAPPER.map(inboundOrder.getBatchStocks()));
+        return dto;
     }
 
     @Override
     public InboundOrder updateInboundOrder(InboundOrderDTO dto) {
-        Optional<InboundOrder> inboundOrder = repo.findById(dto.getOrderNumber());
+        InboundOrder inboundOrder = findByOrderNumber(dto.getOrderNumber());
+        inboundOrder = inboundOrderPipelineValidation(dto);
+
+        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStocks(), inboundOrder);
+        checkIfBatchesDoesNotExists(batches);
+        System.out.println("Oi");
+        inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
+        repo.save(inboundOrder);
+        return inboundOrder;
+    }
+
+    private InboundOrder inboundOrderPipelineValidation(InboundOrderDTO dto){
+        Warehouse warehouse = warehouseService.findWarehouseByCode(dto.getWarehouseCode());
+        Representant representant = warehouseService.findRepresentantFromWarehouse(warehouse, dto.getRepresentantId());
+        Section section = findSectionByCode(warehouse, dto.getSectionCode());
+
+        isThisBatchBelongToSection(dto.getBatchStocks(), section);
+
+        isTheSectionHasEnoughtSpace(section, dto);
+
+        InboundOrder inboundOrder = inboundOrderMapper(dto, warehouse, representant, section);
+        return inboundOrder;
+    }
+
+    private void checkIfBatchesExists(List<BatchStock> batches){
+        batches.forEach(batch -> batchStockService.batchNumberExistenceValidation(batch.getBatchNumber()));
+    }
+
+    private void checkIfBatchesDoesNotExists(List<BatchStock> batches) {
+        batches.forEach(batch -> batchStockService.findByBatchNumber(batch.getBatchNumber()));
+    }
+
+    private InboundOrder findByOrderNumber(Integer orderNumber) {
+        Optional<InboundOrder> inboundOrder = repo.findInboundOrderByOrderNumber(orderNumber);
         if(inboundOrder.isEmpty()) {
             throw new NotFoundException("orderNumber not found");
         }
-        // TODO: Update inboundOrder from dto
-        return null;
+        return inboundOrder.get();
+    }
+
+    private void orderNumberExistenceValidation(Integer orderNumber) {
+        Optional<InboundOrder> inboundOrder = repo.findInboundOrderByOrderNumber(orderNumber);
+        if(inboundOrder.isPresent()) {
+            throw new PreconditionFailedException("orderNumber already exists");
+        }
     }
 
     private Section findSectionByCode(Warehouse warehouse, String code) {
@@ -85,7 +126,7 @@ public class InboundOrderService implements IInboundOrderService {
         int maxCapacity = section.getCapacity();
         int currentCapacity = section.getBatchStocks().size();
         int availableCapacity = maxCapacity - currentCapacity;
-        int neededCapacity = inbound.getBatchStock().size();
+        int neededCapacity = inbound.getBatchStocks().size();
         boolean dontHaveCapacity = availableCapacity < neededCapacity;
         if (dontHaveCapacity) {
             throw new PreconditionFailedException("this section don't have enought space.");
