@@ -5,6 +5,7 @@ import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
 import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
+import br.com.dh.meli.projeto_integrador.model.CountStocks;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 import br.com.dh.meli.projeto_integrador.repository.IBatchStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,14 @@ public class BatchStockService implements IBatchStockService {
         if (batchFound.isPresent()) {
             throw new PreconditionFailedException("batch already exists");
         }
+    }
+
+    @Override
+    public List<CountStocks> countStocksByProductId(String productId) {
+         if(!repo.existsBatchStocksByProductId(productId))
+         {
+             throw new NotFoundException("productId not found");
+         }
+         return repo.countStocksByProductId(productId);
     }
 }
