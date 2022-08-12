@@ -30,7 +30,7 @@ public class InboundOrderService implements IInboundOrderService {
         orderNumberExistenceValidation(dto.getOrderNumber());
         InboundOrder inboundOrder = inboundOrderPipelineValidation(dto);
 
-        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStock(), inboundOrder);
+        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStocks(), inboundOrder);
         checkIfBatchesExists(batches);
 
         repo.save(inboundOrder);
@@ -46,7 +46,7 @@ public class InboundOrderService implements IInboundOrderService {
         dto.setWarehouseCode(inboundOrder.getWarehouse().getCode());
         dto.setSectionCode(inboundOrder.getSection().getCode());
         dto.setRepresentantId(inboundOrder.getRepresentant().getId());
-        dto.setBatchStock(IBatchStockMapper.MAPPER.map(inboundOrder.getBatchStocks()));
+        dto.setBatchStocks(IBatchStockMapper.MAPPER.map(inboundOrder.getBatchStocks()));
         return dto;
     }
 
@@ -55,7 +55,7 @@ public class InboundOrderService implements IInboundOrderService {
         InboundOrder inboundOrder = findByOrderNumber(dto.getOrderNumber());
         inboundOrder = inboundOrderPipelineValidation(dto);
 
-        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStock(), inboundOrder);
+        List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStocks(), inboundOrder);
         checkIfBatchesDoesNotExists(batches);
         System.out.println("Oi");
         inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
@@ -68,7 +68,7 @@ public class InboundOrderService implements IInboundOrderService {
         Representant representant = warehouseService.findRepresentantFromWarehouse(warehouse, dto.getRepresentantId());
         Section section = findSectionByCode(warehouse, dto.getSectionCode());
 
-        isThisBatchBelongToSection(dto.getBatchStock(), section);
+        isThisBatchBelongToSection(dto.getBatchStocks(), section);
 
         isTheSectionHasEnoughtSpace(section, dto);
 
@@ -126,7 +126,7 @@ public class InboundOrderService implements IInboundOrderService {
         int maxCapacity = section.getCapacity();
         int currentCapacity = section.getBatchStocks().size();
         int availableCapacity = maxCapacity - currentCapacity;
-        int neededCapacity = inbound.getBatchStock().size();
+        int neededCapacity = inbound.getBatchStocks().size();
         boolean dontHaveCapacity = availableCapacity < neededCapacity;
         if (dontHaveCapacity) {
             throw new PreconditionFailedException("this section don't have enought space.");
