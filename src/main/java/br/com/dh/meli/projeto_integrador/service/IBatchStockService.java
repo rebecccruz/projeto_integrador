@@ -15,4 +15,5 @@ public interface IBatchStockService {
     BatchStock findByBatchNumber(Integer batchNumber);
     void batchNumberExistenceValidation(Integer batchNumber);
     List<CountStocks> countStocksByProductId(String productId);
+    List<BatchStock> findAllByProductId(String productId);
 }
