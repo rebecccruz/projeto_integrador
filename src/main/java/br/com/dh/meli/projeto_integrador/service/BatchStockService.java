@@ -68,4 +68,9 @@ public class BatchStockService implements IBatchStockService {
          }
          return repo.countStocksByProductId(productId);
     }
+
+    @Override
+    public List<BatchStock> findAllByProductId(String productId) {
+        return repo.findBatchStocksByProductId(productId);
+    }
 }
