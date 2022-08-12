@@ -17,8 +17,8 @@ public class ShoppingCartController {
     private IShoppingCartService service;
 
     @PostMapping("/shopping-cart")
-    public ResponseEntity<ShoppingCart> createShoppingCart(@RequestBody ShoppingCartDTO shoppingCartDto){
-        return new ResponseEntity<ShoppingCart>(service.createShoppingCart(shoppingCartDto), HttpStatus.CREATED);
+    public ResponseEntity<ShoppingCartDTO> createShoppingCart(@RequestBody ShoppingCartDTO shoppingCartDto){
+        return  ResponseEntity.status(HttpStatus.CREATED).body(service.convertToDTO(service.createShoppingCart(shoppingCartDto)));
     }
 
     @PutMapping("/shopping-cart/{shoppingCartId}")

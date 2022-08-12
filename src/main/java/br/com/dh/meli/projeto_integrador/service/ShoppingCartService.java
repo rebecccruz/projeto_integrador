@@ -14,9 +14,12 @@ import br.com.dh.meli.projeto_integrador.repository.IShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class ShoppingCartService implements IShoppingCartService {
@@ -33,19 +36,39 @@ public class ShoppingCartService implements IShoppingCartService {
     private IBatchStockService batchStockService;
     @Override
     public ShoppingCart createShoppingCart(ShoppingCartDTO shoppingCartdto) {
-//        Advertisement advertisement = advertisementService.getAdvertisementById();
+//
+//      Advertisement advertisement = advertisementService.getAdvertisementById();
+
+        //verificar os relacionamentos das outras entidades, se existem, salvar no banco de dados.
+        //persistir ShoppingCart
+
+        //persistir carrinho
+
+        //adver
+        //1. No item dizer a qual carrinho pertence,
+        //2. Verificar a qual anuncio precisa ser vinculado,
+        //List<Item> itemTeste = IItemMapper.MAPPER.map(shoppingCartdto.getItems());
+
+
         List<Item> items = new ArrayList<>();
-        shoppingCartdto.getItems().forEach( idto -> {
+        shoppingCartdto.getItems().stream().forEach( idto -> {
             Item item = IItemMapper.MAPPER.mappingItemDTOItem(idto);
-            Advertisement advertisement = advertisementService.getAdvertisementById(idto.getAdvertisementId());
+//            Item item = new Item();
+//            item.setBatchStock(idto.getBatchStock());
+//            item.setAdvertisement(idto.getAdvertisement());
+//            item.setQuantity(2);
+//            items.add(item);
+            Advertisement advertisement = advertisementService.getAdvertisementById(idto.getAdvertisement().getId());
             List<BatchStock> batchStocks = batchStockService.findAllByProductId(advertisement.getProductId());
+
+
+
             batchStocks.stream().forEach(b ->{
                 if(item.getBatchStock() == null){
-                    if(b.getCurrentQuantity() >= idto.getQuantity()){
-                        item.setBatchStock(b);
-
-                    }
+                   hasEnoughBatchQuantity(b.getCurrentQuantity(), idto.getQuantity());
+                   item.setBatchStock(b);
                 }
+
             });
             if(item.getBatchStock() == null){
                 throw new NotFoundException("Not found stock");
@@ -56,6 +79,20 @@ public class ShoppingCartService implements IShoppingCartService {
         ShoppingCart shoppingCart = shoppingCartMapper(shoppingCartdto, items);
         return shoppingCart;
     }
+
+    private void verifyDueDate(LocalDate date){
+        long differenceData =  DAYS.between(date,LocalDate.now());
+        if(differenceData < 21){
+            throw new BadRequestException("dueData isn't valid");
+        }
+    }
+
+    private void hasEnoughBatchQuantity(Integer batchQuantity,Integer shopQuantity){
+        if(batchQuantity < shopQuantity){
+            throw new BadRequestException("Not enough batch quantity");
+        }
+    }
+
 
 
     @Override
@@ -78,13 +115,14 @@ public class ShoppingCartService implements IShoppingCartService {
         List<ItemDTO> itemsDTO = new ArrayList<>();
         shoppingCart.getItems().forEach( i ->{
             ItemDTO dtoItem = IItemMapper.MAPPER.mappingItemToItemDTO(i);
-            dtoItem.setAdvertisementId(i.getAdvertisement().getId());
-            dtoItem.setBatchStockId(i.getBatchStock().getBatchNumber());
+            dtoItem.setAdvertisement(i.getAdvertisement());
+            dtoItem.setBatchStock(i.getBatchStock());
             itemsDTO.add(dtoItem);
         });
         dto.setItems(itemsDTO);
         return dto;
     }
+
 
     private ShoppingCart shoppingCartMapper(ShoppingCartDTO dto, List<Item> items) {
         ShoppingCart shoppingCart = IShoppingCartMapper.MAPPER.shoppingCartDTOToModel(dto);

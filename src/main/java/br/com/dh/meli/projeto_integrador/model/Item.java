@@ -23,7 +23,7 @@ public class Item {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "batchstock_id")
     private BatchStock batchStock;
-    private int quantity;
+    private Integer quantity;
     @ManyToOne
     @JoinColumn(name="shopping_cart_id")
     @JsonIgnoreProperties("items")
