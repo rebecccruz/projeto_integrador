@@ -53,6 +53,15 @@ public class WarehouseService implements IWarehouseService {
         return representant.get();
     }
 
+    public Section findSectionByCode(Warehouse warehouse, String code) {
+        Optional<Section> section = warehouse.getSections()
+                .stream().filter(s -> s.getCode().equalsIgnoreCase(code)).findFirst();
+        if (section.isEmpty()) {
+            throw new BadRequestException("invalid sectionCode");
+        }
+        return section.get();
+    }
+
     public List<WarehouseBatchStockDTO> getBatchStocksByFilter(
             Optional<String> productId,
             Optional<String> order

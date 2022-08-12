@@ -5,6 +5,8 @@ import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.Section;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.time.LocalDate;
 import java.util.*;
 
 public interface IBatchStockRepository extends JpaRepository<BatchStock, Long> {
@@ -23,4 +25,6 @@ public interface IBatchStockRepository extends JpaRepository<BatchStock, Long> {
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByBatchNumberAsc(String productId, Section section);
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByCurrentQuantityAsc(String productId, Section section);
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByDueDateAsc(String productId, Section section);
+    List<BatchStock> findBatchStocksBySectionOrderByDueDateAsc(Section section);
+    List<BatchStock> findBatchStocksByDueDateGreaterThan(LocalDate maxDate);
 }

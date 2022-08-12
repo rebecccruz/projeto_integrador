@@ -19,4 +19,5 @@ public interface IBatchStockService {
     List<BatchStock> findAllByProductIdOrderByBatchNumber(String productId, Section section);
     List<BatchStock> findAllByProductIdOrderByCurrentQuantity(String productId, Section section);
     List<BatchStock> findAllByProductIdOrderByDueDate(String productId, Section section);
+    List<BatchStock> findAllBySectionOrderByDueDate(Section section);
 }
