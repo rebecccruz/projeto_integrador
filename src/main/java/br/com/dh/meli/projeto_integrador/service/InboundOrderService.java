@@ -41,7 +41,11 @@ public class InboundOrderService implements IInboundOrderService {
 
     public InboundOrderDTO convertToDto(InboundOrder inboundOrder)
     {
-        return IInboundOrderMapper.MAPPER.mappingInboundOrderToInboundOrderDTO(inboundOrder);
+        InboundOrderDTO dto = IInboundOrderMapper.MAPPER.mappingInboundOrderToInboundOrderDTO(inboundOrder);
+        dto.setWarehouseCode(inboundOrder.getWarehouse().getCode());
+        dto.setSectionCode(inboundOrder.getSection().getCode());
+        dto.setRepresentantId(inboundOrder.getRepresentant().getId());
+        return dto;
     }
 
     @Override
