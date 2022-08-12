@@ -9,34 +9,34 @@ import java.time.*;
 @Builder
 public class BatchStockDTO {
     @NotNull
-    public Integer batchNumber;
+    private Integer batchNumber;
 
     @NotEmpty
     @Size(min = 5, max = 40)
-    public String productId;
+    private String productId;
 
     @NotNull
     @DecimalMin(value = "-40.0", message = "O valor da temperatura precisa ser no min -40.")
     @DecimalMax(value = "30", message = "O valor da temperatura precisa ser até 30.")
-    public Float currentTemperature;
+    private Float currentTemperature;
 
     @NotNull
     @DecimalMin(value = "-40.0", message = "O valor da temperatura precisa ser no min -40.")
     @DecimalMax(value = "30", message = "O valor da temperatura precisa ser até 30.")
-    public Float minimumTemperature;
+    private Float minimumTemperature;
 
     @NotNull
-    public Integer initialQuantity;
+    private Integer initialQuantity;
 
     @NotNull
-    public Integer currentQuantity;
+    private Integer currentQuantity;
 
     @NotNull
-    public LocalDate manufacturingDate;
+    private LocalDate manufacturingDate;
 
     @NotNull
-    public LocalDateTime manufacturingTime;
+    private LocalDateTime manufacturingTime;
 
     @NotNull
-    public LocalDate dueDate;
+    private LocalDate dueDate;
 }
