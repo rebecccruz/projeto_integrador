@@ -14,11 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoppingCartDTO {
-    private List<Item> items;
+    private List<ItemDTO> items;
     private Status status;
-
-    public ShoppingCartDTO(ShoppingCart shoppingCart) {
-        this.items = shoppingCart.getItems();
-        this.status = shoppingCart.getStatus();
-    }
+    private Long customerId;
 }

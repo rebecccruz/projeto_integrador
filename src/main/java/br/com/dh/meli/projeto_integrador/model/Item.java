@@ -28,4 +28,8 @@ public class Item {
     @JoinColumn(name="shopping_cart_id")
     @JsonIgnoreProperties("items")
     private ShoppingCart shoppingCart;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    @JsonIgnoreProperties("order")
+    private Order order;
 }

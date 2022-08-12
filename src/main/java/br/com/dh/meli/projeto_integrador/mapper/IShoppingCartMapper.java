@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface IShoppingCartMapper {
     IShoppingCartMapper MAPPER = Mappers.getMapper(IShoppingCartMapper.class);
-    ShoppingCart shoppingCartDTOtoModel(ShoppingCartDTO shoppingCart);
-    ShoppingCartDTO shoppingCarttoDTO(ShoppingCart shoppingCart);
+    ShoppingCart shoppingCartDTOToModel(ShoppingCartDTO shoppingCart);
+    ShoppingCartDTO shoppingCartToDTO(ShoppingCart shoppingCart);
 }

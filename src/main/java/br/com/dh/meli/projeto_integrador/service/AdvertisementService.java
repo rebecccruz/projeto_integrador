@@ -35,6 +35,15 @@ public class AdvertisementService implements IAdvertisementService {
     private ISellerRepository sellerRepository;
 
     @Override
+    public Advertisement getAdvertisementById(Long id){
+        Optional<Advertisement> advertisement = repo.findById(id);
+        if(advertisement.isEmpty()){
+            throw new NotFoundException("Advertisement not found");
+        }
+        return advertisement.get();
+    }
+
+    @Override
     public List<Advertisement> getAllAdvertisement() {
         if(repo.findAll().size() > 0){
             return repo.findAll();

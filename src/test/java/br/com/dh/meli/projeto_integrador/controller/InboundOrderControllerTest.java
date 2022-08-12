@@ -30,8 +30,8 @@ class InboundOrderControllerTest {
 
         assertThat(response.getStatusCode())
                 .isEqualTo(HttpStatus.CREATED);
-        assertThat(response.getBody().getBatchStocks().size())
-                .isEqualTo(payload.getBatchStocks().size());
+        assertThat(response.getBody().getBatchStock().size())
+                .isEqualTo(payload.getBatchStock().size());
     }
 
     @DisplayName("Fully update batchStocks when payload is valid")
@@ -43,7 +43,7 @@ class InboundOrderControllerTest {
 
         assertThat(response.getStatusCode())
                 .isEqualTo(HttpStatus.CREATED);
-        assertThat(response.getBody().getBatchStocks().size())
-                .isEqualTo(payload.getBatchStocks().size());
+        assertThat(response.getBody().getBatchStock().size())
+                .isEqualTo(payload.getBatchStock().size());
     }
 }

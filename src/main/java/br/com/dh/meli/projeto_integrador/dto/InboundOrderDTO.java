@@ -31,7 +31,7 @@ public class InboundOrderDTO {
     private Long representantId;
 
     @NotEmpty(message = "A lista de BatchStock deve ter pelo menos 1 válido.")
-    private List<@Valid BatchStockDTO> batchStocks;
+    private List<@Valid BatchStockDTO> batchStock;
 
     //@NotEmpty(message = "A lista de Advertisement deve ter pelo menos 1 válido.")
     //private List<@Valid AdvertisementDTO> advertisement;

@@ -26,6 +26,8 @@ public class AdvertisementDTO {
     private double price;
     @NotNull
     private String description;
+    @NotNull
+    private Long costumerId;
 
 
 }
