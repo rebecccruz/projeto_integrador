@@ -5,6 +5,7 @@ import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.mapper.IInboundOrderMapper;
 import br.com.dh.meli.projeto_integrador.model.*;
 import br.com.dh.meli.projeto_integrador.repository.IInboundOrderRepository;
@@ -45,6 +46,7 @@ public class InboundOrderService implements IInboundOrderService {
         dto.setWarehouseCode(inboundOrder.getWarehouse().getCode());
         dto.setSectionCode(inboundOrder.getSection().getCode());
         dto.setRepresentantId(inboundOrder.getRepresentant().getId());
+        dto.setBatchStock(IBatchStockMapper.MAPPER.map(inboundOrder.getBatchStocks()));
         return dto;
     }
 
