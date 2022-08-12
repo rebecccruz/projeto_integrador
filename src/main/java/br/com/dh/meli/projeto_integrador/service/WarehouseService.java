@@ -18,10 +18,19 @@ public class WarehouseService implements IWarehouseService {
     private IWarehouseRepository repo;
 
     @Override
+    public Warehouse findWarehouseById(Long id) {
+        Optional<Warehouse> warehouse = repo.findById(id);
+        if(warehouse.isEmpty()) {
+            throw new NotFoundException("WarehouseId not found");
+        }
+        return warehouse.get();
+    }
+
+    @Override
     public Warehouse findWarehouseByCode(String code) {
         Optional<Warehouse> warehouse = repo.findWarehouseByCode(code);
         if(warehouse.isEmpty()) {
-            throw new PreconditionFailedException("warehouse code not found");
+            throw new PreconditionFailedException("Warehouse code not found");
         }
         return warehouse.get();
     }
