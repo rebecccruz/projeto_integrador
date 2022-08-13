@@ -112,19 +112,19 @@ class WarehouseServiceTest {
         assertThat(warehouse.getRepresentants()).isEqualTo(WarehouseUtil.warehouseGenerator().getRepresentants());
     }
 
-//    @Test
-//    @DisplayName("Find representant from warehouse when representant does not exist")
-//    void findRepresentantFromWarehouse_whenRepresentantDoesNotExist() {
-//        Warehouse warehouse = WarehouseUtil.emptywarehouseGenerator();
-//
-//        BadRequestException exception = Assertions.assertThrows(BadRequestException.class,
-//                () -> {
-//                    List<Representant> representant = warehouse.getRepresentants();
-//                }
-//        );
-//
-//        assertThat(exception.getMessage()).isEqualTo("invalid representId");
-//    }
+    @Test
+    @DisplayName("Find representant from warehouse when representant does not exist")
+    void findRepresentantFromWarehouse_whenRepresentantDoesNotExist() {
+        Warehouse warehouse = WarehouseUtil.emptywarehouseGenerator();
+
+        BadRequestException exception = Assertions.assertThrows(BadRequestException.class,
+                () -> {
+
+                }
+        );
+
+        assertThat(exception.getMessage()).isEqualTo("invalid representId");
+    }
 
     @Test
     void getBatchStockByFilter(){
