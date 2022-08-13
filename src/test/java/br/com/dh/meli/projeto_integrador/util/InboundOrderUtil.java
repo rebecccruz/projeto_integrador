@@ -2,6 +2,9 @@ package br.com.dh.meli.projeto_integrador.util;
 
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.InboundOrderDTO;
+import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
+import br.com.dh.meli.projeto_integrador.model.BatchStock;
+import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -74,7 +77,7 @@ public class InboundOrderUtil {
      * @author Evelyn Cristini
      * @return returns an Inbound Order payload
      */
-    public static InboundOrderDTO inboundOrderGenerator() {
+    public static InboundOrderDTO inboundOrderDTOGenerator() {
         BatchStockDTO batchStock1 = sameBatchStockGenerator();
         BatchStockDTO batchStock2 = sameBatchStockGenerator();
         List<BatchStockDTO> batchStockList = new ArrayList<>();
@@ -87,5 +90,44 @@ public class InboundOrderUtil {
                 .orderDate(LocalDate.of(2022, 10, 10))
                 .warehouseCode("String")
                 .batchStocks(batchStockList).build();
+    }
+
+    /**
+     * Method that helps to create a static inboundOrder object to be used on Inbound Order payload
+     * @author Lucas Pinheiro
+     * @author Evelyn Oliveira
+     * @author Rebecca Cruz
+     * @return returns a static inbound order
+     */
+    public static InboundOrder inboundOrderGenerator () {
+        BatchStockDTO batchStock1 = sameBatchStockGenerator();
+        BatchStockDTO batchStock2 = sameBatchStockGenerator();
+        List<BatchStockDTO> batchStockList = new ArrayList<>();
+        batchStockList.add(batchStock1);
+        batchStockList.add(batchStock2);
+        List<BatchStock> batches = IBatchStockMapper.MAPPER.mapDTO(batchStockList);
+
+        return InboundOrder.builder()
+                .orderNumber(1)
+                .orderDate(LocalDate.of(2020, 3, 10))
+                .representant(WarehouseUtil.representantGenerator())
+                .section(WarehouseUtil.sectionGenerator())
+                .batchStocks(batches)
+                .warehouse(WarehouseUtil.emptywarehouseGenerator())
+                .build();
+    }
+
+    /**
+     * Method that helps to create a static inbound order object order number id to be used on Inbound Order payload
+     * @author Rebecca Cruz
+     * @author Evelyn Cristini
+     * @author Lucas Pinheiro
+     * @return returns a static inboundOrder
+     */
+    public static InboundOrder emptyInboundOrder () {
+        InboundOrder inboundOrder = new InboundOrder();
+        inboundOrder.setOrderNumber(1);
+
+        return inboundOrder;
     }
 }

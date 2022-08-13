@@ -12,4 +12,5 @@ public interface IBatchStockMapper {
     IBatchStockMapper MAPPER = Mappers.getMapper(IBatchStockMapper.class);
     BatchStock mappingBatchStockDTOToBatchStock(BatchStockDTO batchStockDTO);
     List<BatchStockDTO> map(List<BatchStock> batches);
+    List<BatchStock> mapDTO(List<BatchStockDTO> batches);
 }
