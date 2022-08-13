@@ -77,11 +77,11 @@ public class ShoppingCartService implements IShoppingCartService {
         return true;
     }
 
-    private boolean decreaseQuantity(Status status, Item item){
-        if(status.equals(Status.ABERTO)){
-            item.getQuantity()
-        }
-    }
+//    private boolean decreaseQuantity(Status status, Item item){
+//        if(status.equals(Status.ABERTO)){
+//            item.getQuantity()
+//        }
+//    }
 
     private boolean hasEnoughBatchQuantity(Integer batchQuantity,Integer shopQuantity){
         if(batchQuantity < shopQuantity){

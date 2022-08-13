@@ -13,4 +13,5 @@ public interface IBatchStockMapper {
     BatchStock mappingBatchStockDTOToBatchStock(BatchStockDTO batchStockDTO);
     BatchStockDTO mappingBatchStockToBatchStockToDTO(BatchStock batchStock);
     List<BatchStockDTO> map(List<BatchStock> batches);
+    List<BatchStock> mapDTO(List<BatchStockDTO> batches);
 }
