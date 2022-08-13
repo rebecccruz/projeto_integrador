@@ -14,6 +14,7 @@ import br.com.dh.meli.projeto_integrador.repository.ICustomerRepository;
 import br.com.dh.meli.projeto_integrador.repository.IShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class ShoppingCartService implements IShoppingCartService {
     @Override
     public ShoppingCart getShoppingCartById(Long id) {
         Optional<ShoppingCart> shoppingCart = repo.findById(id);
-        if(shoppingCart.isEmpty()){
+        if (shoppingCart.isEmpty()) {
             throw new NotFoundException("The shopping cart doesn't exist");
         }
         return shoppingCart.get();
@@ -50,28 +51,31 @@ public class ShoppingCartService implements IShoppingCartService {
     @Override
     public ShoppingCart createShoppingCart(ShoppingCartDTO dto) {
         List<Item> items = new ArrayList<>();
-        dto.getItems().stream().forEach( itemDTO -> {
-           Item item = itemService.createItem(itemDTO);
-            List<BatchStock> batchStocks = batchStockService.findAllByProductId(item.getAdvertisement().getProductId());
-                batchStocks.stream().forEach(b ->{
-                    if(verifyDueDate(b.getDueDate()) && hasEnoughBatchQuantity(b.getCurrentQuantity(), itemDTO.getQuantity())){
-                        if(item.isBatchStockIsEmpty()){
-                            item.setBatchStock(b);
-                        }
-                    };
-                });
-                if(item.isBatchStockIsEmpty()){
-                    throw new NotFoundException("No stock available");
-                }
+        dto.getItems().stream().forEach(itemDTO -> {
+            Item item = itemService.createItem(itemDTO);
+            reserveBatchStockByItem(item);
             items.add(item);
         });
-        ShoppingCart shoppingCart = shoppingCartMapper(dto, items);
-        return shoppingCart;
+        return shoppingCartMapper(dto, items);
     }
 
-    private boolean verifyDueDate(LocalDate date){
-        long differenceData =  DAYS.between(LocalDate.now(),date);
-        if(differenceData < 21){
+    private void reserveBatchStockByItem(Item item) {
+        List<BatchStock> batchStocks = batchStockService.findAllByProductId(item.getAdvertisement().getProductId());
+        batchStocks.stream().forEach(b -> {
+            if (verifyDueDate(b.getDueDate()) && hasEnoughBatchQuantity(b.getCurrentQuantity(), item.getQuantity())) {
+                if (item.isBatchStockIsEmpty()) {
+                    item.setBatchStock(b);
+                }
+            }
+        });
+        if (item.isBatchStockIsEmpty()) {
+            throw new NotFoundException("No stock available");
+        }
+    }
+
+    private boolean verifyDueDate(LocalDate date) {
+        long differenceData = DAYS.between(LocalDate.now(), date);
+        if (differenceData < 21) {
             return false;
         }
         return true;
@@ -83,8 +87,8 @@ public class ShoppingCartService implements IShoppingCartService {
 //        }
 //    }
 
-    private boolean hasEnoughBatchQuantity(Integer batchQuantity,Integer shopQuantity){
-        if(batchQuantity < shopQuantity){
+    private boolean hasEnoughBatchQuantity(Integer batchQuantity, Integer shopQuantity) {
+        if (batchQuantity < shopQuantity) {
             return false;
         }
         return true;
@@ -92,15 +96,16 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Override
     public ShoppingCart updateShoppingCart(Long shoppingCartId, Status status) {
-        ShoppingCart shoppingCart =  getShoppingCartById(shoppingCartId);
+        ShoppingCart shoppingCart = getShoppingCartById(shoppingCartId);
         shoppingCart.setStatus(status);
         return repo.save(shoppingCart);
     }
-    public ShoppingCartDTO convertToDTO(ShoppingCart shoppingCart){
+
+    public ShoppingCartDTO convertToDTO(ShoppingCart shoppingCart) {
         ShoppingCartDTO dto = IShoppingCartMapper.MAPPER.shoppingCartToDTO(shoppingCart);
         dto.setCustomerId(shoppingCart.getCustomer().getId());
         List<ItemDTO> itemsDTO = new ArrayList<>();
-        shoppingCart.getItems().forEach( i ->{
+        shoppingCart.getItems().forEach(i -> {
             itemsDTO.add(itemService.convertToDTO(i));
         });
         dto.setItems(itemsDTO);
