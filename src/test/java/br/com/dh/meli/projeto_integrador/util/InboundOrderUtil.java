@@ -108,7 +108,7 @@ public class InboundOrderUtil {
         List<BatchStock> batches = IBatchStockMapper.MAPPER.mapDTO(batchStockList);
 
         return InboundOrder.builder()
-                .orderNumber(3)
+                .orderNumber(1)
                 .orderDate(LocalDate.of(2020, 3, 10))
                 .representant(WarehouseUtil.representantGenerator())
                 .section(WarehouseUtil.sectionGenerator())

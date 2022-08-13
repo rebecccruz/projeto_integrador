@@ -33,6 +33,20 @@ public class WarehouseUtil {
     }
 
     /**
+     * Method that helps to create a static warehouse object to be used on Warehouse payload
+     * @author Rebecca Cruz
+     * @author Evelyn Cristini
+     * @return returns a static warehouse
+     */
+
+    public static Warehouse emptywarehouseGenerator () {
+        Warehouse warehouse = new Warehouse();
+        warehouse.setId(1L);
+
+        return warehouse;
+    }
+
+    /**
      * Method that helps to create a static representant object to be used on Warehouse payload
      * @author Rebecca Cruz
      * @author Evelyn Cristini
@@ -43,6 +57,7 @@ public class WarehouseUtil {
         Representant representant = new Representant();
         representant.setId(1L);
         representant.setName("Evelyn Oliveira");
+        representant.setWarehouse(emptywarehouseGenerator());
 
         return representant;
     }
@@ -61,12 +76,12 @@ public class WarehouseUtil {
 
         Section section = new Section();
         section.setId(1L);
-        section.setCode("");
+        section.setCode("FS");
         section.setCategory(Category.FS);
         section.setCapacity(100);
         section.setBatchStocks(batchStock);
         section.setInboundOrders(inboundOrder);
-        section.setWarehouse(warehouseGenerator());
+        section.setWarehouse(emptywarehouseGenerator());
 
         return section;
     }
