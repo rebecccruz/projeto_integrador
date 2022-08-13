@@ -79,7 +79,7 @@ public class WarehouseService implements IWarehouseService {
         return dtos;
     }
 
-    public List<BatchStock> getAllByOrder(String productId, Section section, ParamOrderBy orderBy) {
+    private List<BatchStock> getAllByOrder(String productId, Section section, ParamOrderBy orderBy) {
         switch (orderBy) {
             case BATCH_NUMBER:
                 return batchStockService.findAllByProductIdOrderByBatchNumber(productId, section);

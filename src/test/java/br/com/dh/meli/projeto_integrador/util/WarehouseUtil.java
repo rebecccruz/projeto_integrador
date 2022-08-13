@@ -5,6 +5,7 @@ import br.com.dh.meli.projeto_integrador.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class WarehouseUtil {
 
@@ -85,4 +86,5 @@ public class WarehouseUtil {
 
         return section;
     }
+
 }
