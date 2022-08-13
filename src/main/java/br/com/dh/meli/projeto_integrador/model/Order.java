@@ -27,7 +27,7 @@ public class Order {
     @JsonIgnoreProperties("order")
     private List<Item> items;
     @ManyToOne
-    @JoinColumn(name = "costumer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     @JsonIgnoreProperties("order")
-    private Customer costumer;
+    private Customer customer;
 }
