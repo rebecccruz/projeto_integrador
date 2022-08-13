@@ -50,13 +50,18 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Override
     public ShoppingCart createShoppingCart(ShoppingCartDTO dto) {
+        ShoppingCart shoppingCart = convertToModel(dto);
         List<Item> items = new ArrayList<>();
         dto.getItems().stream().forEach(itemDTO -> {
-            Item item = itemService.createItem(itemDTO);
-            reserveBatchStockByItem(item);
+            Item item = itemService.createItem(itemDTO, shoppingCart.getId());
+            if(shoppingCart.getStatus().equals(Status.FECHADO)){
+                reserveBatchStockByItem(item);
+                itemService.save(item);
+            }
             items.add(item);
         });
-        return shoppingCartMapper(dto, items);
+       shoppingCart.setItems(items);
+        return shoppingCart;
     }
 
     private void reserveBatchStockByItem(Item item) {
@@ -82,9 +87,7 @@ public class ShoppingCartService implements IShoppingCartService {
     }
 
 //    private boolean decreaseQuantity(Status status, Item item){
-//        if(status.equals(Status.ABERTO)){
-//            item.getQuantity()
-//        }
+//
 //    }
 
     private boolean hasEnoughBatchQuantity(Integer batchQuantity, Integer shopQuantity) {
@@ -112,9 +115,8 @@ public class ShoppingCartService implements IShoppingCartService {
         return dto;
     }
 
-    private ShoppingCart shoppingCartMapper(ShoppingCartDTO dto, List<Item> items) {
+    private ShoppingCart convertToModel(ShoppingCartDTO dto) {
         ShoppingCart shoppingCart = IShoppingCartMapper.MAPPER.shoppingCartDTOToModel(dto);
-        shoppingCart.setItems(items);
         Customer customer = customerRepository.findById(dto.getCustomerId()).get();
         shoppingCart.setCustomer(customer);
         shoppingCart.setStatus(dto.getStatus());

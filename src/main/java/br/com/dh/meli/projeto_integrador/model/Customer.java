@@ -21,7 +21,7 @@ public class Customer extends Person{
     @OneToOne
     @JoinColumn(name = "shoppingcart_id", nullable = true)
     private ShoppingCart shoppingCart;
-    @OneToMany(mappedBy = "costumer")
-    @JsonIgnoreProperties("costumer")
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnoreProperties("customer")
     private List<Order> historicShopping;
 }

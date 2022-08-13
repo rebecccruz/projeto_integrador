@@ -6,8 +6,9 @@ import br.com.dh.meli.projeto_integrador.model.Item;
 public interface IItemService {
 
     Item getItemById(Long id);
-    Item createItem(ItemDTO item);
+    Item createItem(ItemDTO dto, Long shoppingCartId);
 
     ItemDTO convertToDTO(Item item);
+    void save(Item item);
 
 }

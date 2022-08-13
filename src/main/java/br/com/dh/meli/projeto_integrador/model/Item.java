@@ -22,15 +22,15 @@ public class Item {
     @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "batchstock_id")
+    @JoinColumn(name = "batchstock_id", nullable = true)
     private BatchStock batchStock;
     private Integer quantity;
     @ManyToOne
-    @JoinColumn(name="shopping_cart_id")
+    @JoinColumn(name="shopping_cart_id", nullable = false)
     @JsonIgnoreProperties("items")
     private ShoppingCart shoppingCart;
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = true)
     @JsonIgnoreProperties("order")
     private Order order;
 
