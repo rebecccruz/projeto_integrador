@@ -99,4 +99,10 @@ public class BatchStockService implements IBatchStockService {
     public List<BatchStock> findAllBySectionOrderByDueDate(Section section) {
         return repo.findBatchStocksBySectionOrderByDueDateAsc(section);
     }
+
+    @Override
+    public BatchStock decreaseQuantity(BatchStock batchStock, Integer quantity) {
+        batchStock.setCurrentQuantity(batchStock.getCurrentQuantity() - quantity);
+        return repo.save(batchStock);
+    }
 }

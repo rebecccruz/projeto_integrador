@@ -20,4 +20,5 @@ public interface IBatchStockService {
     List<BatchStock> findAllByProductIdOrderByCurrentQuantity(String productId, Section section);
     List<BatchStock> findAllByProductIdOrderByDueDate(String productId, Section section);
     List<BatchStock> findAllBySectionOrderByDueDate(Section section);
+    BatchStock decreaseQuantity(BatchStock batchStock,Integer quantity);
 }

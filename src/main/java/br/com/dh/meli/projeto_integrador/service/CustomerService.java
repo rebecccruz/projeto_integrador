@@ -5,9 +5,10 @@ import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.model.Customer;
 import br.com.dh.meli.projeto_integrador.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class CustomerService implements ICustomerService {
     @Autowired
     private ICustomerRepository repo;
