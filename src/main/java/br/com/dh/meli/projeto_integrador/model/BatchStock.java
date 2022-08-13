@@ -2,14 +2,14 @@ package br.com.dh.meli.projeto_integrador.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.time.*;
-import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BatchStock {
     @Id
     @Column(name = "id")

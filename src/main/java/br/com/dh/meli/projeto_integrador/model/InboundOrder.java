@@ -10,8 +10,8 @@ import java.util.*;
 @Data
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class InboundOrder {
     @Id
     @Column(name = "id", nullable = false)
