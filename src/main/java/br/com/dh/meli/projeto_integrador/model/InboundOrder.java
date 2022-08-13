@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.*;
 import java.time.*;
 import java.util.*;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class InboundOrder {
     @Id
     @Column(name = "id", nullable = false)

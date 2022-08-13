@@ -113,7 +113,21 @@ public class InboundOrderUtil {
                 .representant(WarehouseUtil.representantGenerator())
                 .section(WarehouseUtil.sectionGenerator())
                 .batchStocks(batches)
-                .warehouse(WarehouseUtil.warehouseGenerator())
+                .warehouse(WarehouseUtil.emptywarehouseGenerator())
                 .build();
+    }
+
+    /**
+     * Method that helps to create a static inbound order object order number id to be used on Inbound Order payload
+     * @author Rebecca Cruz
+     * @author Evelyn Cristini
+     * @author Lucas Pinheiro
+     * @return returns a static inboundOrder
+     */
+    public static InboundOrder emptyInboundOrder () {
+        InboundOrder inboundOrder = new InboundOrder();
+        inboundOrder.setOrderNumber(1);
+
+        return inboundOrder;
     }
 }

@@ -17,14 +17,14 @@ public class WarehouseUtil {
     public static Warehouse warehouseGenerator () {
         Warehouse warehouse = new Warehouse();
         List<InboundOrder> inboundOrder = new ArrayList<>();
-        inboundOrder.add(InboundOrderUtil.inboundOrderGenerator());
+        inboundOrder.add(InboundOrderUtil.emptyInboundOrder());
         List<Representant> representant = new ArrayList<>();
         representant.add(representantGenerator());
         List<Section> section = new ArrayList<>();
         section.add(sectionGenerator());
 
         warehouse.setId(1L);
-        warehouse.setCode("MLB-234");
+        warehouse.setCode("MLB-SP");
         warehouse.setRepresentants(representant);
         warehouse.setSections(section);
         warehouse.setInboundOrders(inboundOrder);
@@ -33,7 +33,7 @@ public class WarehouseUtil {
     }
 
     /**
-     * Method that helps to create a static warehouse object to be used on Warehouse payload
+     * Method that helps to create a static warehouse object with id to be used on Warehouse payload
      * @author Rebecca Cruz
      * @author Evelyn Cristini
      * @return returns a static warehouse
