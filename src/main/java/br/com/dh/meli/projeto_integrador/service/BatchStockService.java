@@ -7,6 +7,7 @@ import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.CountStocks;
 import br.com.dh.meli.projeto_integrador.model.InboundOrder;
+import br.com.dh.meli.projeto_integrador.model.Section;
 import br.com.dh.meli.projeto_integrador.repository.IBatchStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,5 +73,25 @@ public class BatchStockService implements IBatchStockService {
     @Override
     public List<BatchStock> findAllByProductId(String productId) {
         return repo.findBatchStocksByProductId(productId);
+    }
+
+    @Override
+    public List<BatchStock> findAllByProductIdAndSection(String productId, Section section) {
+        return repo.findBatchStocksByProductIdAndSection(productId, section);
+    }
+
+    @Override
+    public List<BatchStock> findAllByProductIdOrderByBatchNumber(String productId, Section section) {
+        return repo.findBatchStocksByProductIdAndSectionOrderByBatchNumberAsc(productId, section);
+    }
+
+    @Override
+    public List<BatchStock> findAllByProductIdOrderByCurrentQuantity(String productId, Section section) {
+        return repo.findBatchStocksByProductIdAndSectionOrderByCurrentQuantityAsc(productId, section);
+    }
+
+    @Override
+    public List<BatchStock> findAllByProductIdOrderByDueDate(String productId, Section section) {
+        return repo.findBatchStocksByProductIdAndSectionOrderByDueDateAsc(productId, section);
     }
 }

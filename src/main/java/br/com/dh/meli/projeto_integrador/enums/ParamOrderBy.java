@@ -20,7 +20,7 @@ public enum ParamOrderBy {
     }
 
     public static ParamOrderBy valueOfByCode(String code) {
-        ParamOrderBy order;
+        ParamOrderBy order = ParamOrderBy.BATCH_NUMBER;
         try {
             order = Arrays.stream(ParamOrderBy.values())
                     .filter(o -> o.getCode().equalsIgnoreCase(code))
