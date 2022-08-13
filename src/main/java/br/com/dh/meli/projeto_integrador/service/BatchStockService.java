@@ -94,4 +94,9 @@ public class BatchStockService implements IBatchStockService {
     public List<BatchStock> findAllByProductIdOrderByDueDate(String productId, Section section) {
         return repo.findBatchStocksByProductIdAndSectionOrderByDueDateAsc(productId, section);
     }
+
+    @Override
+    public List<BatchStock> findAllBySectionOrderByDueDate(Section section) {
+        return repo.findBatchStocksBySectionOrderByDueDateAsc(section);
+    }
 }

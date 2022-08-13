@@ -1,12 +1,19 @@
 package br.com.dh.meli.projeto_integrador.controller;
 
+import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.WarehouseBatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.WarehouseCountStocksDTO;
 import br.com.dh.meli.projeto_integrador.dto.WarehouseStocksDTO;
+import br.com.dh.meli.projeto_integrador.enums.Category;
+import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
+import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
+import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.CountStocks;
+import br.com.dh.meli.projeto_integrador.model.Section;
 import br.com.dh.meli.projeto_integrador.model.Warehouse;
 import br.com.dh.meli.projeto_integrador.service.IBatchStockService;
+import br.com.dh.meli.projeto_integrador.service.ISectionService;
 import br.com.dh.meli.projeto_integrador.service.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +33,9 @@ public class WarehouseController {
 
     @Autowired
     WarehouseService warehouseService;
+
+    @Autowired
+    ISectionService sectionService;
 
     @Autowired
     IBatchStockService batchStockService;
@@ -72,6 +82,51 @@ public class WarehouseController {
             throw new NotFoundException("empty list not found any result");
         }
         return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/due-date")
+    public ResponseEntity<List<BatchStockDTO>> listBatchStocksByWarehouseDueDate(
+            @RequestParam(required = false) Optional<String> warehouseCode,
+            @RequestParam(required = false) Optional<String> sectionCode) {
+        if(warehouseCode.isEmpty()) {
+            throw new BadRequestException("warehouseCode is required");
+        }
+        if(sectionCode.isEmpty()) {
+            throw new BadRequestException("sectionCode is required");
+        }
+        Warehouse warehouse = warehouseService.findWarehouseByCode(warehouseCode.get());
+        Section section = warehouseService.findSectionByCode(warehouse, sectionCode.get());
+        List<BatchStock> batches = batchStockService.findAllBySectionOrderByDueDate(section);
+        if(batches.isEmpty()) {
+            throw new NotFoundException("empty list not found any result");
+        }
+        return ResponseEntity.ok(IBatchStockMapper.MAPPER.map(batches));
+    }
+
+    @GetMapping("/due-date/list")
+    public ResponseEntity<List<BatchStockDTO>> listBatchStocksByWarehouseDueDateDays(
+            @RequestParam(required = false) Optional<String> warehouseCode,
+            @RequestParam(required = false) Optional<String> category,
+            @RequestParam(required = false) Optional<String> days) {
+        if(warehouseCode.isEmpty()) {
+            throw new BadRequestException("warehouseCode is required");
+        }
+        if(category.isEmpty()) {
+            throw new BadRequestException("category is required");
+        }
+        Warehouse warehouse = warehouseService.findWarehouseByCode(warehouseCode.get());
+        List<Section> sections = sectionService.findAllByCategory(Category.getEnumName(category.get()));
+        List<BatchStock> allBatches = new ArrayList<>();
+        sections.forEach(s -> {
+            List<BatchStock> batches = batchStockService.findAllBySectionOrderByDueDate(s);
+            allBatches.addAll(batches);
+        });
+
+        if(allBatches.isEmpty()) {
+            throw new NotFoundException("empty list not found any result");
+        }
+
+        return ResponseEntity.ok(IBatchStockMapper.MAPPER.map(allBatches));
     }
 
 }
