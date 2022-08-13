@@ -19,6 +19,9 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Seller extends Person{
     @OneToMany(mappedBy = "seller")
     @JsonIgnoreProperties("seller")
