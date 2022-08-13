@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -21,11 +22,19 @@ public class Item {
     @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "batchstock_id")
+    @JoinColumn(name = "batchstock_id", nullable = true)
     private BatchStock batchStock;
-    private int quantity;
+    private Integer quantity;
     @ManyToOne
-    @JoinColumn(name="shopping_cart_id")
+    @JoinColumn(name="shopping_cart_id", nullable = false)
     @JsonIgnoreProperties("items")
     private ShoppingCart shoppingCart;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = true)
+    @JsonIgnoreProperties("order")
+    private Order order;
+
+    public boolean isBatchStockIsEmpty(){
+        return Optional.ofNullable(this.batchStock).isEmpty();
+    }
 }

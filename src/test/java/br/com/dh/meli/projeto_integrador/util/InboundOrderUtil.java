@@ -89,7 +89,7 @@ public class InboundOrderUtil {
                 .orderNumber(1)
                 .orderDate(LocalDate.of(2022, 10, 10))
                 .warehouseCode("String")
-                .batchStocks(batchStockList).build();
+                .batchStock(batchStockList).build();
     }
 
     /**

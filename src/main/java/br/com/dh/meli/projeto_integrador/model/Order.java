@@ -8,20 +8,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 @Data
 @Builder
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class ShoppingCart {
+@Table(name="order_item")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "shoppingCart",fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("shoppingCart")
+    private Integer orderNumber;
+    private LocalDateTime orderDate;
+    private Status orderStatus;
+    @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("order")
     private List<Item> items;
-    private Status status;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnoreProperties("order")
     private Customer customer;
 }

@@ -35,6 +35,15 @@ public class AdvertisementService implements IAdvertisementService {
     private ISellerRepository sellerRepository;
 
     @Override
+    public Advertisement getAdvertisementById(Long id){
+        Optional<Advertisement> advertisement = repo.findById(id);
+        if(advertisement.isEmpty()){
+            throw new NotFoundException("Advertisement not found");
+        }
+        return advertisement.get();
+    }
+
+    @Override
     public List<Advertisement> getAllAdvertisement() {
         if(repo.findAll().size() > 0){
             return repo.findAll();
@@ -61,7 +70,7 @@ public class AdvertisementService implements IAdvertisementService {
     }
     private void validAdvertisement(AdvertisementDTO dto){
         BatchStock batchStock = batchStockService.findByProductId(dto.getProductId());
-        Seller seller = sellerRepository.findById(dto.getSellerId()).get();
+        Seller seller = sellerRepository.findById(dto.getSeller().getId()).get();
         long differenceData =  DAYS.between(batchStockService.findByProductId(dto.getProductId()).getDueDate(),LocalDate.now());
         if(batchStock == null || seller == null || differenceData < 21){
             throw new BadRequestException("Not possible create advertisement");

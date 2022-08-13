@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface IAdvertisementRepository extends JpaRepository<Advertisement, Integer> {
+public interface IAdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
     @Query("SELECT a, b,s FROM Advertisement a JOIN  BatchStock b ON a.productId = b.productId" +
             "  JOIN Section s ON b.batchNumber= s.id WHERE s.category=?1")
