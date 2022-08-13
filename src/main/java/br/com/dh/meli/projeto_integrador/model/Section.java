@@ -23,11 +23,11 @@ public class Section {
     @Column(nullable = false)
     private Integer capacity;
 
-    @OneToMany(mappedBy = "section")
+    @OneToMany(mappedBy = "section",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("section")
     private List<BatchStock> batchStocks;
 
-    @OneToMany(mappedBy = "section")
+    @OneToMany(mappedBy = "section",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("section")
     private List<InboundOrder> inboundOrders;
 

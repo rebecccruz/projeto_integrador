@@ -20,10 +20,12 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SellerDTO {
+    @NotNull
+    private Long id;
     @NotNull(message = "Nome do vendedor é obrigatório")
     @JsonProperty("seller_name")
-    public String name;
+    private String name;
     @NotNull(message = "Endereço do vendedor é obrigatório")
     @JsonProperty("seller_address")
-    public AddressModel address;
+    private AddressModel address;
 }

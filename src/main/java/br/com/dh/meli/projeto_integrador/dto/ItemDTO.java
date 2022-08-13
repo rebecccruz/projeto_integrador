@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ItemDTO {
-    private Advertisement advertisement;
-    private BatchStock batchStock;
+    private Long advertisementId;
+    private Integer batchNumber;
     private Integer quantity;
 }

@@ -20,6 +20,7 @@ public class Advertisement {
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
     @JsonIgnoreProperties("advertisements")
+
     private Seller seller;
     private double price;
     private String description;

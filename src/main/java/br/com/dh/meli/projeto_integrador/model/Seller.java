@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @Entity
 public class Seller extends Person{
-    @OneToMany(mappedBy = "seller")
+    @OneToMany(mappedBy = "seller",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("seller")
     private List<Advertisement> advertisements;
 }

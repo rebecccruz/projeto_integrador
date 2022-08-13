@@ -18,16 +18,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdvertisementDTO {
+
+    private Long id;
     @NotNull
     private String productId;
     @NotNull
-    private Long sellerId;
+    private SellerDTO seller;
     @NotNull
-    private double price;
+    private Double price;
     @NotNull
     private String description;
-    @NotNull
-    private Long customerId;
-
-
 }

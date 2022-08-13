@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShoppingCartDTO {
+public class ShoppingCartDTO  {
     private List<ItemDTO> items;
     private Status status;
     private Long customerId;

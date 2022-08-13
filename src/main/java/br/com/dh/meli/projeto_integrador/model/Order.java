@@ -23,7 +23,7 @@ public class Order {
     private Integer orderNumber;
     private LocalDateTime orderDate;
     private Status orderStatus;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("order")
     private List<Item> items;
     @ManyToOne

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -32,4 +33,8 @@ public class Item {
     @JoinColumn(name = "order_id", nullable = false)
     @JsonIgnoreProperties("order")
     private Order order;
+
+    public boolean isBatchStockIsEmpty(){
+        return Optional.ofNullable(this.batchStock).isEmpty();
+    }
 }

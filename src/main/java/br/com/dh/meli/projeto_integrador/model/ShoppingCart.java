@@ -18,7 +18,7 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "shoppingCart")
+    @OneToMany(mappedBy = "shoppingCart",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("shoppingCart")
     private List<Item> items;
     private Status status;
