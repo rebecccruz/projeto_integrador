@@ -7,4 +7,5 @@ import java.util.*;
 
 public interface ISectionRepository extends JpaRepository<Section, Long> {
     List<Section> findSectionsByCategory(Category category);
+    List<Section> findSectionsByCode(String code);
 }
