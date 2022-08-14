@@ -80,10 +80,6 @@ public class BatchStockService implements IBatchStockService {
     }
 
     @Override
-    public List<BatchStock> findAllByProductIdAndSection(String productId, Section section) {
-        return repo.findBatchStocksByProductIdAndSection(productId, section);
-    }
-
     public List<BatchStockDTO> toDTOs(List<BatchStock> batches) {
         return IBatchStockMapper.MAPPER.map(batches);
     }

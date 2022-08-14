@@ -21,7 +21,6 @@ public interface IBatchStockRepository extends JpaRepository<BatchStock, Long> {
             " GROUP BY b.warehouse_id", nativeQuery = true)
     List<CountStocks> countStocksByProductId(String productId);
     boolean existsBatchStocksByProductId(String productId);
-    List<BatchStock> findBatchStocksByProductIdAndSection(String productId, Section section);
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByBatchNumberAsc(String productId, Section section);
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByCurrentQuantityAsc(String productId, Section section);
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByDueDateAsc(String productId, Section section);

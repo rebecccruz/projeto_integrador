@@ -1,18 +1,15 @@
 package br.com.dh.meli.projeto_integrador.service;
 
-import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.dto.SectionDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.enums.ParamOrderBy;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
-import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.Section;
 import br.com.dh.meli.projeto_integrador.repository.ISectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class SectionService implements ISectionService {
@@ -43,30 +40,20 @@ public class SectionService implements ISectionService {
 
     @Override
     public List<SectionDTO> findAllByProductIdAndSort(String productId, Optional<ParamOrderBy> order) {
+        if (order.isEmpty()) {
+            order = Optional.of(ParamOrderBy.BATCH_NUMBER);
+        }
+        final ParamOrderBy sort = order.get();
         List<SectionDTO> result = new ArrayList<>();
-        List<BatchStock> allBatches = batchStockService.findAllByProductId(productId);
-        List<Section> sections = repo.findAll();
+        List<Section> sections = repo.findSectionsByProductId(productId);
         sections.forEach(s -> {
             SectionDTO dto = new SectionDTO();
-            List<BatchStock> wBatches = allBatches.stream()
-                    .filter(bf -> bf.getSection().getId().equals(s.getId()))
-                    .collect(Collectors.toList());
-            wBatches.forEach(b -> {
-                dto.setWarehouseCode(b.getSection().getWarehouse().getCode());
-                dto.setSectionCode(b.getSection().getCode());
-                dto.setProductId(b.getProductId());
-
-                List<BatchStockDTO> batchesDto = IBatchStockMapper.MAPPER.map(
-                        batchStockService.findAllByProductIdAndSection(b.getProductId(), b.getSection()));
-                if (order.isPresent()) {
-                    batchesDto = IBatchStockMapper.MAPPER.map(
-                            order.get().findAllBatchStocksSorted(b.getProductId(), b.getSection()));
-                }
-                dto.setBatchStocks(batchesDto);
-            });
-            if (!wBatches.isEmpty()) {
-                result.add(dto);
-            }
+            dto.setWarehouseCode(s.getWarehouse().getCode());
+            dto.setSectionCode(s.getCode());
+            dto.setProductId(productId);
+            List<BatchStock> sorted = sort.findAllBatchStocksSorted(dto.getProductId(), s);
+            dto.setBatchStocks(batchStockService.toDTOs(sorted));
+            result.add(dto);
         });
         if (result.isEmpty()) {
             throw new NotFoundException("empty list not found any result");
