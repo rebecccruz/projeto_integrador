@@ -10,7 +10,11 @@ import br.com.dh.meli.projeto_integrador.model.InboundOrder;
 import br.com.dh.meli.projeto_integrador.model.Section;
 import br.com.dh.meli.projeto_integrador.repository.IBatchStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -80,23 +84,27 @@ public class BatchStockService implements IBatchStockService {
         return repo.findBatchStocksByProductIdAndSection(productId, section);
     }
 
-    @Override
-    public List<BatchStock> findAllByProductIdOrderByBatchNumber(String productId, Section section) {
-        return repo.findBatchStocksByProductIdAndSectionOrderByBatchNumberAsc(productId, section);
+    public List<BatchStockDTO> toDTOs(List<BatchStock> batches) {
+        return IBatchStockMapper.MAPPER.map(batches);
     }
 
     @Override
-    public List<BatchStock> findAllByProductIdOrderByCurrentQuantity(String productId, Section section) {
-        return repo.findBatchStocksByProductIdAndSectionOrderByCurrentQuantityAsc(productId, section);
+    public List<BatchStock> findAllBySectionsOrderByDueDate(List<Section> sections) {
+        List<BatchStock> list = new ArrayList<>();
+        sections.forEach(s -> list.addAll(repo.findBatchStocksBySectionOrderByDueDateAsc(s)));
+        if (list.isEmpty()) {
+            throw new NotFoundException("empty list not found any result");
+        }
+        return list;
     }
 
     @Override
-    public List<BatchStock> findAllByProductIdOrderByDueDate(String productId, Section section) {
-        return repo.findBatchStocksByProductIdAndSectionOrderByDueDateAsc(productId, section);
-    }
-
-    @Override
-    public List<BatchStock> findAllBySectionOrderByDueDate(Section section) {
-        return repo.findBatchStocksBySectionOrderByDueDateAsc(section);
+    public List<BatchStock> findAllBySectionsAndByDueDateLessThan(List<Section> sections, LocalDate limitDate) {
+        List<BatchStock> list = new ArrayList<>();
+        sections.forEach(s -> list.addAll(repo.findBatchStocksBySectionAndDueDateLessThanOrderByDueDateAsc(s, limitDate)));
+        if (list.isEmpty()) {
+            throw new NotFoundException("empty list not found any result");
+        }
+        return list;
     }
 }
