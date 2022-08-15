@@ -34,8 +34,8 @@ public class InboundOrderService implements IInboundOrderService {
         checkIfBatchesExists(batches);
 
         repo.save(inboundOrder);
-
-        inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
+        batchStockService.saveAll(batches);
+        inboundOrder.setBatchStocks(batches);
 
         return inboundOrder;
     }
@@ -57,9 +57,11 @@ public class InboundOrderService implements IInboundOrderService {
 
         List<BatchStock> batches = batchStockService.batchStockMapper(dto.getBatchStock(), inboundOrder);
         checkIfBatchesDoesNotExists(batches);
-        System.out.println("Oi");
-        inboundOrder.setBatchStocks(batchStockService.saveAll(batches));
+
         repo.save(inboundOrder);
+        batchStockService.saveAll(batches);
+
+        inboundOrder.setBatchStocks(batches);
         return inboundOrder;
     }
 
