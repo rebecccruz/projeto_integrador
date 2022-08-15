@@ -25,8 +25,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.http.HttpStatus;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchException;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
@@ -47,6 +46,9 @@ class WarehouseServiceTest {
 
     @Mock
     IBatchStockRepository batchRepo;
+
+    @Mock
+    BatchStockService batchService;
 
     @BeforeEach
     public void setup(){
@@ -132,21 +134,12 @@ class WarehouseServiceTest {
     @DisplayName("Find stocks by product id")
     void findStocksByProductId_whenExists(){
         BDDMockito
-                .when(batchRepo.findBatchStockByProductId(ArgumentMatchers.anyString()))
-                .thenReturn(Optional.of(AdvertisementUtil.batchStockGenerator()));
+                .when(batchService.countStocksByProductId(ArgumentMatchers.anyString()))
+                .thenReturn(WarehouseUtil.countStocksGenerator());
 
+        WarehouseStocksDTO warehouseStocksDTO = service.findStocksByProductId("Teste 1");
 
-    }
-
-    @Test
-    @DisplayName("Find stocks by product id when does not exist")
-    void findStocksByProductId_whenDoesNotExist(){
-        BDDMockito
-                .when(batchRepo.findBatchStockByProductId(ArgumentMatchers.anyString()))
-                .thenReturn(Optional.of(AdvertisementUtil.batchStockGenerator()));
-
+        assertThat(warehouseStocksDTO.getProductId()).isEqualTo(AdvertisementUtil.batchStockGenerator().getProductId());
 
     }
-
-
 }

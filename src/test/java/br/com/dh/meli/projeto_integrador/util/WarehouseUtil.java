@@ -2,6 +2,7 @@ package br.com.dh.meli.projeto_integrador.util;
 
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.model.*;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,5 +85,30 @@ public class WarehouseUtil {
         section.setWarehouse(emptywarehouseGenerator());
 
         return section;
+    }
+
+    @AllArgsConstructor
+    public static class CountStocksTest implements CountStocks {
+
+        private Long warehouseId;
+        private Integer quantity;
+
+        @Override
+        public Long getWarehouseId() {
+            return this.warehouseId;
+        }
+
+        @Override
+        public Integer getQuantity() {
+            return this.quantity;
+        }
+    }
+
+    public static List <CountStocks> countStocksGenerator (){
+        List <CountStocks> list = new ArrayList<>();
+
+        list.add(new CountStocksTest(1L, 5));
+        list.add(new CountStocksTest(2L, 10));
+        return list;
     }
 }
