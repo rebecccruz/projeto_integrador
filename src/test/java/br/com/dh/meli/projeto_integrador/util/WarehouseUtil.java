@@ -72,7 +72,7 @@ public class WarehouseUtil {
         List<BatchStock> batchStock = new ArrayList<>();
         batchStock.add(AdvertisementUtil.batchStockGenerator());
         List<InboundOrder> inboundOrder = new ArrayList<>();
-        inboundOrder.add(InboundOrderUtil.inboundOrderGenerator());
+        inboundOrder.add(InboundOrderUtil.emptyInboundOrder());
 
         Section section = new Section();
         section.setId(1L);
