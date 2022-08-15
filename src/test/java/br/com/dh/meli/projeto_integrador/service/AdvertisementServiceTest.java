@@ -95,7 +95,6 @@ class AdvertisementServiceTest {
         Optional<String> category = Optional.ofNullable("FS");
         Optional<Category> categoryBy = Optional.of(Category.getEnumName(category.get()));
         List<Advertisement> list = AdvertisementUtil.getAllAdvertisement();
-        System.out.printf(list.toString());
         when(repo.getAdvertisementByCategory(ArgumentMatchers.any())).thenReturn(list);
         List<Advertisement> allAd = service.getAllAdvertisementByCategory(categoryBy);
         assertThat(allAd.size()).isPositive();
