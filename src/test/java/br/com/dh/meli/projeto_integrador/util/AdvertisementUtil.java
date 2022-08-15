@@ -1,43 +1,64 @@
 package br.com.dh.meli.projeto_integrador.util;
 
 import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
+import br.com.dh.meli.projeto_integrador.dto.SellerDTO;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.Seller;
-import br.com.dh.meli.projeto_integrador.repository.IAdvertisementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Advertisement Test Util
+ *
+ * @author Larissa Navarro
+ */
 public class AdvertisementUtil {
-    @Autowired
-    IAdvertisementRepository repo;
 
+    /**
+     * Generate Advertisement with content
+     *
+     * @return Advertisement
+     * @author Larissa Navarro
+     */
     public static Advertisement advertisementGenerator() {
         Advertisement prod = new Advertisement();
         prod.setId(1L);
-        prod.setProductId("Leite");
+        prod.setProductId("Teste 1");
         prod.setPrice(12.0);
-        prod.setSeller(sellerGenerator());
+        prod.setSeller(SellerTestUtil.sellerGenerator());
         prod.setDescription("Teste");
         return prod;
     }
+
+    /**
+     * Generate AdvertisementDTO with content
+     *
+     * @return AdvertisementDTO
+     * @author Larissa Navarro
+     */
     public static AdvertisementDTO advertisementDTO(){
+        SellerDTO sellerDTO = SellerDTO.builder().build();
+        sellerDTO.setId(SellerTestUtil.sellerGenerator().getId());
+        sellerDTO.setName(SellerTestUtil.sellerGenerator().getName());
         AdvertisementDTO dto = new AdvertisementDTO();
+        dto.setId(1L);
+        dto.setProductId("Teste 1");
         dto.setPrice(500.0);
-        //dto.setBatchStockId(1L);
-        //dto.setSellerId(1L);
         dto.setDescription("acucar");
-
-
+        dto.setSeller(sellerDTO);
         return dto;
     }
 
-
+    /**
+     * Generate BatchStock with content
+     *
+     * @return BatchStock
+     * @author Larissa Navarro
+     */
     public static BatchStock batchStockGenerator() {
         BatchStock batchStock = new BatchStock();
         batchStock.setBatchNumber(1);
@@ -52,30 +73,26 @@ public class AdvertisementUtil {
         return batchStock;
     }
 
-    public static Seller sellerGenerator() {
-        Seller seller = new Seller();
-        seller.setId(1L);
-        seller.setName("Larissa");
-        return seller;
-    }
-
+    /**
+     * Generate list of Advertisement
+     *
+     * @return List<Advertisement>
+     * @author Larissa Navarro
+     */
     public static List<Advertisement> getAllAdvertisement(){
         List<Advertisement> adList = new ArrayList<>();
         BatchStock batchStock = batchStockGenerator();
         batchStock.setBatchNumber(2);
-        Seller seller = sellerGenerator();
+        Seller seller = SellerTestUtil.sellerGenerator();
         seller.setId(2L);
         Advertisement ad2 = advertisementGenerator();
         Advertisement ad3 = advertisementGenerator();
         ad2.setId(2L);
-        //ad2.setBatchStock(batchStock);
         ad2.setSeller(seller);
         adList.add(ad2);
-
         batchStock.setBatchNumber(3);
         seller.setId(3L);
         ad3.setId(3L);
-        //ad3.setBatchStock(batchStock);
         ad3.setSeller(seller);
         adList.add(ad3);
         return adList;
@@ -88,11 +105,5 @@ public class AdvertisementUtil {
             return list.get(0);
         }
         throw new NotFoundException("Id not found");
-    }
-
-    public static Advertisement findByCategory(String category){
-        Advertisement ad = new Advertisement();
-        //Set<Category> categories = Collections.singleton(ad.getBatchStock().getSection().getCategory());
-        return ad;
     }
 }
