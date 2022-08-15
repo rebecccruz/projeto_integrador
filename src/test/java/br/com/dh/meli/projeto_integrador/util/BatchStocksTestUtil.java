@@ -7,8 +7,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BatchStock Test Util
+ *
+ * @author Lucas Pinheiro Rocha
+ * @author Alexandre Borges Souza
+ * @author Evelyn Cristini
+ * @since 15/08/2022
+ */
 public class BatchStocksTestUtil {
 
+    /**
+     * Generate empty BatchStockDTO
+     * @return BatchStockDTO
+     * @author Lucas Pinheiro Rocha
+     * @author Alexandre Borges Souza
+     */
     public static BatchStockDTO generatorDTO() {
         BatchStockDTO dto = BatchStockDTO.builder().build();
         return dto;
@@ -16,9 +30,10 @@ public class BatchStocksTestUtil {
 
     /**
      * Method that helps to create a static batchStock object to be used on Inbound Order payload
+     *
+     * @return returns a static batch stock
      * @author Lucas Pinheiro
      * @author Evelyn Cristini
-     * @return returns a static batch stock
      */
     public static BatchStockDTO batchStockDTOSampleOne () {
         LocalDate now = LocalDate.of(2022, 05, 1);
@@ -36,12 +51,24 @@ public class BatchStocksTestUtil {
         return dto;
     }
 
+    /**
+     * Generate list of BatchStockDTO for payload
+     * @return List<BatchStockDTO>
+     * @author Lucas Pinheiro Rocha
+     * @author Alexandre Borges Souza
+     */
     public static List<BatchStockDTO> payloadForInboundOrderPayload() {
         List<BatchStockDTO> list = new ArrayList<>();
         list.add(batchStockDTOSampleOne());
         return list;
     }
 
+    /**
+     * Generate list of BatchStockDTO
+     * @return List<BatchStockDTO>
+     * @author Lucas Pinheiro Rocha
+     * @author Alexandre Borges Souza
+     */
     public static List<BatchStock> listOfBatchStock() {
         List<BatchStockDTO> batchStockList = payloadForInboundOrderPayload();
         return IBatchStockMapper.MAPPER.mapDTO(batchStockList);

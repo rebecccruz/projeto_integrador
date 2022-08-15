@@ -22,25 +22,23 @@ public class AdvertisementUtil {
     IAdvertisementRepository repo;
 
     public static Advertisement advertisementGenerator() {
-        return null;
-//        Advertisement prod = new Advertisement();
-//        prod.setId(1L);
-//        prod.setBatchStock(batchStockGenerator());
-//        prod.setPrice(12.0);
-//        prod.setSeller(sellerGenerator());
-//        prod.setDescription("Teste");
-//        return prod;
+        Advertisement prod = new Advertisement();
+        prod.setId(1L);
+        prod.setBatchStock(batchStockGenerator());
+        prod.setPrice(12.0);
+        prod.setSeller(sellerGenerator());
+        prod.setDescription("Teste");
+        return prod;
     }
     public static AdvertisementDTO advertisementDTO(){
-        return null;
-//        AdvertisementDTO dto = new AdvertisementDTO();
-//        dto.setPrice(500.0);
-//        dto.setBatchStockId(1L);
-//        dto.setSellerId(1L);
-//        dto.setDescription("acucar");
-//
-//
-//        return dto;
+        AdvertisementDTO dto = new AdvertisementDTO();
+        dto.setPrice(500.0);
+        dto.setBatchStockId(1L);
+        dto.setSellerId(1L);
+        dto.setDescription("acucar");
+
+
+        return dto;
     }
 
 
@@ -66,26 +64,25 @@ public class AdvertisementUtil {
     }
 
     public static List<Advertisement> getAllAdvertisement(){
-        return null;
-//        List<Advertisement> adList = new ArrayList<>();
-//        BatchStock batchStock = batchStockGenerator();
-//        batchStock.setBatchNumber(2);
-//        Seller seller = sellerGenerator();
-//        seller.setId(2L);
-//        Advertisement ad2 = advertisementGenerator();
-//        Advertisement ad3 = advertisementGenerator();
-//        ad2.setId(2L);
-//        ad2.setBatchStock(batchStock);
-//        ad2.setSeller(seller);
-//        adList.add(ad2);
-//
-//        batchStock.setBatchNumber(3);
-//        seller.setId(3L);
-//        ad3.setId(3L);
-//        ad3.setBatchStock(batchStock);
-//        ad3.setSeller(seller);
-//        adList.add(ad3);
-//        return adList;
+        List<Advertisement> adList = new ArrayList<>();
+        BatchStock batchStock = batchStockGenerator();
+        batchStock.setBatchNumber(2);
+        Seller seller = sellerGenerator();
+        seller.setId(2L);
+        Advertisement ad2 = advertisementGenerator();
+        Advertisement ad3 = advertisementGenerator();
+        ad2.setId(2L);
+        ad2.setBatchStock(batchStock);
+        ad2.setSeller(seller);
+        adList.add(ad2);
+
+        batchStock.setBatchNumber(3);
+        seller.setId(3L);
+        ad3.setId(3L);
+        ad3.setBatchStock(batchStock);
+        ad3.setSeller(seller);
+        adList.add(ad3);
+        return adList;
     }
 
     public static Advertisement findById(Long id){
@@ -98,9 +95,8 @@ public class AdvertisementUtil {
     }
 
     public static Advertisement findByCategory(String category){
-        return null;
-//        Advertisement ad = new Advertisement();
-//        Set<Category> categories = Collections.singleton(ad.getBatchStock().getSection().getCategory());
-//        return ad;
+        Advertisement ad = new Advertisement();
+        Set<Category> categories = Collections.singleton(ad.getBatchStock().getSection().getCategory());
+        return ad;
     }
 }
