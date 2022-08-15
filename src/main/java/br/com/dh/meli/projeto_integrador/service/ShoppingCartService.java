@@ -69,8 +69,8 @@ public class ShoppingCartService implements IShoppingCartService {
     private void reserveBatchStockByItem(Item item) {
         List<BatchStock> batchStocks = batchStockService.findAllByProductId(item.getAdvertisement().getProductId());
         batchStocks.stream().forEach(b -> {
-            if (verifyDueDate(b.getDueDate()) && hasEnoughBatchQuantity(b.getCurrentQuantity(), item.getQuantity())) {
-                if (item.isBatchStockIsEmpty()) {
+            if (item.isBatchStockIsEmpty()) {
+                if (verifyDueDate(b.getDueDate()) && hasEnoughBatchQuantity(b.getCurrentQuantity(), item.getQuantity())) {
                     item.setBatchStock(b);
                     decreaseQuantity(item);
                 }
@@ -83,32 +83,31 @@ public class ShoppingCartService implements IShoppingCartService {
 
     private boolean verifyDueDate(LocalDate date) {
         long differenceData = DAYS.between(LocalDate.now(), date);
-        if (differenceData < 21) {
-            return false;
-        }
-        return true;
+        return differenceData < 21;
     }
 
     private void decreaseQuantity( Item item){
         Integer quantity = item.getQuantity();
         Integer stockQuantity = item.getBatchStock().getCurrentQuantity();
-        if(stockQuantity >= quantity){
+        if(stockQuantity >= quantity) {
            batchStockService.decreaseQuantity(item.getBatchStock(),quantity);
         }
-        throw  new NotFoundException("Stock not available");
     }
 
     private boolean hasEnoughBatchQuantity(Integer batchQuantity, Integer shopQuantity) {
-        if (batchQuantity < shopQuantity) {
-            return false;
-        }
-        return true;
+        return batchQuantity >= shopQuantity;
     }
 
     @Override
     public ShoppingCart updateShoppingCart(Long shoppingCartId, Status status) {
         ShoppingCart shoppingCart = getShoppingCartById(shoppingCartId);
         shoppingCart.setStatus(status);
+        if(shoppingCart.getStatus().equals(Status.FECHADO)) {
+            shoppingCart.getItems().forEach(item -> {
+                reserveBatchStockByItem(item);
+                itemService.save(item);
+            });
+        }
         return repo.save(shoppingCart);
     }
 
