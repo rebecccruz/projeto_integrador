@@ -27,8 +27,10 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Autowired
     private IShoppingCartRepository repo;
+
     @Autowired
-    private ICustomerRepository customerRepository;
+    private ICustomerService customerService;
+
 
     @Autowired
     private IAdvertisementService advertisementService;
@@ -70,6 +72,7 @@ public class ShoppingCartService implements IShoppingCartService {
             if (verifyDueDate(b.getDueDate()) && hasEnoughBatchQuantity(b.getCurrentQuantity(), item.getQuantity())) {
                 if (item.isBatchStockIsEmpty()) {
                     item.setBatchStock(b);
+                    decreaseQuantity(item);
                 }
             }
         });
@@ -86,9 +89,14 @@ public class ShoppingCartService implements IShoppingCartService {
         return true;
     }
 
-//    private boolean decreaseQuantity(Status status, Item item){
-//
-//    }
+    private void decreaseQuantity( Item item){
+        Integer quantity = item.getQuantity();
+        Integer stockQuantity = item.getBatchStock().getCurrentQuantity();
+        if(stockQuantity >= quantity){
+           batchStockService.decreaseQuantity(item.getBatchStock(),quantity);
+        }
+        throw  new NotFoundException("Stock not available");
+    }
 
     private boolean hasEnoughBatchQuantity(Integer batchQuantity, Integer shopQuantity) {
         if (batchQuantity < shopQuantity) {
@@ -117,7 +125,7 @@ public class ShoppingCartService implements IShoppingCartService {
 
     private ShoppingCart convertToModel(ShoppingCartDTO dto) {
         ShoppingCart shoppingCart = IShoppingCartMapper.MAPPER.shoppingCartDTOToModel(dto);
-        Customer customer = customerRepository.findById(dto.getCustomerId()).get();
+        Customer customer = customerService.getCustomerById(dto.getCustomerId());
         shoppingCart.setCustomer(customer);
         shoppingCart.setStatus(dto.getStatus());
         repo.save(shoppingCart);

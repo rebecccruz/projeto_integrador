@@ -103,4 +103,10 @@ public class BatchStockService implements IBatchStockService {
         }
         return list;
     }
+
+    @Override
+    public BatchStock decreaseQuantity(BatchStock batchStock, Integer quantity) {
+        batchStock.setCurrentQuantity(batchStock.getCurrentQuantity() - quantity);
+        return repo.save(batchStock);
+    }
 }

@@ -17,6 +17,7 @@ public interface IBatchStockService {
     void batchNumberExistenceValidation(Integer batchNumber);
     List<CountStocks> countStocksByProductId(String productId);
     List<BatchStock> findAllByProductId(String productId);
+    BatchStock decreaseQuantity(BatchStock batchStock,Integer quantity);
     List<BatchStock> findAllBySectionsOrderByDueDate(List<Section> sections);
     List<BatchStock> findAllBySectionsAndByDueDateLessThan(List<Section> sections, LocalDate limitDate);
     List<BatchStockDTO> toDTOs(List<BatchStock> batches);
