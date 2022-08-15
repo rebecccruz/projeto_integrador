@@ -76,8 +76,6 @@ class WarehouseServiceTest {
     @DisplayName("Find warehouse by id when warehouse doesnt exist")
     void findWarehouseById_whenIdDoesNotExist() {
         long id = 10;
-        Warehouse warehouse = service.findWarehouseById(id);
-
         BDDMockito
                 .when(repo.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.empty());
@@ -86,7 +84,6 @@ class WarehouseServiceTest {
                 NotFoundException.class, () -> service.findWarehouseById(id));
 
         assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
-        assertThat(warehouse.getId()).isEqualTo(WarehouseUtil.warehouseGenerator().getId());
     }
 
     @Test
