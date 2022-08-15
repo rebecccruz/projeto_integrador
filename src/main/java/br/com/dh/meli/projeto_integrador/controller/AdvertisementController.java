@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/fresh-Advertisements")
+@RequestMapping("/api/v1/fresh-products")
 public class AdvertisementController {
 
     @Autowired
@@ -28,24 +28,24 @@ public class AdvertisementController {
      * @author Larissa Navarro
      * @return List<AdvertisementDTO>
      */
-    @GetMapping("/Advertisements/list")
-    public ResponseEntity<List<Advertisement>> getAllAdvertisementsByCategory(@RequestParam(required = false) Optional<String> category){
-        Optional<Category> categoryBy = Optional.empty();
-        if(category.isPresent()){
-            categoryBy = Optional.of(Category.getEnumName(category.get()));
+    @GetMapping("/list")
+    public ResponseEntity<List<Advertisement>> getAllAdvertisementsByCategory(
+            @RequestParam(required = false) Optional<String> category) {
+        if(category.isPresent()) {
+            Optional<Category> categoryBy = Optional.of(Category.getEnumName(category.get()));
             return ResponseEntity.ok(service.getAllAdvertisementByCategory(categoryBy));
         }
         return ResponseEntity.ok(service.getAllAdvertisement());
     }
 
     /**
-     * Registre um pedido com a lista de
-     * produtos que compõem o PurchaseOrder.
-     * @author Larissa Navarro
-     * @return AdvertisementDTO
+     * Create Advertisement
+     *
+     * @param advertisement
+     * @return ResponseEntity<AdvertisementDTO>
      */
-    @PostMapping("/orders/")
-    public ResponseEntity<AdvertisementDTO> createPurchaseOrder(@RequestBody AdvertisementDTO advertisement){
-        return new ResponseEntity<AdvertisementDTO>(service.createAdvertisement(advertisement), HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<AdvertisementDTO> createAdvertisement(@RequestBody AdvertisementDTO advertisement) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createAdvertisement(advertisement));
     }
 }
