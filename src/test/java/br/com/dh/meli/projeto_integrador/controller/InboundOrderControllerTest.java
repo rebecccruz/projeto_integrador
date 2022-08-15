@@ -24,7 +24,7 @@ class InboundOrderControllerTest {
     @DisplayName("Create new batchStocks when payload is valid")
     @Test
     void createBatchStock() {
-        InboundOrderDTO payload = InboundOrderUtil.inboundOrderGenerator();
+        InboundOrderDTO payload = InboundOrderUtil.inboundOrderDTOGenerator();
 
         ResponseEntity<InboundOrderDTO> response = controller.createInboundOrder(payload);
 
@@ -37,7 +37,7 @@ class InboundOrderControllerTest {
     @DisplayName("Fully update batchStocks when payload is valid")
     @Test
     void updateBatchStock() {
-        InboundOrderDTO payload = InboundOrderUtil.inboundOrderGenerator();
+        InboundOrderDTO payload = InboundOrderUtil.inboundOrderDTOGenerator();
 
         ResponseEntity<InboundOrderDTO> response = controller.updateInboundOrder(payload);
 

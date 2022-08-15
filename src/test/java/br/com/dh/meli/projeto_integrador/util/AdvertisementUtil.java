@@ -1,7 +1,6 @@
 package br.com.dh.meli.projeto_integrador.util;
 
 import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
-import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
@@ -11,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AdvertisementUtil {
@@ -24,7 +20,7 @@ public class AdvertisementUtil {
     public static Advertisement advertisementGenerator() {
         Advertisement prod = new Advertisement();
         prod.setId(1L);
-        prod.setBatchStock(batchStockGenerator());
+        prod.setProductId("Leite");
         prod.setPrice(12.0);
         prod.setSeller(sellerGenerator());
         prod.setDescription("Teste");
@@ -33,8 +29,8 @@ public class AdvertisementUtil {
     public static AdvertisementDTO advertisementDTO(){
         AdvertisementDTO dto = new AdvertisementDTO();
         dto.setPrice(500.0);
-        dto.setBatchStockId(1L);
-        dto.setSellerId(1L);
+        //dto.setBatchStockId(1L);
+        //dto.setSellerId(1L);
         dto.setDescription("acucar");
 
 
@@ -72,14 +68,14 @@ public class AdvertisementUtil {
         Advertisement ad2 = advertisementGenerator();
         Advertisement ad3 = advertisementGenerator();
         ad2.setId(2L);
-        ad2.setBatchStock(batchStock);
+        //ad2.setBatchStock(batchStock);
         ad2.setSeller(seller);
         adList.add(ad2);
 
         batchStock.setBatchNumber(3);
         seller.setId(3L);
         ad3.setId(3L);
-        ad3.setBatchStock(batchStock);
+        //ad3.setBatchStock(batchStock);
         ad3.setSeller(seller);
         adList.add(ad3);
         return adList;
@@ -96,7 +92,7 @@ public class AdvertisementUtil {
 
     public static Advertisement findByCategory(String category){
         Advertisement ad = new Advertisement();
-        Set<Category> categories = Collections.singleton(ad.getBatchStock().getSection().getCategory());
+        //Set<Category> categories = Collections.singleton(ad.getBatchStock().getSection().getCategory());
         return ad;
     }
 }
