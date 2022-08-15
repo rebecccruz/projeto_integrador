@@ -1,11 +1,15 @@
 package br.com.dh.meli.projeto_integrador.service;
 
+import br.com.dh.meli.projeto_integrador.dto.WarehouseStocksDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.Representant;
 import br.com.dh.meli.projeto_integrador.model.Warehouse;
+import br.com.dh.meli.projeto_integrador.repository.IBatchStockRepository;
 import br.com.dh.meli.projeto_integrador.repository.IWarehouseRepository;
+import br.com.dh.meli.projeto_integrador.util.AdvertisementUtil;
 import br.com.dh.meli.projeto_integrador.util.WarehouseUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +44,9 @@ class WarehouseServiceTest {
 
     @Mock
     IWarehouseRepository repo;
+
+    @Mock
+    IBatchStockRepository batchRepo;
 
     @BeforeEach
     public void setup(){
@@ -124,6 +131,9 @@ class WarehouseServiceTest {
     @Test
     @DisplayName("Find stocks by product id")
     void findStocksByProductId_whenExists(){
+        BDDMockito
+                .when(batchRepo.findBatchStockByProductId(ArgumentMatchers.anyString()))
+                .thenReturn(Optional.of(AdvertisementUtil.batchStockGenerator()));
 
 
     }
@@ -131,6 +141,10 @@ class WarehouseServiceTest {
     @Test
     @DisplayName("Find stocks by product id when does not exist")
     void findStocksByProductId_whenDoesNotExist(){
+        BDDMockito
+                .when(batchRepo.findBatchStockByProductId(ArgumentMatchers.anyString()))
+                .thenReturn(Optional.of(AdvertisementUtil.batchStockGenerator()));
+
 
     }
 

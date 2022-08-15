@@ -1,7 +1,6 @@
 package br.com.dh.meli.projeto_integrador.util;
 
 import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
-import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.model.Advertisement;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
@@ -11,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AdvertisementUtil {
@@ -24,7 +20,7 @@ public class AdvertisementUtil {
     public static Advertisement advertisementGenerator() {
         Advertisement prod = new Advertisement();
         prod.setId(1L);
-        //prod.setBatchStock(batchStockGenerator());
+        prod.setProductId("Leite");
         prod.setPrice(12.0);
         prod.setSeller(sellerGenerator());
         prod.setDescription("Teste");
