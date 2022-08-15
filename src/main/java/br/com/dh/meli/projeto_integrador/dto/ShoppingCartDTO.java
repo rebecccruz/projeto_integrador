@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoppingCartDTO  {
-    private List<ItemDTO> items;
+    private Long id;
     private Status status;
     private Long customerId;
+    private List<ItemDTO> items;
 }

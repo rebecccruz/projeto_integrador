@@ -52,7 +52,9 @@ public class ItemService implements IItemService {
     public ItemDTO convertToDTO(Item item) {
         ItemDTO dto = IItemMapper.MAPPER.mappingItemToItemDTO(item);
         dto.setAdvertisementId(item.getAdvertisement().getId());
-        dto.setBatchNumber(item.getBatchStock().getBatchNumber());
+        if(item.getBatchStock() != null) {
+            dto.setBatchNumber(item.getBatchStock().getBatchNumber());
+        }
         return dto;
     }
 }
