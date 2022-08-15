@@ -61,9 +61,11 @@ public class BatchStockController {
      */
     @GetMapping("/due-date")
     public ResponseEntity<List<BatchStockDTO>> listAllBySectionOrderByDueDate(
-            @RequestParam @Valid @NotEmpty String sectionCode) {
+            @RequestParam @Valid @NotEmpty String sectionCode,
+            @RequestParam @Valid @NotNull @PositiveOrZero Integer days) {
         List<Section> sections = sectionService.findAllByCode(sectionCode);
-        return ResponseEntity.ok(service.toDTOs(service.findAllBySectionsOrderByDueDate(sections)));
+        LocalDate limitDate = LocalDate.now().plusDays(days);
+        return ResponseEntity.ok(service.toDTOs(service.findAllBySectionsAndByDueDateLessThan(sections, limitDate)));
     }
 
     /**
