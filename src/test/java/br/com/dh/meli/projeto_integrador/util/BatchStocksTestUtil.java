@@ -40,7 +40,7 @@ public class BatchStocksTestUtil {
         LocalDate dueDate = LocalDate.of(2025, 12, 1);
         BatchStockDTO dto = generatorDTO();
         dto.setBatchNumber(10);
-        dto.setProductId("MBLSP-1234");
+        dto.setProductId("Teste 1");
         dto.setInitialQuantity(7);
         dto.setCurrentQuantity(7);
         dto.setMinimumTemperature(0F);
