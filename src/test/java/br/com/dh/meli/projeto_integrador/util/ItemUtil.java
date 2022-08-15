@@ -13,10 +13,16 @@ public class ItemUtil {
     public static Item emptyItem () {
         Item item = new Item();
         item.setId(1L);
+        item.setQuantity(1);
 
         return item;
     }
 
+    /**
+     * Method that helps to create a static empty item DTO to be used on Item payload
+     * @author Evelyn Cristini
+     * @return returns a dto
+     */
     public static ItemDTO emptyItemDTO () {
         ItemDTO dto = new ItemDTO();
         dto.setQuantity(1);
