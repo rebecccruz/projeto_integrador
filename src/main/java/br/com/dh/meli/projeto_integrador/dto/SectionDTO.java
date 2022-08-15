@@ -7,7 +7,7 @@ import java.util.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WarehouseBatchStockDTO {
+public class SectionDTO {
     private String warehouseCode;
     private String sectionCode;
     private String productId;

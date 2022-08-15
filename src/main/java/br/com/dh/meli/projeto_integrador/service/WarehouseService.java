@@ -1,16 +1,11 @@
 package br.com.dh.meli.projeto_integrador.service;
 
-import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
-import br.com.dh.meli.projeto_integrador.dto.WarehouseBatchStockDTO;
-import br.com.dh.meli.projeto_integrador.enums.ParamOrderBy;
+import br.com.dh.meli.projeto_integrador.dto.WarehouseCountStocksDTO;
+import br.com.dh.meli.projeto_integrador.dto.WarehouseStocksDTO;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
-import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
-import br.com.dh.meli.projeto_integrador.model.BatchStock;
-import br.com.dh.meli.projeto_integrador.model.Representant;
-import br.com.dh.meli.projeto_integrador.model.Section;
-import br.com.dh.meli.projeto_integrador.model.Warehouse;
+import br.com.dh.meli.projeto_integrador.model.*;
 import br.com.dh.meli.projeto_integrador.repository.IWarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,52 +48,15 @@ public class WarehouseService implements IWarehouseService {
         return representant.get();
     }
 
-    public Section findSectionByCode(Warehouse warehouse, String code) {
-        Optional<Section> section = warehouse.getSections()
-                .stream().filter(s -> s.getCode().equalsIgnoreCase(code)).findFirst();
-        if (section.isEmpty()) {
-            throw new BadRequestException("invalid sectionCode");
-        }
-        return section.get();
-    }
-
-    public List<WarehouseBatchStockDTO> getBatchStocksByFilter(
-            Optional<String> productId,
-            Optional<String> order
-    ) {
-        List<BatchStock> allBatches = batchStockService.findAllByProductId(productId.get());
-        List<WarehouseBatchStockDTO> dtos = new ArrayList<>();
-        allBatches.forEach(b -> {
-            boolean process = dtos.stream().anyMatch(stock -> stock.getSectionCode().equalsIgnoreCase(b.getSection().getCode()));
-            if (!process) {
-                WarehouseBatchStockDTO dto = new WarehouseBatchStockDTO();
-                dto.setWarehouseCode(b.getSection().getWarehouse().getCode());
-                dto.setSectionCode(b.getSection().getCode());
-                dto.setProductId(b.getProductId());
-                List<BatchStockDTO> batchesDto = IBatchStockMapper.MAPPER.map(
-                        batchStockService.findAllByProductIdAndSection(b.getProductId(), b.getSection()));
-                if (order.isPresent()) {
-                    batchesDto = IBatchStockMapper.MAPPER.map(
-                            getAllByOrder(b.getProductId(), b.getSection(), ParamOrderBy.valueOfByCode(order.get())));
-                }
-                dto.setBatchStocks(batchesDto);
-                dtos.add(dto);
-            }
+    @Override
+    public WarehouseStocksDTO findStocksByProductId(String productId) {
+        List<CountStocks> result = batchStockService.countStocksByProductId(productId);
+        WarehouseStocksDTO dto = new WarehouseStocksDTO(productId, new ArrayList());
+        result.forEach(r -> {
+            Warehouse warehouse = findWarehouseById(r.getWarehouseId());
+            dto.getWarehouses().add(new WarehouseCountStocksDTO(warehouse.getCode(), r.getQuantity()));
         });
-        return dtos;
-    }
-
-    public List<BatchStock> getAllByOrder(String productId, Section section, ParamOrderBy orderBy) {
-        switch (orderBy) {
-            case BATCH_NUMBER:
-                return batchStockService.findAllByProductIdOrderByBatchNumber(productId, section);
-            case CURRENT_QUANTITY:
-                return batchStockService.findAllByProductIdOrderByCurrentQuantity(productId, section);
-            case DUE_DATE:
-                return batchStockService.findAllByProductIdOrderByDueDate(productId, section);
-            default:
-                throw new BadRequestException("invalid orderId");
-        }
+        return dto;
     }
 
 }
