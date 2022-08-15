@@ -26,4 +26,5 @@ public interface IBatchStockRepository extends JpaRepository<BatchStock, Long> {
     List<BatchStock> findBatchStocksByProductIdAndSectionOrderByDueDateAsc(String productId, Section section);
     List<BatchStock> findBatchStocksBySectionOrderByDueDateAsc(Section section);
     List<BatchStock> findBatchStocksBySectionAndDueDateLessThanOrderByDueDateAsc(Section section, LocalDate maxDate);
+
 }

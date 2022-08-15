@@ -109,4 +109,6 @@ public class BatchStockService implements IBatchStockService {
         batchStock.setCurrentQuantity(batchStock.getCurrentQuantity() - quantity);
         return repo.save(batchStock);
     }
+
+
 }
