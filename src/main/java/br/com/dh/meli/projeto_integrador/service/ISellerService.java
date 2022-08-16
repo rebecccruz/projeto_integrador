@@ -8,6 +8,6 @@ public interface ISellerService {
     Seller findSellerById(Long id);
     Seller saveSeller(Seller seller);
     Seller updateSeller(Seller seller);
-    Boolean deleteSeller(Seller seller);
+    void deleteSeller(Long id);
 
 }

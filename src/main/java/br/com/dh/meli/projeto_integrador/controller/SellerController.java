@@ -42,8 +42,9 @@ public class SellerController {
     }
 
     @DeleteMapping("/{id}")
-    public Seller deleteSeller(@PathVariable Long id){
-        return null;
+    public ResponseEntity<Void> deleteSeller(@PathVariable Long id){
+        service.deleteSeller(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

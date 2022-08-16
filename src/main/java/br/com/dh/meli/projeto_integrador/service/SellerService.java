@@ -43,9 +43,9 @@ public class SellerService implements ISellerService {
     }
 
     @Override
-    public Boolean deleteSeller(Seller seller) {
-        repo.delete(seller);
-        return true;
+    public void deleteSeller(Long id) {
+        findSellerById(id);
+        repo.deleteById(id);
     }
 
 
