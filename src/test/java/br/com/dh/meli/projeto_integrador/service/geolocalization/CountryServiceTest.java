@@ -3,10 +3,10 @@ package br.com.dh.meli.projeto_integrador.service.geolocalization;
 import java.util.Optional;
 import br.com.dh.meli.projeto_integrador.dto.geolocalization.*;
 import br.com.dh.meli.projeto_integrador.exception.ApiException;
+import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.mapper.ICountryMapper;
 import br.com.dh.meli.projeto_integrador.model.geolocalization.CountryModel;
 import br.com.dh.meli.projeto_integrador.repository.geolocalization.ICountryRepository;
-import br.com.dh.meli.projeto_integrador.service.geolocalization.CountryService;
 import br.com.dh.meli.projeto_integrador.util.geolocalization.CountryUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +17,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.springframework.dao.DataIntegrityViolationException;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -72,6 +74,19 @@ class CountryServiceTest {
         country.setInitials("BR");
         CountryModel countryModel = CountryUtil.addNewCountryWithParamsByMock(ICountryMapper.MAPPER.mappingCountryDTOToCountryModel(countryDTO));
         verify(repo, Mockito.never()).save(countryModel);
+    }
+
+    /**
+     * Failure when add new country with invalid contents payload and return DataIntegrityViolationException throws
+     *
+     * @author Alexandre Borges Souza
+     */
+    @Test
+    void add_returnThrows_whenInvalidNewCountryContent() {
+        when(repo.save(ArgumentMatchers.any(CountryModel.class))).thenThrow(new DataIntegrityViolationException("faliure"));
+        AddCountryDTO countryDTO = AddCountryDTO.builder().build();
+        BadRequestException exception = assertThrows(BadRequestException.class, () -> service.add(countryDTO) );
+        assertFalse(exception.getMessage().isBlank());
     }
 
     /**
@@ -137,7 +152,7 @@ class CountryServiceTest {
         ApiException exception = assertThrows(ApiException.class,() -> {
             service.update(countryID, countryDTO);
         });
-        assertTrue(exception.getMessage().equalsIgnoreCase("País não encontrado."));
+        assertTrue(exception.getMessage().equalsIgnoreCase("País não encontrado"));
     }
 
     /**
@@ -167,7 +182,7 @@ class CountryServiceTest {
         ApiException exception = assertThrows(ApiException.class,() -> {
            service.delete(countryID);
         });
-        assertTrue(exception.getMessage().equalsIgnoreCase("País não encontrado."));
+        assertTrue(exception.getMessage().equalsIgnoreCase("País não encontrado"));
     }
 
     /**

@@ -52,6 +52,7 @@ public class CountryService implements ICountryService {
     @Override
     public Boolean update(final Long countryID, final UpdateCountryDTO country) throws DataIntegrityViolationException {
         CountryModel getCountry = this.checkCountryExistByCountryID(countryID);
+
         if ((!getCountry.getName().equalsIgnoreCase(country.getName())) ||
                 (!getCountry.getInitials().equalsIgnoreCase(country.getInitials()))) {
             CountryModel updateCountry = ICountryMapper.MAPPER.mappingUpdateCountryDTOToCountryModel(country);
