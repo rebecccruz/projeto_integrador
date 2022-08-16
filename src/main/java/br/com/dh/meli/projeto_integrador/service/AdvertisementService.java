@@ -2,6 +2,7 @@ package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.dto.AdvertisementDTO;
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
+import br.com.dh.meli.projeto_integrador.dto.SellerDTO;
 import br.com.dh.meli.projeto_integrador.enums.Category;
 import br.com.dh.meli.projeto_integrador.exception.BadRequestException;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
