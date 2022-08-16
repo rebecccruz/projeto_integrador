@@ -20,7 +20,7 @@ public class ShoppingCartUtil {
     public static ShoppingCart shoppingCartGenerator () {
         ShoppingCart shoppingCart = new ShoppingCart();
         List<Item> item = new ArrayList<>();
-        item.add(ItemUtil.emptyItem());
+        item.add(ItemUtil.completeItem(shoppingCart));
 
         shoppingCart.setId(1L);
         shoppingCart.setItems(item);

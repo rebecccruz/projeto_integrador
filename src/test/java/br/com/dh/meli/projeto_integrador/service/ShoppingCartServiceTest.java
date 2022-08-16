@@ -57,10 +57,18 @@ public class ShoppingCartServiceTest {
      */
     @BeforeEach
     public void setup() {
+        BDDMockito.willDoNothing().given(itemService)
+                .save(ArgumentMatchers.any(Item.class));
         when(repo.save(ArgumentMatchers.any(ShoppingCart.class)))
                 .thenReturn(ShoppingCartUtil.shoppingCartGenerator());
         when(repo.findById(anyLong()))
                 .thenReturn(Optional.of(ShoppingCartUtil.shoppingCartGenerator()));
+        when(batchStockService.findAllByProductId(ArgumentMatchers.anyString()))
+                .thenReturn(BatchStocksTestUtil.listOfBatchStock());
+        when(customerService.getCustomerById(ArgumentMatchers.anyLong()))
+                .thenReturn(ShoppingCartUtil.customerGenerator());
+        when(customerService.getCustomerById(ArgumentMatchers.anyLong()))
+                .thenReturn(ShoppingCartUtil.customerGenerator());
     }
 
     /**
@@ -72,27 +80,37 @@ public class ShoppingCartServiceTest {
     @DisplayName("Create shopping cart when new shopping cart is valid")
     void createShoppingCart_whenValidNewShoppingCart() {
         Item item = ItemUtil.emptyItem();
-        List<BatchStock> batchStockList = BatchStocksTestUtil.listOfBatchStock();
         ShoppingCart shoppingCart = ShoppingCartUtil.shoppingCartGenerator();
-        shoppingCart.setStatus(Status.FECHADO);
-        item.setShoppingCart(shoppingCart);
+        shoppingCart.setStatus(Status.ABERTO);
         item.setAdvertisement(AdvertisementUtil.advertisementGenerator());
 
-        BDDMockito.when(batchStockService.findAllByProductId(ArgumentMatchers.anyString()))
-                .thenReturn(batchStockList);
-        BDDMockito.when(customerService.getCustomerById(ArgumentMatchers.anyLong()))
-                .thenReturn(ShoppingCartUtil.customerGenerator());
-        BDDMockito.when(itemService.createItem(ArgumentMatchers.any(ItemDTO.class), ArgumentMatchers.anyLong()))
+        BDDMockito.when(itemService.createItem(ArgumentMatchers.any(ItemDTO.class), ArgumentMatchers.any(ShoppingCart.class)))
                 .thenReturn(item);
-        BDDMockito.willDoNothing().given(itemService)
-                .save(ArgumentMatchers.any(Item.class));
 
         ShoppingCartDTO shoppingCartDTO = ShoppingCartUtil.shoppingCartDTOGenerator();
         ShoppingCart createdShopCart = service.createShoppingCart(shoppingCartDTO);
 
         assertThat(createdShopCart.getStatus()).isEqualTo(shoppingCartDTO.getStatus());
-//        assertThat(createdShopCart.getId()).isPositive();
-//        assertThat(createdShopCart).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Create shopping cart when new shopping cart is valid")
+    void createShoppingCart_whenValidNewShoppingCartStatusClosed() {
+        Item item = ItemUtil.emptyItem();
+        ShoppingCart shoppingCart = ShoppingCartUtil.shoppingCartGenerator();
+        item.setBatchStock(null);
+
+        item.setAdvertisement(AdvertisementUtil.advertisementGenerator());
+
+
+        BDDMockito.when(itemService.createItem(ArgumentMatchers.any(ItemDTO.class), ArgumentMatchers.any(ShoppingCart.class)))
+                .thenReturn(item);
+
+        ShoppingCartDTO shoppingCartDTO = ShoppingCartUtil.shoppingCartDTOGenerator();
+        shoppingCartDTO.setStatus(Status.FECHADO);
+        ShoppingCart createdShopCart = service.createShoppingCart(shoppingCartDTO);
+
+        assertThat(createdShopCart.getStatus()).isEqualTo(shoppingCartDTO.getStatus());
     }
 
     /**

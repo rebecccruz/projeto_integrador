@@ -21,12 +21,16 @@ public class ItemUtil {
         return item;
     }
 
-    public static Item completeItem() {
+    public static Item completeItem(ShoppingCart cart) {
         Item item = emptyItem();
         item.setAdvertisement(AdvertisementUtil.advertisementGenerator());
         item.setBatchStock(BatchStocksTestUtil.listOfBatchStock().stream().findFirst().get());
-        item.setShoppingCart(ShoppingCartUtil.shoppingCartGenerator());
+        item.setShoppingCart(cart);
         return item;
+    }
+
+    public static Item completeItem() {
+        return completeItem(ShoppingCartUtil.shoppingCartGenerator());
     }
 
     /**

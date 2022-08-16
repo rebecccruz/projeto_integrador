@@ -10,6 +10,7 @@ import br.com.dh.meli.projeto_integrador.repository.IBatchStockRepository;
 import br.com.dh.meli.projeto_integrador.util.BatchStocksTestUtil;
 import br.com.dh.meli.projeto_integrador.util.InboundOrderTestUtil;
 import br.com.dh.meli.projeto_integrador.util.SectionUtil;
+import br.com.dh.meli.projeto_integrador.util.WarehouseTestUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -212,7 +213,7 @@ class BatchStockServiceTest {
         List<BatchStock> list = new ArrayList<>();
         list = service.findAllBySectionsOrderByDueDate(sections);
         assertThat(list.size()).isPositive();
-        verify(repo, atLeast(1)).findBatchStocksBySectionOrderByDueDateAsc( SectionUtil.sectionGenerator() );
+        verify(repo, atLeast(1)).findBatchStocksBySectionOrderByDueDateAsc(ArgumentMatchers.any(Section.class));
     }
 
     /**
@@ -244,7 +245,8 @@ class BatchStockServiceTest {
         List<BatchStock> list = new ArrayList<>();
         list = service.findAllBySectionsAndByDueDateLessThan(sections, limitDate);
         assertThat(list.size()).isPositive();
-        verify(repo, atLeast(1)).findBatchStocksBySectionAndDueDateLessThanOrderByDueDateAsc( SectionUtil.sectionGenerator(), limitDate);
+        verify(repo, atLeast(1))
+                .findBatchStocksBySectionAndDueDateLessThanOrderByDueDateAsc(ArgumentMatchers.any(Section.class), ArgumentMatchers.any(LocalDate.class));
     }
 
     /**
