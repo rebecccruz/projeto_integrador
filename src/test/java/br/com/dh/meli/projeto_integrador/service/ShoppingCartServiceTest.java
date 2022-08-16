@@ -4,7 +4,6 @@ import br.com.dh.meli.projeto_integrador.dto.ItemDTO;
 import br.com.dh.meli.projeto_integrador.dto.ShoppingCartDTO;
 import br.com.dh.meli.projeto_integrador.enums.Status;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
-import br.com.dh.meli.projeto_integrador.model.BatchStock;
 import br.com.dh.meli.projeto_integrador.model.Item;
 import br.com.dh.meli.projeto_integrador.model.ShoppingCart;
 import br.com.dh.meli.projeto_integrador.repository.IShoppingCartRepository;
@@ -22,13 +21,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.http.HttpStatus;
-
-import java.util.List;
-import java.util.Optional;
-
+import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -97,7 +92,6 @@ public class ShoppingCartServiceTest {
     @DisplayName("Create shopping cart when new shopping cart is valid")
     void createShoppingCart_whenValidNewShoppingCartStatusClosed() {
         Item item = ItemUtil.emptyItem();
-        ShoppingCart shoppingCart = ShoppingCartUtil.shoppingCartGenerator();
         item.setBatchStock(null);
 
         item.setAdvertisement(AdvertisementUtil.advertisementGenerator());
