@@ -1,0 +1,1870 @@
+{
+	"info": {
+		"_postman_id": "4036d039-839c-433e-8b15-071a23239a27",
+		"name": "Projeto_Integrador",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21824266"
+	},
+	"item": [
+		{
+			"name": "Requisito 1",
+			"item": [
+				{
+					"name": "[201] Registrar um lote no estoque de produtos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderNumber\": 15,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"RF\",\n    \"representantId\": 1,\n    \"batchStock\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 10,\n            \"currentQuantity\": 10,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-23T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 20,\n            \"currentQuantity\": 20,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-24T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 20,\n            \"currentQuantity\": 20,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-25T17:46:51.190966\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"inboundorder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[201] Registrar um lote no estoque de produtos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"RF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2021-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2023-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"inboundorder"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 22:38:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"RF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2020-08-05\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2021-08-05\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2023-08-05\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "[400] Registrar um lote já existente de produtos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"BR\",\n    \"sectionCode\": \"FF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 1.0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"inboundorder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[400] Registrar um lote já existente de produtos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"BR\",\n    \"sectionCode\": \"FF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 1.0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"inboundorder"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 19:15:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Bad Request\",\n    \"status\": 400,\n    \"message\": \"A lista de BatchStock deve ter pelo menos 1 válido.\",\n    \"timestamp\": \"2022-08-15T16:15:43.918031\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[412] Registrar um lote já existente de produtos Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-31\",\n    \"warehouseCode\": \"BR\",\n    \"sectionCode\": \"FF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 1.0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"inboundorder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[412] Registrar um lote já existente de produtos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"BR\",\n    \"sectionCode\": \"FF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"String\",\n            \"currentTemperature\": 30,\n            \"minimumTemperature\": 1.0,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"inboundorder"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 22:41:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Precondition Failed\",\n    \"status\": 412,\n    \"message\": \"orderNumber already exists\",\n    \"timestamp\": \"2022-08-12T19:41:05.905725\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[201] Atualizar lote existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"FS\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2021-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2023-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"inboundorder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[400] Atualizar lote existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"RF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2021-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2023-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"inboundorder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[400] Atualizar lote existente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderNumber\": 55,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"RF\",\n    \"representantId\": 1,\n    \"batchStocks\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2021-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-05T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2023-08-05T17:46:51.190966\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"inboundorder"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 19:13:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Bad Request\",\n    \"status\": 400,\n    \"message\": \"A lista de BatchStock deve ter pelo menos 1 válido.\",\n    \"timestamp\": \"2022-08-15T16:13:47.873852\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[404] Atualizar lote existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderNumber\": 15,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"FF\",\n    \"representantId\": 1,\n    \"batchStock\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-23T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-24T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-25T17:46:51.190966\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"inboundorder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Atualizar lote existente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderNumber\": 15,\n    \"orderDate\": \"2022-08-05\",\n    \"warehouseCode\": \"MLB-SC\",\n    \"sectionCode\": \"FF\",\n    \"representantId\": 1,\n    \"batchStock\": [\n        {\n            \"batchNumber\": 3,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 1,\n            \"currentQuantity\": 1,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-23T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 2,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 2,\n            \"currentQuantity\": 2,\n            \"manufacturingDate\": \"2022-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-24T17:46:51.190966\"\n        },\n        {\n            \"batchNumber\": 1,\n            \"productId\": \"leite\",\n            \"currentTemperature\": 4,\n            \"minimumTemperature\": 4,\n            \"initialQuantity\": 3,\n            \"currentQuantity\": 3,\n            \"manufacturingDate\": \"2020-08-05T17:46:51.190966\",\n            \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n            \"dueDate\": \"2022-08-25T17:46:51.190966\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/inboundorder",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"inboundorder"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 19:17:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"orderNumber not found\",\n    \"timestamp\": \"2022-08-15T16:17:47.643949\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Requisito 2",
+			"item": [
+				{
+					"name": "[200] Listar todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/list",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar todos os produtos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/list",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 21:56:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": \"leite\",\n        \"seller\": {\n            \"id\": 1,\n            \"name\": \"Lari\"\n        },\n        \"price\": 200,\n        \"description\": \"description\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "[404] Listar todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/list",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[200] Listar produtos por categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/list?category=RF",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"list"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "RF"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar produtos por categoria",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/list?category=RF",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"list"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "RF"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 22:05:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": \"leite\",\n        \"seller\": {\n            \"id\": 1,\n            \"name\": \"Lari\"\n        },\n        \"price\": 200,\n        \"description\": \"description\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "[404] Listar produtos por categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/list?productCategory=RR",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"list"
+							],
+							"query": [
+								{
+									"key": "productCategory",
+									"value": "RR",
+									"description": "Categoria do produto pode assumir os seguintes valores: FS (fresco), RF (refrigerado), FF (congelado)."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[201] Registrar produtos no pedido da ordem de compra",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"advertisementId\":1,\n            \"quantity\": 1\n        }\n    ],\n    \"status\": 1,\n    \"customerId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"shopping-cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[200] Exibir produtos no pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/orders/1",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"shopping-cart",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[404] Exibir produtos no pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/orders/2",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"shopping-cart",
+								"orders",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Exibir produtos no pedido",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/orders/2",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"shopping-cart",
+										"orders",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 20:27:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"The shopping cart doesn't exist\",\n    \"timestamp\": \"2022-08-15T17:27:34.835673\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[201] Atualizar o status de um carrinho",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/1/?status=fechado",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"shopping-cart",
+								"1",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "fechado",
+									"description": "status=Aberto,Fechado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[404] Alterar o status de um carrinho inexistente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/2/?status=aberto",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"shopping-cart",
+								"2",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "aberto"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Alterar o status de um carrinho inexistente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/shopping-cart/2/?status=aberto",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"shopping-cart",
+										"2",
+										""
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "aberto"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Aug 2022 20:25:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"The shopping cart doesn't exist\",\n    \"timestamp\": \"2022-08-15T17:25:49.440211\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Requisito 3",
+			"item": [
+				{
+					"name": "[200] Listar produtos com todos os lotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/list?productId=leite",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"list"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "leite"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar produtos com todos os lotes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/leite",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"leite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 00:29:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": \"leite\",\n    \"warehouses\": [\n        {\n            \"warehouseCode\": \"MLB-SC\",\n            \"totalQuantity\": 6\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "[404] Listar produtos por lote",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/list?productId=chocolate",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"warehouse",
+								"list"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "chocolate",
+									"description": "Identificador do produto."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Listar produtos por lote",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/list?productId=chocolate",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"list"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "chocolate",
+											"description": "Identificador do produto."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 22:33:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"empty list not found any result\",\n    \"timestamp\": \"2022-08-12T19:33:19.640999\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[200] Listar produtos ordenados por lote",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/list?productId=leite&order=L",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"list"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "leite",
+									"description": "Identificador do produto."
+								},
+								{
+									"key": "order",
+									"value": "L",
+									"description": "L (ordenado por lote), Q (ordenado por quantidade atual) V (ordenado por data de vencimento)."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar produtos ordenados por lote",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/list?productId=leite&order=L",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"list"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "leite",
+											"description": "Identificador do produto."
+										},
+										{
+											"key": "order",
+											"value": "L",
+											"description": "Ordenação de lista de produtos, pode ser por: L (ordenado por lote), Q (ordenado por quantidade atual) ou V (ordenado por data de vencimento)."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 22:34:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"warehouseCode\": \"MLB-SC\",\n        \"sectionCode\": \"RF\",\n        \"productId\": \"leite\",\n        \"batchStocks\": [\n            {\n                \"batchNumber\": 1,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 3,\n                \"currentQuantity\": 3,\n                \"manufacturingDate\": \"2020-08-05\",\n                \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n                \"dueDate\": \"2023-08-05\"\n            },\n            {\n                \"batchNumber\": 2,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 2,\n                \"currentQuantity\": 2,\n                \"manufacturingDate\": \"2022-08-05\",\n                \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n                \"dueDate\": \"2022-08-05\"\n            },\n            {\n                \"batchNumber\": 3,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 1,\n                \"currentQuantity\": 1,\n                \"manufacturingDate\": \"2020-08-05\",\n                \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n                \"dueDate\": \"2021-08-05\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "[200] Listar produtos ordenados por quantidade atual",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/list?productId=leite&order=Q",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"list"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "leite",
+									"description": "Identificador do produto."
+								},
+								{
+									"key": "order",
+									"value": "Q",
+									"description": "L (ordenado por lote), Q (ordenado por quantidade atual) V (ordenado por data de vencimento)."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar produtos ordenados por quantidade atual",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/list?productId=leite&order=Q",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"list"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "leite",
+											"description": "Identificador do produto."
+										},
+										{
+											"key": "order",
+											"value": "Q",
+											"description": "Ordenação de lista de produtos, pode ser por: L (ordenado por lote), Q (ordenado por quantidade atual) ou V (ordenado por data de vencimento)."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 22:34:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"warehouseCode\": \"MLB-SC\",\n        \"sectionCode\": \"RF\",\n        \"productId\": \"leite\",\n        \"batchStocks\": [\n            {\n                \"batchNumber\": 3,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 1,\n                \"currentQuantity\": 1,\n                \"manufacturingDate\": \"2020-08-05\",\n                \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n                \"dueDate\": \"2021-08-05\"\n            },\n            {\n                \"batchNumber\": 2,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 2,\n                \"currentQuantity\": 2,\n                \"manufacturingDate\": \"2022-08-05\",\n                \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n                \"dueDate\": \"2022-08-05\"\n            },\n            {\n                \"batchNumber\": 1,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 3,\n                \"currentQuantity\": 3,\n                \"manufacturingDate\": \"2020-08-05\",\n                \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n                \"dueDate\": \"2023-08-05\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "[200] Listar produtos ordenados por data de vencimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/list?productId=leite&order=V",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"list"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "leite",
+									"description": "Identificador do produto."
+								},
+								{
+									"key": "order",
+									"value": "V",
+									"description": "L (ordenado por lote), Q (ordenado por quantidade atual) V (ordenado por data de vencimento)."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar produtos ordenados por data de vencimento",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/list?productId=leite&order=V",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"list"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "leite",
+											"description": "Identificador do produto."
+										},
+										{
+											"key": "order",
+											"value": "V",
+											"description": "L (ordenado por lote), Q (ordenado por quantidade atual) V (ordenado por data de vencimento)."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 22:36:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"warehouseCode\": \"MLB-SC\",\n        \"sectionCode\": \"RF\",\n        \"productId\": \"leite\",\n        \"batchStocks\": [\n            {\n                \"batchNumber\": 3,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 1,\n                \"currentQuantity\": 1,\n                \"manufacturingDate\": \"2020-08-05\",\n                \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n                \"dueDate\": \"2021-08-05\"\n            },\n            {\n                \"batchNumber\": 2,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 2,\n                \"currentQuantity\": 2,\n                \"manufacturingDate\": \"2022-08-05\",\n                \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n                \"dueDate\": \"2022-08-05\"\n            },\n            {\n                \"batchNumber\": 1,\n                \"productId\": \"leite\",\n                \"currentTemperature\": 4,\n                \"minimumTemperature\": 4,\n                \"initialQuantity\": 3,\n                \"currentQuantity\": 3,\n                \"manufacturingDate\": \"2020-08-05\",\n                \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n                \"dueDate\": \"2023-08-05\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Requisito 4",
+			"item": [
+				{
+					"name": "[200] Consultar quantidade total de produtos por armazém",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/?idProduct=leite",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"warehouse",
+								""
+							],
+							"query": [
+								{
+									"key": "idProduct",
+									"value": "leite",
+									"description": "Identificador do produto."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Consultar quantidade total de produtos por armazém",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/leite",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"leite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 00:36:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": \"leite\",\n    \"warehouses\": [\n        {\n            \"warehouseCode\": \"MLB-SC\",\n            \"totalQuantity\": 6\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "[404] Consultar quantidade total de produtos por armazém",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/idProduct?idProduct=chocolate",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"warehouse",
+								"idProduct"
+							],
+							"query": [
+								{
+									"key": "idProduct",
+									"value": "chocolate",
+									"description": "Identificador do produto."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Consultar quantidade total de produtos por armazém",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/chocolate",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"chocolate"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 00:36:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"productId not found\",\n    \"timestamp\": \"2022-08-13T21:36:49.29937\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Requisito 5",
+			"item": [
+				{
+					"name": "[200] Listar todos os lotes armazenados do setor do armazém ordenados por data de vencimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/?sectionCode=RF&days=20",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"due-date",
+								""
+							],
+							"query": [
+								{
+									"key": "sectionCode",
+									"value": "RF",
+									"description": "Código do setor."
+								},
+								{
+									"key": "days",
+									"value": "20",
+									"description": "Dias para vencimento."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar todos os lotes armazenados do setor do armazém ordenados por data de vencimento",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/due-date/?warehouseCode=MLB-SC&sectionCode=RF",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"warehouse",
+										"due-date",
+										""
+									],
+									"query": [
+										{
+											"key": "warehouseCode",
+											"value": "MLB-SC"
+										},
+										{
+											"key": "sectionCode",
+											"value": "RF"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Aug 2022 23:37:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"batchNumber\": 3,\n        \"productId\": \"leite\",\n        \"currentTemperature\": 4,\n        \"minimumTemperature\": 4,\n        \"initialQuantity\": 1,\n        \"currentQuantity\": 1,\n        \"manufacturingDate\": \"2020-08-05\",\n        \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n        \"dueDate\": \"2021-08-05\"\n    },\n    {\n        \"batchNumber\": 2,\n        \"productId\": \"leite\",\n        \"currentTemperature\": 4,\n        \"minimumTemperature\": 4,\n        \"initialQuantity\": 2,\n        \"currentQuantity\": 2,\n        \"manufacturingDate\": \"2022-08-05\",\n        \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n        \"dueDate\": \"2022-08-05\"\n    },\n    {\n        \"batchNumber\": 1,\n        \"productId\": \"leite\",\n        \"currentTemperature\": 4,\n        \"minimumTemperature\": 4,\n        \"initialQuantity\": 3,\n        \"currentQuantity\": 3,\n        \"manufacturingDate\": \"2020-08-05\",\n        \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n        \"dueDate\": \"2023-08-05\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "[404] Listar todos os lotes armazenados do setor do armazém ordenados por data de vencimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/?sectionCode=FF&days=20",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"due-date",
+								""
+							],
+							"query": [
+								{
+									"key": "sectionCode",
+									"value": "FF",
+									"description": "Código do setor."
+								},
+								{
+									"key": "days",
+									"value": "20",
+									"description": "Dias para vencimento."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Listar todos os lotes armazenados do setor do armazém ordenados por data de vencimento",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/?sectionCode=FF",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"batch-stock",
+										"due-date",
+										""
+									],
+									"query": [
+										{
+											"key": "sectionCode",
+											"value": "FF"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 00:44:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"empty list not found any result\",\n    \"timestamp\": \"2022-08-13T21:44:08.148092\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[200] Listar todos os lotes no prazo de validade e pertencentes a uma categoria de produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/list/?category=RF&days=12",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"due-date",
+								"list",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "RF",
+									"description": "Código do setor."
+								},
+								{
+									"key": "days",
+									"value": "12",
+									"description": "Dias para vencimento."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Listar todos os lotes no prazo de validade e pertencentes a uma categoria de produto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/list/?category=RF&days=12",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"batch-stock",
+										"due-date",
+										"list",
+										""
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "RF"
+										},
+										{
+											"key": "days",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 00:58:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"batchNumber\": 3,\n        \"productId\": \"leite\",\n        \"currentTemperature\": 4,\n        \"minimumTemperature\": 4,\n        \"initialQuantity\": 1,\n        \"currentQuantity\": 1,\n        \"manufacturingDate\": \"2020-08-05\",\n        \"manufacturingTime\": \"2020-08-05T17:46:51.190966\",\n        \"dueDate\": \"2022-08-23\"\n    },\n    {\n        \"batchNumber\": 2,\n        \"productId\": \"leite\",\n        \"currentTemperature\": 4,\n        \"minimumTemperature\": 4,\n        \"initialQuantity\": 2,\n        \"currentQuantity\": 2,\n        \"manufacturingDate\": \"2022-08-05\",\n        \"manufacturingTime\": \"2022-08-05T17:46:51.190966\",\n        \"dueDate\": \"2022-08-24\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "[404] Listar todos os lotes no prazo de validade e pertencentes a uma categoria de produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/list/?category=FF&days=12",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"fresh-products",
+								"batch-stock",
+								"due-date",
+								"list",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "FF",
+									"description": "Código do setor."
+								},
+								{
+									"key": "days",
+									"value": "12",
+									"description": "Dias para vencimento."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[404] Listar todos os lotes no prazo de validade e pertencentes a uma categoria de produto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_Url}}/api/v1/fresh-products/batch-stock/due-date/list/?category=FF&days=12",
+									"host": [
+										"{{base_Url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"fresh-products",
+										"batch-stock",
+										"due-date",
+										"list",
+										""
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "FF"
+										},
+										{
+											"key": "days",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 00:59:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"message\": \"empty list not found any result\",\n    \"timestamp\": \"2022-08-13T21:59:42.114865\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

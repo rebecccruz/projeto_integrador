@@ -1,16 +1,13 @@
 <h1 align=center> Produtos Frescos - Projeto Integrador </h1>
 <p align=center> TRANSFORMELI Grupo 2 </p>
-<div align=center>
-<img src="https://github.com/rebecccruz/gif/blob/main/giphy.gif" />
-</div>
 <br>
 
 ## ✅ Testes
-* Integração [`src/test/java/br/com/dh/meli/projeto_integrador/integration`](src/test/java/br/com/dh/meli/projeto_integrador/integration)
 * Unitários [`src/test/java/br/com/dh/meli/projeto_integrador`](src/test/java/br/com/dh/meli/projeto_integrador)
 
 ## 🚩 Postman collection
-* Exemplos de Uso [`docs/Projeto-Integrador-Grupo-2.postman_collection.json`](docs/Projeto-Integrador-Grupo-2.postman_collection.json)
+* Variveis do Postman [`src/main/resources/collection/workspace.postman_globals.json`](src/main/resources/collection/workspace.postman_globals.json)
+* Exemplos de Uso [`src/main/resources/collection/Projeto_Integrador.postman_collection.json`](src/main/resources/collection/Projeto_Integrador.postman_collection.json)
 
 ## 📝 Proposta
 Criar uma API REST que faz o gerenciamento de estoque e venda de produtos frescos.
