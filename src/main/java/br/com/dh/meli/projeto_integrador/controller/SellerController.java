@@ -1,6 +1,5 @@
 package br.com.dh.meli.projeto_integrador.controller;
 
-import br.com.dh.meli.projeto_integrador.dto.SellerDTO;
 import br.com.dh.meli.projeto_integrador.model.Seller;
 import br.com.dh.meli.projeto_integrador.repository.ISellerRepository;
 import br.com.dh.meli.projeto_integrador.service.SellerService;
@@ -38,12 +37,12 @@ public class SellerController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Seller> updateSeller(@Valid @RequestBody Seller seller){
-        return null;
+    public Seller updateSeller(@Valid @RequestBody Seller seller){
+        return service.updateSeller(seller);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteSeller(@PathVariable Long id){
+    public Seller deleteSeller(@PathVariable Long id){
         return null;
     }
 
