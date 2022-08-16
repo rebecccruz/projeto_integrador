@@ -1,7 +1,7 @@
 package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.dto.SellerDTO;
-import br.com.dh.meli.projeto_integrador.exception.PreconditionFailedException;
+import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
 import br.com.dh.meli.projeto_integrador.mapper.ISellerMapper;
 import br.com.dh.meli.projeto_integrador.model.Seller;
 import br.com.dh.meli.projeto_integrador.repository.ISellerRepository;
@@ -26,7 +26,7 @@ public class SellerService implements ISellerService {
     public Seller findSellerById(Long id) {
         Optional<Seller> seller = repo.findById(id);
         if (seller.isEmpty()){
-            throw new PreconditionFailedException("Seller does not exist");
+            throw new NotFoundException("Seller not found");
         }
         return seller.get();
     }
@@ -46,7 +46,7 @@ public class SellerService implements ISellerService {
     public void deleteSeller(Long id) {
         findSellerById(id);
         repo.deleteById(id);
-    }
 
+    }
 
 }

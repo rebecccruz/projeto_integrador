@@ -1,5 +1,6 @@
 package br.com.dh.meli.projeto_integrador.util;
 
+import br.com.dh.meli.projeto_integrador.dto.SellerDTO;
 import br.com.dh.meli.projeto_integrador.model.Seller;
 
 /**
@@ -21,5 +22,12 @@ public class SellerTestUtil {
         seller.setId(1L);
         seller.setName("Larissa");
         return seller;
+    }
+
+    public static SellerDTO buildSellerDTO(Long id, String name) {
+        SellerDTO sellerDTO = new SellerDTO();
+        sellerDTO.setId(id);
+        sellerDTO.setName(name);
+        return sellerDTO;
     }
 }
