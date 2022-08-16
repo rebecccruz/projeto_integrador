@@ -19,6 +19,7 @@ public class BatchStocksTestUtil {
 
     /**
      * Generate empty BatchStockDTO
+     *
      * @return BatchStockDTO
      * @author Lucas Pinheiro Rocha
      * @author Alexandre Borges Souza
@@ -52,7 +53,19 @@ public class BatchStocksTestUtil {
     }
 
     /**
+     * Return BatchStock by BatchStockDTO
+     *
+     * @return BatchStock
+     * @author Alexandre Borges Souza
+     */
+    public static BatchStock batchStockSampleOneByDTO() {
+        BatchStock batchStock = IBatchStockMapper.MAPPER.mappingBatchStockDTOToBatchStock(batchStockDTOSampleOne());
+        return batchStock;
+    }
+
+    /**
      * Generate list of BatchStockDTO for payload
+     *
      * @return List<BatchStockDTO>
      * @author Lucas Pinheiro Rocha
      * @author Alexandre Borges Souza
@@ -65,6 +78,7 @@ public class BatchStocksTestUtil {
 
     /**
      * Generate list of BatchStockDTO
+     *
      * @return List<BatchStockDTO>
      * @author Lucas Pinheiro Rocha
      * @author Alexandre Borges Souza
