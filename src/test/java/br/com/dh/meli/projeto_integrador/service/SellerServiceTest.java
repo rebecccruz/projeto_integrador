@@ -2,7 +2,6 @@ package br.com.dh.meli.projeto_integrador.service;
 
 import br.com.dh.meli.projeto_integrador.dto.SellerDTO;
 import br.com.dh.meli.projeto_integrador.exception.NotFoundException;
-import br.com.dh.meli.projeto_integrador.mapper.ISellerMapper;
 import br.com.dh.meli.projeto_integrador.model.Seller;
 import br.com.dh.meli.projeto_integrador.repository.ISellerRepository;
 import br.com.dh.meli.projeto_integrador.util.SellerTestUtil;
@@ -42,30 +41,26 @@ class SellerServiceTest {
         BDDMockito
                 .when(repo.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.of(SellerTestUtil.sellerGenerator()));
+    }
+
+    @Test
+    void createSeller() {
+        Seller newSeller = Seller.builder().build();
+        newSeller.setId(1L);
+        newSeller.setName("Teste");
 
         BDDMockito
                 .when(repo.save(ArgumentMatchers.any(Seller.class)))
-                .thenReturn(SellerTestUtil.sellerGenerator());
-    }
+                .thenReturn(newSeller);
 
-//    @Test
-//    void createSeller() {
-//        Seller newSeller = Seller.builder().build();
-//        newSeller.setId(1L);
-//        newSeller.setName("Teste");
-//
-//        BDDMockito
-//                .when(repo.save(ArgumentMatchers.any(Seller.class)))
-//                .thenReturn(newSeller);
-//
-//        SellerDTO dto = SellerDTO.builder().build();
-//        dto.setId(1L);
-//        dto.setName("Teste");
-//
-//        Seller rSeller = service.createSeller(dto);
-//        assertThat(rSeller.getName()).isNotNull();
-//        verify(repo,atLeastOnce()).save(ArgumentMatchers.any(Seller.class));
-//    }
+        SellerDTO dto = SellerDTO.builder().build();
+        dto.setId(1L);
+        dto.setName("Teste");
+
+        Seller rSeller = service.createSeller(dto);
+        assertThat(rSeller.getName()).isNotNull();
+        verify(repo,atLeastOnce()).save(ArgumentMatchers.any(Seller.class));
+    }
 
     @Test
     void findSellerById() {
@@ -91,17 +86,23 @@ class SellerServiceTest {
 
     @Test
     void saveSeller() {
-        Seller seller = SellerTestUtil.sellerGenerator();
+        BDDMockito
+                .when(repo.save(ArgumentMatchers.any(Seller.class)))
+                .thenReturn(SellerTestUtil.sellerGenerator());
 
+        Seller seller = SellerTestUtil.sellerGenerator();
         Seller rSeller = service.saveSeller(seller);
 
         assertThat(rSeller.getId()).isEqualTo(seller.getId());
         verify(repo, atLeastOnce()).save(seller);
-
     }
 
     @Test
     void updateSeller() {
+        BDDMockito
+                .when(repo.save(ArgumentMatchers.any(Seller.class)))
+                .thenReturn(SellerTestUtil.sellerGenerator());
+
         Seller newSeller = SellerTestUtil.sellerGenerator();
         Seller updatedSeller = service.updateSeller(newSeller);
 
@@ -120,6 +121,5 @@ class SellerServiceTest {
 
         willDoNothing().given(repo).deleteById(1L);
         service.deleteSeller(1L);
-        //verify(repo, never()).deleteById(1L);
     }
 }
