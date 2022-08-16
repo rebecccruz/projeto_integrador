@@ -1,6 +1,7 @@
 package br.com.dh.meli.projeto_integrador.util;
 
 import br.com.dh.meli.projeto_integrador.dto.ItemDTO;
+import br.com.dh.meli.projeto_integrador.enums.Status;
 import br.com.dh.meli.projeto_integrador.model.Item;
 import br.com.dh.meli.projeto_integrador.model.ShoppingCart;
 
@@ -15,6 +16,8 @@ public class ItemUtil {
         Item item = new Item();
         item.setId(1L);
         item.setQuantity(1);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setStatus(Status.FECHADO);
         return item;
     }
 
