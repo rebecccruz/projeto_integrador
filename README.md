@@ -16,6 +16,7 @@ Criar uma API REST que faz o gerenciamento de estoque e venda de produtos fresco
 
 ## 💣 Requisito 6
 * Gerenciador de vendedores
+* <a href="https://drive.google.com/file/d/1YAgjXLTfXWWIpHxZKFwE9UInseWDDd3_/view">User Story</a>
 * Collection Postman [`src/main/resources/collection/PI_Req6.postman_collection.json`]
 * Teste unitário: [`src/test/java/br/com/dh/meli/projeto_integrador/service/SellerServiceTest.java`]
 * Endpoints:

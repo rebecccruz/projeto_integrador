@@ -45,37 +45,17 @@ class SellerServiceTest {
 
     @Test
     void createSeller() {
-//         BDDMockito
-//         .when(repo.save(ArgumentMatchers.any(Seller.class)))
-//         .thenReturn(SellerTestUtil.sellerGenerator());
-//
-//         Seller newSeller = SellerTestUtil.sellerGenerator();
-//         Seller createdSeller = service.createSeller(ISellerMapper.MAPPER.mappingSellerModelToSellerDTO(newSeller));
-//
-//         assertThat(createdSeller).isNotNull();
+        Seller newSeller = Seller.builder().build();
+        newSeller.setId(1L);
+        newSeller.setName("Teste");
+        when(repo.save(ArgumentMatchers.any(Seller.class))).thenReturn(newSeller);
+        SellerDTO dto = SellerDTO.builder().build();
+        dto.setId(1L);
+        dto.setName("Teste");
 
-//         BDDMockito
-//         .when(service.createSeller(ArgumentMatchers.any(SellerDTO.class)))
-//         .thenReturn(SellerTestUtil.sellerGenerator());
-//
-//         SellerDTO sellerDTO = SellerTestUtil.buildSellerDTO(1L,"Teste");
-//
-//         Seller seller = SellerTestUtil.sellerGenerator();
-//         Seller rSeller = service.createSeller(sellerDTO);
-//
-//         assertThat(rSeller.getId()).isEqualTo(seller.getId());
-
-//        Seller newSeller = Seller.builder().build();
-//        newSeller.setId(1L);
-//        newSeller.setName("Teste");
-//        when(repo.save(ArgumentMatchers.any(Seller.class))).thenReturn(newSeller);
-//        SellerDTO dto = SellerDTO.builder().build();
-//        dto.setId(1L);
-//        dto.setName("Teste");
-//
-//        Seller rSeller = service.createSeller(dto);
-//        assertThat(rSeller.getName()).isNotNull();
-//        verify(repo,atLeastOnce()).save(ArgumentMatchers.any(Seller.class));
+        Seller rSeller = service.createSeller(dto);
+        assertThat(rSeller.getName()).isNotNull();
+        verify(repo,atLeastOnce()).save(ArgumentMatchers.any(Seller.class));
     }
 
     @Test
