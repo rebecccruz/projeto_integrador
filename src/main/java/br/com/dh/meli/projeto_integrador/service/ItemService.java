@@ -23,8 +23,6 @@ public class ItemService implements IItemService {
     @Autowired
     private IAdvertisementService advertisementService;
 
-    @Autowired
-    private IShoppingCartService shoppingCartService;
     @Override
     public Item getItemById(Long id) {
         Optional<Item> item = repo.findById(id);
@@ -39,10 +37,9 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public Item createItem(ItemDTO dto, Long shoppingCartId) {
+    public Item createItem(ItemDTO dto, ShoppingCart shoppingCart) {
         Item item = IItemMapper.MAPPER.mappingItemDTOItem(dto);
         Advertisement advertisement = advertisementService.getAdvertisementById(dto.getAdvertisementId());
-        ShoppingCart shoppingCart = shoppingCartService.getShoppingCartById(shoppingCartId);
         item.setAdvertisement(advertisement);
         item.setShoppingCart(shoppingCart);
         return repo.save(item);

@@ -80,7 +80,7 @@ class ItemServiceTest {
 
     @Test
     void createItem() {
-        Item item = service.createItem(ItemUtil.emptyItemDTO(), ShoppingCartUtil.shoppingCartGenerator().getId());
+        Item item = service.createItem(ItemUtil.emptyItemDTO(), ShoppingCartUtil.shoppingCartGenerator());
 
         assertThat(item.getId()).isEqualTo(ItemUtil.emptyItem().getId());
     }
