@@ -273,8 +273,8 @@ class BatchStockServiceTest {
     void decreaseQuantity() {
         BatchStock batchStock = BatchStocksTestUtil.batchStockSampleOneByDTO();
         when(repo.save(ArgumentMatchers.any(BatchStock.class))).thenReturn(batchStock);
+        Integer currentQuantity = batchStock.getCurrentQuantity();
         BatchStock result = service.decreaseQuantity(batchStock, 5);
-        System.out.printf(result.getCurrentQuantity().toString());
-        assertTrue(result.getCurrentQuantity().equals(batchStock.getCurrentQuantity()));
+        assertTrue(result.getCurrentQuantity() < currentQuantity);
     }
 }
