@@ -3,6 +3,8 @@ package br.com.dh.meli.projeto_integrador.util;
 import br.com.dh.meli.projeto_integrador.dto.BatchStockDTO;
 import br.com.dh.meli.projeto_integrador.mapper.IBatchStockMapper;
 import br.com.dh.meli.projeto_integrador.model.BatchStock;
+import br.com.dh.meli.projeto_integrador.model.Warehouse;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +87,11 @@ public class BatchStocksTestUtil {
      */
     public static List<BatchStock> listOfBatchStock() {
         List<BatchStockDTO> batchStockList = payloadForInboundOrderPayload();
-        return IBatchStockMapper.MAPPER.mapDTO(batchStockList);
+        List<BatchStock> mapped = IBatchStockMapper.MAPPER.mapDTO(batchStockList);
+        mapped.stream().forEach(model -> {
+            model.setInboundOrder(InboundOrderUtil.emptyInboundOrder());
+            model.setSection(SectionUtil.sectionGenerator(WarehouseUtil.warehouseGenerator(), mapped));
+        });
+        return mapped;
     }
 }
