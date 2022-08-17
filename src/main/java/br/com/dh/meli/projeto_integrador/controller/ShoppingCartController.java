@@ -20,17 +20,33 @@ public class ShoppingCartController {
     @Autowired
     private IShoppingCartService service;
 
+    /**
+     * getShoppingCart
+     * @param shoppingCartId
+     * @author Larissa Navarro e Isaias Finger
+     */
+
     @GetMapping("/shopping-cart/orders/{shoppingCartId}")
     public ResponseEntity<ShoppingCartDTO> getShoppingCart(@PathVariable Long shoppingCartId){
         return ResponseEntity.ok(service.convertToDTO(service.getShoppingCartById(shoppingCartId)));
     }
 
-
+    /**
+     * create shoppingCart
+     * @param shoppingCartDto
+     * @author Larissa Navarro e Isaias Finger
+     */
     @PostMapping("/shopping-cart")
     public ResponseEntity<ShoppingCartDTO> createShoppingCart(@RequestBody ShoppingCartDTO shoppingCartDto){
         return  ResponseEntity.status(HttpStatus.CREATED).body(service.convertToDTO(service.createShoppingCart(shoppingCartDto)));
     }
 
+    /**
+     * create shoppingCart
+     * @param shoppingCartId
+     * @param status
+     * @author Larissa Navarro e Isaias Finger
+     */
     @PutMapping("/shopping-cart/{shoppingCartId}")
     public ResponseEntity<ShoppingCartDTO> updateShoppingCart(@PathVariable @Valid Long shoppingCartId, @RequestParam(required = false) Optional<String> status){
         if(status.isEmpty()){
