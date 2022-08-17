@@ -47,15 +47,14 @@ class SellerServiceTest {
     void createSeller() {
         Seller newSeller = Seller.builder().build();
         newSeller.setId(1L);
-        newSeller.setName("Teste");
+        newSeller.setName("Rebecca C");
         when(repo.save(ArgumentMatchers.any(Seller.class))).thenReturn(newSeller);
         SellerDTO dto = SellerDTO.builder().build();
-        dto.setId(1L);
-        dto.setName("Teste");
+        dto.setName("Rebecca C");
 
         Seller rSeller = service.createSeller(dto);
         assertThat(rSeller.getName()).isNotNull();
-        verify(repo,atLeastOnce()).save(ArgumentMatchers.any(Seller.class));
+        verify(repo,times(1)).save(ArgumentMatchers.any(Seller.class));
     }
 
     @Test

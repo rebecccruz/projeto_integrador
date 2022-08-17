@@ -16,9 +16,11 @@ public class SellerService implements ISellerService {
     @Autowired
     ISellerRepository repo;
 
+
     @Override
     public Seller createSeller(SellerDTO sellerDTO) {
         Seller seller = ISellerMapper.MAPPER.mappingSellerDTOToSellerModel(sellerDTO);
+        seller.setName(sellerDTO.getName());
         return repo.save(seller);
     }
 
