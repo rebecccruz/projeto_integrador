@@ -286,7 +286,7 @@
 					]
 				},
 				{
-					"name": "[404] Atualizar lote existente",
+					"name": "[404] Atualizar um lote não existente",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -441,26 +441,6 @@
 							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": \"leite\",\n        \"seller\": {\n            \"id\": 1,\n            \"name\": \"Lari\"\n        },\n        \"price\": 200,\n        \"description\": \"description\"\n    }\n]"
 						}
 					]
-				},
-				{
-					"name": "[404] Listar todos os produtos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_Url}}/api/v1/fresh-products/list",
-							"host": [
-								"{{base_Url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"fresh-products",
-								"list"
-							]
-						}
-					},
-					"response": []
 				},
 				{
 					"name": "[200] Listar produtos por categoria",
@@ -885,7 +865,7 @@
 					]
 				},
 				{
-					"name": "[404] Listar produtos por lote",
+					"name": "[404] Listar produto não existente",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1257,7 +1237,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/?idProduct=leite",
+							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/leite",
 							"host": [
 								"{{base_Url}}"
 							],
@@ -1266,14 +1246,7 @@
 								"v1",
 								"fresh-products",
 								"warehouse",
-								""
-							],
-							"query": [
-								{
-									"key": "idProduct",
-									"value": "leite",
-									"description": "Identificador do produto."
-								}
+								"leite"
 							]
 						}
 					},
@@ -1333,7 +1306,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/idProduct?idProduct=chocolate",
+							"raw": "{{base_Url}}/api/v1/fresh-products/warehouse/chocolate",
 							"host": [
 								"{{base_Url}}"
 							],
@@ -1342,14 +1315,7 @@
 								"v1",
 								"fresh-products",
 								"warehouse",
-								"idProduct"
-							],
-							"query": [
-								{
-									"key": "idProduct",
-									"value": "chocolate",
-									"description": "Identificador do produto."
-								}
+								"chocolate"
 							]
 						}
 					},
@@ -1502,7 +1468,7 @@
 					]
 				},
 				{
-					"name": "[404] Listar todos os lotes armazenados do setor do armazém ordenados por data de vencimento",
+					"name": "[404] Listar todos os lotes armazenados do setor inválido",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1686,7 +1652,7 @@
 					]
 				},
 				{
-					"name": "[404] Listar todos os lotes no prazo de validade e pertencentes a uma categoria de produto",
+					"name": "[404] Listar todos os lotes no prazo de validade e categoria inválida",
 					"request": {
 						"method": "GET",
 						"header": [],
