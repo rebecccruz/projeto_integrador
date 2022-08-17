@@ -41,6 +41,13 @@ public class ShoppingCartService implements IShoppingCartService {
     @Autowired
     private IItemService itemService;
 
+    /**
+     * Get shoppingCart by id
+     * @param id
+     * @return ShoppingCart
+     * @author Larissa Navarro e Isaias Finger
+     */
+
     @Override
     public ShoppingCart getShoppingCartById(Long id) {
         Optional<ShoppingCart> shoppingCart = repo.findById(id);
@@ -49,6 +56,13 @@ public class ShoppingCartService implements IShoppingCartService {
         }
         return shoppingCart.get();
     }
+
+    /**
+     * Create shoppingCart with ShoppingCartDTO
+     * @param dto
+     * @return ShoppingCart
+     * @author Larissa Navarro e Isaias Finger
+     */
 
     @Override
     public ShoppingCart createShoppingCart(ShoppingCartDTO dto) {
@@ -66,6 +80,12 @@ public class ShoppingCartService implements IShoppingCartService {
         return shoppingCart;
     }
 
+    /**
+     * Reserve BatchStock by Item
+     * @param item
+     * @author Larissa Navarro e Isaias Finger
+     */
+
     private void reserveBatchStockByItem(Item item) {
         List<BatchStock> batchStocks = batchStockService.findAllByProductId(item.getAdvertisement().getProductId());
         batchStocks.stream().forEach(b -> {
@@ -81,11 +101,21 @@ public class ShoppingCartService implements IShoppingCartService {
         }
     }
 
+    /**
+     * Verify dueDate, if expired not add
+     * @param date
+     * @author Larissa Navarro e Isaias Finger
+     */
     private boolean verifyDueDate(LocalDate date) {
         long differenceData = DAYS.between(LocalDate.now(), date);
         return differenceData >= 21;
     }
 
+    /**
+     * Decrease quantity in batchstock
+     * @param item
+     * @author Larissa Navarro e Isaias Finger
+     */
     private void decreaseQuantity( Item item){
         Integer quantity = item.getQuantity();
         Integer stockQuantity = item.getBatchStock().getCurrentQuantity();
@@ -93,11 +123,23 @@ public class ShoppingCartService implements IShoppingCartService {
            batchStockService.decreaseQuantity(item.getBatchStock(),quantity);
         }
     }
+    /**
+     * Check if has enough batch quantity
+     * @param batchQuantity
+     * @param shopQuantity
+     * @author Larissa Navarro e Isaias Finger
+     */
 
     private boolean hasEnoughBatchQuantity(Integer batchQuantity, Integer shopQuantity) {
         return batchQuantity >= shopQuantity;
     }
 
+    /**
+     * Update shopping cart by status
+     * @param shoppingCartId
+     * @param status
+     * @author Larissa Navarro e Isaias Finger
+     */
     @Override
     public ShoppingCart updateShoppingCart(Long shoppingCartId, Status status) {
         ShoppingCart shoppingCart = getShoppingCartById(shoppingCartId);
@@ -111,6 +153,12 @@ public class ShoppingCartService implements IShoppingCartService {
         return repo.save(shoppingCart);
     }
 
+    /**
+     * Convert to DTO
+     * @param shoppingCart
+     * @author Larissa Navarro e Isaias Finger
+     */
+
     public ShoppingCartDTO convertToDTO(ShoppingCart shoppingCart) {
         ShoppingCartDTO dto = IShoppingCartMapper.MAPPER.shoppingCartToDTO(shoppingCart);
         dto.setCustomerId(shoppingCart.getCustomer().getId());
@@ -122,6 +170,11 @@ public class ShoppingCartService implements IShoppingCartService {
         return dto;
     }
 
+    /**
+     * Convert to Model
+     * @param dto
+     * @author Larissa Navarro e Isaias Finger
+     */
     private ShoppingCart convertToModel(ShoppingCartDTO dto) {
         ShoppingCart shoppingCart = IShoppingCartMapper.MAPPER.shoppingCartDTOToModel(dto);
         Customer customer = customerService.getCustomerById(dto.getCustomerId());
