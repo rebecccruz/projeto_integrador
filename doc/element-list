@@ -1,0 +1,16 @@
+br.com.dh.meli.projeto_integrador
+br.com.dh.meli.projeto_integrador.controller
+br.com.dh.meli.projeto_integrador.dto
+br.com.dh.meli.projeto_integrador.dto.geolocalization
+br.com.dh.meli.projeto_integrador.enums
+br.com.dh.meli.projeto_integrador.exception
+br.com.dh.meli.projeto_integrador.handler
+br.com.dh.meli.projeto_integrador.mapper
+br.com.dh.meli.projeto_integrador.model
+br.com.dh.meli.projeto_integrador.model.geolocalization
+br.com.dh.meli.projeto_integrador.repository
+br.com.dh.meli.projeto_integrador.repository.geolocalization
+br.com.dh.meli.projeto_integrador.service
+br.com.dh.meli.projeto_integrador.service.geolocalization
+br.com.dh.meli.projeto_integrador.util
+br.com.dh.meli.projeto_integrador.util.geolocalization
